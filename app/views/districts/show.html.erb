@@ -1,0 +1,109 @@
+<h1><%= @district.name %></h1>
+
+<div class="container">
+  <div class="row">
+      <div class="col-xl-6">
+        <div class="mx-auto d-block" id='map'></div>
+        <div class="name">
+          <h2><%= @district.name %>の釣り場一覧</h2>
+          <ul>
+            <% @spots.each do |spot| %>
+              <li><%= link_to spot.name, spot %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="col-xl-6">
+        <div class = "right mx-auto d-block">
+          <h2><%= @district.name %>の釣り場コメント一覧</h2>
+            <div class="center jumbotron">
+              <% @spots.each do |s| %>
+                <% s.comments.each do |c| %>
+                  <div>
+                    釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
+                  </div>
+                  <div>
+                    ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
+                  </div>
+                  <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+                  <div class="cimg">
+                    <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
+                      <%= image_tag c.image.url if c.image? %>
+                    <% end %>
+                  </div> 
+                  <hr>
+                <% end %>
+              <% end %>
+              <%= paginate @comments %>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+<style>
+  #map {
+    position: relative;
+    right: 20px;
+    border: 3px solid #FFCC33;
+    margin-bottom: 60px;
+    height: 540px;
+    width: 540px;
+  }
+  
+  .right {
+    position: relative;
+    bottom: 47px;
+  }
+  
+  .name {
+    margin-bottom: 85px;
+  }
+  
+  .cimg {
+    margin-top: 20px;
+    text-align : center;
+  }
+  
+  img {
+    width: 220px;
+  }
+</style>
+
+<script>
+  function initMap() {
+
+      var test ={lat: <%= @district.latitude %>, lng: <%= @district.longitude %>};
+    
+      var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: test
+      });
+      var transitLayer = new google.maps.TransitLayer();
+      transitLayer.setMap(map);
+
+      <% @spots.each do |spot| %>
+(function(){
+        var contentString = '<%= link_to spot.name, spot_path(spot) %>'; 
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position:{lat: <%= spot.latitude %>, lng: <%= spot.longitude %>},
+            map: map,
+            title: contentString,
+        });
+      marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+})();
+      <% end %>
+  }
+</script>
+
+<script async defer
+              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>

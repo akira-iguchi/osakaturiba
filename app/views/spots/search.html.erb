@@ -1,9 +1,7 @@
-<% if logged_in? %>
-
-  <div class="container">
-    <div class="row">
+<div class="container">
+  <div class="row">
       <div class="col-xl-6">
-        <img src="osaka.jpg" class="oosaka " alt="">
+        <img src="osaka.jpg" class="oosaka " alt="大阪の写真">
         <span class="nannkou"><%= link_to '南港', '/districts/1' %></span>
         <span class="ootu"><%= link_to '泉大津', '/districts/5' %></span>
         <span class="kaiduka"><%= link_to '貝塚', '/districts/2' %></span>
@@ -17,20 +15,17 @@
             <%= f.text_field :name, class: 'form-control', placeholder: "釣り場を入力しよう!" %>
             <%= f.submit :検索, class: "btn btn-primary", id: "sbtn" %>
           <% end %>
-         
+          
           <div class="itirann">
-            <h1 class="turiiti">釣り場一覧</h1>
-            <h3>南港</h3>
-              ・<%= link_to 'かもめ大橋', '/spots/1' %>&emsp;・<%= link_to 'シーサイドコスモ', '/spots/2' %>
-            <h3>泉大津</h3>
-              ・<%= link_to '助松埠頭', '/spots/9' %>&emsp;・<%= link_to '汐見埠頭砂上げ場', '/spots/10' %>
-            <h3>貝塚</h3>
-              ・<%= link_to '貝塚人工島', '/spots/3' %>&emsp;・<%= link_to '貝塚人工島水路', '/spots/4' %>
-            <h3>泉佐野</h3>
-              ・<%= link_to '食品コンビナート', '/spots/6' %>&emsp;・<%= link_to 'りんくう', '/spots/8' %>
-            <h3>岬町</h3>
-              ・<%= link_to 'とっとパーク小島', '/spots/5' %>&emsp;・<%= link_to '深日港', '/spots/7' %>
+            <h1>釣り場一覧</h1>
+            <p><検索結果></p>
+          <ul>
+            <% @spots.each do |s| %>
+              <li><a href="/spots/<%= s.id %>"><%= s.name %></a></li>
+            <% end %>
+          </ul>
           </div>
+          
         </div>       
       </div>
       <div class="col-xl-6">
@@ -39,58 +34,33 @@
             <div class="center jumbotron">
               <% @comments.each do |c| %>
                 <div>
-                  釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
+                釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
                 </div>
                 <div>
                   ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
                 </div>
-                <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
-                <div class="cimg">
-                  <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-                    <%= image_tag c.image.url if c.image? %>
-                  <% end %>
-                </div> 
+                 <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
                 <hr>
               <% end %>
               <%= paginate @comments %>
             </div>
-        </div>
+         
       </div>
-    </div>
   </div>
-
-<% else %>
-
-  <div class="text-center">
-    <span class="display-2 text-primary text-shadow">
-      <span class="osaka">
-        大阪の
-      </span>
-        <img class="mr-2 rounded" src="IMG_1889.JPG" alt="カワハギ" id="sakana">
-      <span class="turiba">
-        釣り場
-      </span>
-    </span>
-  </div>
-  
-  <div class="text-center">
-    <div class="btn">
-      <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary', id: 'botn' %>
-    </div>
-      <h1>気に入った釣り場をお気に入り登録したり、釣果などをコメントしよう！</h1>
-  </div>
-  
-<% end %>
+</div>
 
 <style>
-  h3 {
-    margin-top: 10px;
-  }
-  
-  .turiiti {
-    margin-top: 6px;
+  div h1 {
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 15px;
     font-size: 50px;
     text-shadow: 2px 1px 2px #808080; 
+  }
+  
+  div p {
+    margin-left: 20px;
+    font-size: 20px;
   }
 
   .nanko {
@@ -112,13 +82,6 @@
     float: left;
   }
   
-  #sakana {
-    width: 504px;
-    height: 618px;
-    border:solid 1px #ccc;
-    padding:4px;
-  }
-  
   .oosaka {
     position: relative;
     top: 20px;
@@ -126,25 +89,16 @@
     width: 600px;
     height: auto;
     border: 3px solid #FFCC33;
-  
   }
 
-  .btn {
-    position: relative;
-    right: 8px;
-    width: 300px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
   .osaka {
     font-size: 80px;
-    text-shadow: 5px 5px 5px #808080; 
+    text-shadow: 3px 3px 3px #808080; 
   }
   
   .turiba {
     font-size: 80px;
-    text-shadow: 5px 5px 5px #808080; 
+    text-shadow: 3px 3px 3px #808080; 
   }
   
   .right {
@@ -153,12 +107,12 @@
     width: 70vw;
     max-height: 100px;
   }
-
+  
   .itirann {
     position: relative;
-    bottom: 50px;
+    bottom: 40px;
   }
-  
+
   .scroll {
     overflow-y: scroll;
     max-height: 600px;
@@ -217,27 +171,27 @@
     font-weight: bold;
     font-size: 35px
   }
-
+  
   #form1 {
     position: relative;
     width: 230px;
   }
   
+  #sbox {
+    position: relative;
+    height: 40px;
+    border: none;
+    padding: 0 5px;
+    border-radius: 2px 0 0 2px;
+    background: #eee;
+  }
+  
   #sbtn {
     position: relative;
     padding: 2px;
-    bottom: 48.5px;
+    bottom: 38.5px;
     left: 240px;
     width: 55px;
     height: 40px;
-  }
-  
-  .cimg {
-    margin-top: 20px;
-    text-align : center;
-  }
-  
-  img {
-    width: 220px;
   }
 </style>

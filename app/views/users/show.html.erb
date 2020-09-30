@@ -1,0 +1,115 @@
+<h1><%= @user.name %></h1>
+<% if @user == current_user %>
+  <p><%= link_to("編集", "/users/#{@user.id}/edit", class: "btn btn-radius-solid") %></p>
+<% end %>
+
+<% if @user.image? %>
+  <%= image_tag @user.image_url, class:"icon", alt: "", :size =>'180x180' %>
+<% else %>
+  <%= image_tag 'default.png', class:"icon",alt: "", :size =>'180x180' %>
+<% end %>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xl-6">
+      <div class = "left mx-auto d-block">
+        <h2>釣り場コメント一覧</h2>
+        <div class="box">
+          <% @comments.each do |c| %>
+            <div>
+              釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
+            </div>
+            <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+            <div class="cimg">
+              <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
+                <%= image_tag c.image.url if c.image? %>
+              <% end %>
+            </div>
+            <div class="botton">
+              <% if current_user == c.user %>
+                  &nbsp;<%= link_to "削除", user_comment_path(@user,c), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger btn-sm' %>
+                <% end %>
+            </div>
+            <hr>
+          <% end %>
+          <%= paginate @comments %>
+          </div>
+        </div>
+      </div>
+      <div class="cd-xl-6">
+          <%= render 'favorites/likes', likes: @likes %>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <style>
+  h1 {
+   font-size: 70px;
+   margin-left: 230px;
+   margin-top: 70px;
+  }
+  
+  p {
+    position: relative;
+    font-size: 20px;
+    top: 10px;
+    left: 250px;
+  }
+ 
+  .icon {
+    position: relative;
+    bottom: 150px;
+    border: 3px solid #FFCC33;
+    border-radius: 100px;
+    background-color: white;
+  }
+  
+  .left {
+   position: relative;
+   bottom: 70px;
+   margin-right: 20px;
+   margin-bottom: 40px;
+   width: 470px;
+  }
+  
+  .box {
+    position: relative;
+    padding: 0.5em 1em;
+    border: solid 3px #95ccff;
+    border-radius: 8px;
+    background-color: white;
+  }
+  
+  a.btn-radius-solid {
+    border: 1px solid #ccc;
+    background: #f1e767;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fdfbfb), to(#ebedee));
+    background: -webkit-linear-gradient(top, #fdfbfb 0%, #ebedee 100%);
+    background: linear-gradient(to bottom, #fdfbfb 0%, #ebedee 100%);
+    -webkit-box-shadow: inset 1px 1px 1px #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, .3);
+  }
+  
+  a.btn-radius-solid:hover {
+    background: -webkit-gradient(linear, left bottom, left top, from(#fdfbfb), to(#ebedee));
+    background: -webkit-linear-gradient(bottom, #fdfbfb 0%, #ebedee 100%);
+    background: linear-gradient(to top, #fdfbfb 0%, #ebedee 100%);
+    box-shadow: 0px 5px 7px rgba(0, 0, 0, .3);
+  }
+  
+  .cimg {
+    margin-top: 20px;
+    text-align : center;
+  }
+  
+  img {
+    width: 183px;
+  }
+  
+  .botton {
+    position: relative;
+    right: 5px;
+  }
+ </style>

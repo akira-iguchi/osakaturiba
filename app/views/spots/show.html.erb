@@ -1,0 +1,184 @@
+<h1><%= @spot.name %></h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="mx-auto d-block" id='map'></div>
+      <div class="favorite">
+        <%= render 'favorites/favorite_button', spot: @spot %>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <p class="spot">&emsp;<%= @spot.explanation %></p>
+    </div>
+  </div>
+</div>
+
+<div class="box-title">コメント一覧</div>
+<div class="box2">
+  <div>
+    <% @comments.each do |c| %>
+      <div>
+        <a href="/users/<%= c.user.id %>"><%= c.user.name %></a><%= @comment.created_at %>
+      </div>
+      <div>
+        <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+      </div>
+      <div class="cimg">
+        <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
+          <%= image_tag c.image.url if c.image? %>
+        <% end %>
+      </div>
+      <div class="botton">
+        <% if current_user == c.user %>
+          &nbsp;<%= link_to "削除", spot_comment_path(@spot,c), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger btn-sm' %>
+        <% end %>
+      </div>
+      <hr>
+    <% end %>
+  </div>
+    
+  <%= paginate @comments %>
+  
+  <div class="comment">
+    <div class="text">
+      <%= form_with(model: [@spot, @comment], local: true) do |f| %>
+        <%= f.label :画像 %><br />
+        <%= f.file_field :image %>
+        <%= f.text_area :content, class: 'form-control js-text',id: "cmnt",  :placeholder => "釣果などをコメントしよう！" %>
+        <p class="js-text-count pull-right"></p>
+        <div class="commentbtn">
+          <%= f.submit 'コメントする', class: 'btn btn-info' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+ 
+<style>
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .spot {
+    font-size: 30px;
+  }
+    
+
+  #map {
+    position: relative;
+    border: 3px solid #FFCC33;
+    margin-bottom: 60px;
+    height: 540px;
+    width: 540px;
+    right: 25px;
+  }
+  
+  .favorite {
+    position: relative;
+    bottom: 40px;
+    margin-left: 182px;
+  }
+    
+  #list {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  
+  .commentbtn {
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .botton {
+    position: relative;
+    right: 5px;
+  }
+  
+  .box-title {
+    font-size: 1.2em;
+    background: #5fb3f5;
+    padding: 4px;
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+  
+  .box2 {
+    padding: 1em;
+    background: #EEEEEE;
+  }
+  
+  .cimg {
+    margin-top: 20px;
+    text-align : center;
+  }
+  
+  img {
+    width: 250px;
+  }
+  
+  #cmnt {
+    margin-top: 5px;
+  }
+</style>
+<script>
+function initMap() {
+
+  var test ={lat: <%= @spot.latitude %>, lng: <%= @spot.longitude %>};
+  var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16, 
+            center: test
+            });
+  var transitLayer = new google.maps.TransitLayer();
+  transitLayer.setMap(map);
+
+  var contentString = '<%= @spot.address %>';
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+
+  var marker = new google.maps.Marker({
+                position:test,
+                map: map,
+                title: contentString
+               });
+
+   marker.addListener('click', function() {
+     infowindow.open(map, marker);
+   });
+}
+  
+$(function (){
+  
+  var count = $(".js-text").text().replace(/\n/g, "改行").length;
+  
+  var now_count = 150 - count;
+  
+  if (count > 150) {
+    $(".js-text-count").css("color","red");
+  }
+  $(".js-text-count").text( "残り" + now_count + "文字");
+
+  $(".js-text").on("keyup", function() {
+
+    var count = $(this).val().replace(/\n/g, "改行").length;
+    var now_count = 150 - count;
+
+    if (count > 150) {
+      $(".js-text-count").css("color","red");
+    } else {
+      $(".js-text-count").css("color","black");
+    }
+    $(".js-text-count").text( "残り" + now_count + "文字");
+  });
+});
+</script>
+
+<script async defer
+              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>
