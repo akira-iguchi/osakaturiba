@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
-      <div class="col-xl-6">
-        <img src="osaka.jpg" class="oosaka " alt="大阪の写真">
-        <span class="nannkou"><%= link_to '南港', '/districts/1' %></span>
+      <div class="col-lg-6">
+        <img src="osaka.jpg" class="oosaka " alt="">
+        <span class="nannkou mx-auto d-block"><%= link_to '南港', '/districts/1' %></span>
         <span class="ootu"><%= link_to '泉大津', '/districts/5' %></span>
         <span class="kaiduka"><%= link_to '貝塚', '/districts/2' %></span>
         <span class="misaki"><%= link_to '岬町', '/districts/3' %></span>
         <span class="izumi"><%= link_to '泉佐野', '/districts/4' %></span>
       </div>
-      <div class="col-xl-6">
-        <div class="turi">
+    
+        <div class="turi mx-auto d-block">
           
           <%= form_with url: spot_search_path, id: "form1",  method: :get, local: true do |f| %>
             <%= f.text_field :name, class: 'form-control', placeholder: "釣り場を入力しよう!" %>
@@ -19,33 +19,37 @@
           <div class="itirann">
             <h1>釣り場一覧</h1>
             <p><検索結果></p>
-          <ul>
-            <% @spots.each do |s| %>
-              <li><a href="/spots/<%= s.id %>"><%= s.name %></a></li>
-            <% end %>
-          </ul>
+            <ul>
+              <% @spots.each do |s| %>
+                <li><a href="/spots/<%= s.id %>"><%= s.name %></a></li>
+              <% end %>
+            </ul>
           </div>
           
-        </div>       
-      </div>
-      <div class="col-xl-6">
-        <div class = "right">
+        </div>
+      
+        <div class = "right mx-auto d-block">
           <h2>釣り場コメント一覧</h2>
             <div class="center jumbotron">
               <% @comments.each do |c| %>
                 <div>
-                釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
+                  釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
                 </div>
                 <div>
                   ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
                 </div>
-                 <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+                <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+                <div class="cimg">
+                  <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
+                    <%= image_tag c.image.url if c.image? %>
+                  <% end %>
+                </div> 
                 <hr>
               <% end %>
               <%= paginate @comments %>
             </div>
-         
-      </div>
+        </div>
+        
   </div>
 </div>
 
@@ -69,8 +73,8 @@
 
   .turi {
     position: relative;
-    top: 20px;
-    left: 50px;
+    right: 30px;
+    top: 10px;
     margin-bottom: 40px;
   }
 
@@ -85,8 +89,8 @@
   .oosaka {
     position: relative;
     top: 20px;
-    right: 60px;
-    width: 600px;
+    right: 23px;
+    width: 470px;
     height: auto;
     border: 3px solid #FFCC33;
   }
@@ -104,8 +108,7 @@
   .right {
     position: relative;
     top: 10px;
-    width: 70vw;
-    max-height: 100px;
+    max-width: 500px;
   }
   
   .itirann {
@@ -129,47 +132,46 @@
   
   .scroll::-webkit-scrollbar-track {
     background: rgba(100,100,100, .5);
-    
   }
   
   .nannkou {
     position: relative;
-    bottom: 511px;
-    left: 343px;
+    bottom: 395px;
+    left: 290px;
     font-weight: bold; 
-    font-size: 35px
+    font-size: 30px
   }
   
   .ootu {
     position: relative;
-    bottom: 360px;
-    left: 250px;
+    bottom: 311px;
+    left: 270px;
     font-weight: bold; 
-    font-size: 35px
+    font-size: 30px
   }
   
   .kaiduka {
     position: relative;
-    bottom: 270px;
-    left: 93px;
+    bottom: 252px;
+    left: 135px;
     font-weight: bold;
-    font-size: 35px
+    font-size: 30px
   }
   
   .izumi {
     position: relative;
-    bottom: 196px;
-    right: 123px;
+    bottom: 204px;
+    right: 44px;
     font-weight: bold;
-    font-size: 35px
+    font-size: 30px
   }
   
   .misaki {
     position: relative;
-    bottom: 72px;
-    right: 213px;
+    bottom: 100px;
+    right: 109px;
     font-weight: bold;
-    font-size: 35px
+    font-size: 30px
   }
   
   #form1 {
@@ -193,5 +195,14 @@
     left: 240px;
     width: 55px;
     height: 40px;
+  }
+  
+  .cimg {
+    margin-top: 20px;
+    text-align : center;
+  }
+  
+  img {
+    width: 220px;
   }
 </style>

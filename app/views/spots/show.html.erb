@@ -2,13 +2,13 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xl-6">
+    <div class="col-lg-6">
       <div class="mx-auto d-block" id='map'></div>
       <div class="favorite">
         <%= render 'favorites/favorite_button', spot: @spot %>
       </div>
     </div>
-    <div class="col-xl-6">
+    <div class="col-lg-6">
       <p class="spot">&emsp;<%= @spot.explanation %></p>
     </div>
   </div>
@@ -70,15 +70,15 @@
     position: relative;
     border: 3px solid #FFCC33;
     margin-bottom: 60px;
-    height: 540px;
-    width: 540px;
-    right: 25px;
+    height: 440px;
+    width: 440px;
+    right: 10px;
   }
   
   .favorite {
     position: relative;
     bottom: 40px;
-    margin-left: 182px;
+    right: 10px;
   }
     
   #list {
@@ -118,7 +118,7 @@
   }
   
   img {
-    width: 250px;
+    width: 200px;
   }
   
   #cmnt {

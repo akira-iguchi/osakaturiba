@@ -2,9 +2,8 @@
   <h1>新規登録</h1>
 </div>
 
-<div class="row">
-  <div class="col-lg-6 offset-lg-3">
-
+<div class="sinki">
+  
     <%= form_with(model: @user, local: true) do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
     
@@ -38,12 +37,16 @@
     
     <% end %>
     
-  </div>
 </div>
 
 <style>
+  .sinki {
+    margin: 0 auto;
+    width: 450px;
+  }
+
   .btn {
-    position: absolute;
-    left: 71%;
+    position: relative;
+    left: 60%;
   }
 </style>

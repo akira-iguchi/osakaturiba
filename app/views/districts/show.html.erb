@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row">
-      <div class="col-xl-6">
+      <div class="col-lg-6">
         <div class="mx-auto d-block" id='map'></div>
         <div class="name">
           <h2><%= @district.name %>の釣り場一覧</h2>
@@ -13,7 +13,7 @@
           </ul>
         </div>
       </div>
-      <div class="col-xl-6">
+      <div class="col-lg-6">
         <div class = "right mx-auto d-block">
           <h2><%= @district.name %>の釣り場コメント一覧</h2>
             <div class="center jumbotron">
@@ -44,13 +44,18 @@
 
 
 <style>
+  h1 {
+    position: relative;
+    left: 50px;
+  }
+
   #map {
     position: relative;
-    right: 20px;
+    right: 10px;
     border: 3px solid #FFCC33;
     margin-bottom: 60px;
-    height: 540px;
-    width: 540px;
+    height: 440px;
+    width: 440px;
   }
   
   .right {
@@ -59,6 +64,8 @@
   }
   
   .name {
+    position: relative;
+    left: 50px;
     margin-bottom: 85px;
   }
   

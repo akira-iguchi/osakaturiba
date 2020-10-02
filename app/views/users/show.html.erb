@@ -12,8 +12,8 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xl-6">
-      <div class = "left mx-auto d-block">
+    <div class="col-sm-6">
+      <div class="left">
         <h2>釣り場コメント一覧</h2>
         <div class="box">
           <% @comments.each do |c| %>
@@ -28,38 +28,39 @@
             </div>
             <div class="botton">
               <% if current_user == c.user %>
-                  &nbsp;<%= link_to "削除", user_comment_path(@user,c), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger btn-sm' %>
-                <% end %>
+                &nbsp;<%= link_to "削除", user_comment_path(@user,c), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger btn-sm' %>
+              <% end %>
             </div>
             <hr>
           <% end %>
           <%= paginate @comments %>
-          </div>
         </div>
       </div>
-      <div class="cd-xl-6">
-          <%= render 'favorites/likes', likes: @likes %>
-      </div>
+    </div>
+    <div class="cd-sm-6 mx-auto d-block">
+        <%= render 'favorites/likes', likes: @likes %>
+    </div>
     </div>
   </div>
 </div>
 
  <style>
   h1 {
-   font-size: 70px;
+   font-size: 50px;
    margin-left: 230px;
    margin-top: 70px;
   }
   
   p {
     position: relative;
-    font-size: 20px;
     top: 10px;
     left: 250px;
   }
  
   .icon {
     position: relative;
+    left: 40px;
+    height: 160px;
     bottom: 150px;
     border: 3px solid #FFCC33;
     border-radius: 100px;
@@ -69,9 +70,8 @@
   .left {
    position: relative;
    bottom: 70px;
-   margin-right: 20px;
    margin-bottom: 40px;
-   width: 470px;
+   width: 420px;
   }
   
   .box {
@@ -105,7 +105,7 @@
   }
   
   img {
-    width: 183px;
+    width: 160px;
   }
   
   .botton {
