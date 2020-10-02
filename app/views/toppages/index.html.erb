@@ -17,7 +17,7 @@
             <%= f.submit :検索, class: "btn btn-primary", id: "sbtn" %>
           <% end %>
          
-          <div class="itirann">
+          <div class="itirann col-lg">
             <h1 class="turiiti">釣り場一覧</h1>
             <h3>南港</h3>
               ・<%= link_to 'かもめ大橋', '/spots/1' %>&emsp;・<%= link_to 'シーサイドコスモ', '/spots/2' %>
@@ -31,6 +31,7 @@
               ・<%= link_to 'とっとパーク小島', '/spots/5' %>&emsp;・<%= link_to '深日港', '/spots/7' %>
           </div>
         </div>       
+    </div>
   
         <div class = "right mx-auto d-block">
           <h2>釣り場コメント一覧</h2>
@@ -53,31 +54,10 @@
               <%= paginate @comments %>
             </div>
         </div>
-    </div>
   </div>
 
 <% else %>
-  
-  <!--<div class="text-center">-->
-  <!--  <span class="display-2 text-primary">-->
-  <!--    <span class="osaka">-->
-  <!--      大阪の-->
-  <!--    </span>-->
-  <!--      <img class="mr-2 rounded" src="IMG_1889.JPG" alt="カワハギ" id="sakana">-->
-  <!--    <span class="turiba">-->
-  <!--      釣り場-->
-  <!--    </span>-->
-  <!--  </span>-->
-  
-  <!--  <div class="text-center">-->
-  <!--    <div class="btn">-->
-  <!--      <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary', id: 'botn' %>-->
-  <!--    </div>-->
-  <!--      <h2>気に入った釣り場をお気に入り登録したり、釣り場に釣果などをコメントしよう！</h2>-->
-  <!--  </div>-->
-  <!--</div>-->
- 
-           
+
   <div class="text-center text-primary">
     <div>
       <span class="osaka">
@@ -186,7 +166,7 @@
   .right {
     position: relative;
     top: 10px;
-    max-width: 500px;
+    max-width: 700px;
   }
 
   .itirann {
