@@ -4,7 +4,7 @@ class Spot < ApplicationRecord
   has_many :like_users, through: :favorites, source: :user
   has_many :comments, dependent: :destroy
   
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true
   validates :explanation, presence: true
   validates :address, presence: true
 end

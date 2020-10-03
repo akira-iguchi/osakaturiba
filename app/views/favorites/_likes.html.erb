@@ -8,9 +8,11 @@
       <div>
         <%= like.explanation %>
       </div>
+      <% if @user == current_user %>
       <div class="btm">
         <%= render 'favorites/favorite_button', spot: like %>
       </div>
+      <% end %>
       <hr>
     <% end %>
   </div>
