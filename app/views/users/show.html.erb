@@ -12,7 +12,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-10 col-lg-6">
       <div class="left">
         <h2>釣り場コメント一覧</h2>
         <div class="box">
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div class="cd-sm-6 mx-auto d-block">
+    <div class="col-sm-10 col-lg-6">
         <%= render 'favorites/likes', likes: @likes %>
     </div>
     </div>
@@ -47,19 +47,18 @@
  <style>
   h1 {
    font-size: 50px;
-   margin-left: 230px;
+   margin-left: 200px;
    margin-top: 70px;
   }
   
   p {
     position: relative;
     top: 10px;
-    left: 250px;
+    left: 200px;
   }
  
   .icon {
     position: relative;
-    left: 40px;
     height: 160px;
     bottom: 150px;
     border: 3px solid #FFCC33;
@@ -71,7 +70,6 @@
    position: relative;
    bottom: 70px;
    margin-bottom: 40px;
-   width: 420px;
   }
   
   .box {
@@ -101,6 +99,7 @@
   
   .cimg {
     margin-top: 20px;
+    margin-bottom: 10px;
     text-align : center;
   }
   

@@ -1,29 +1,32 @@
-<div class="edit">
-  <h1>プロフィール編集</h1>
-  
-  <%= form_with(model: @user, local: true) do |f| %>
-  <%= render 'layouts/error_messages', model: f.object %>
+<div class="mx-auto d-block col-sm-10 col-md-8 col-lg-6">
+  <div class="edit">
+    <h1>プロフィール編集</h1>
     
-    <div class="form-group">
-      <%= f.label :name, '名前' %>
-      <%= f.text_field :name, class: 'form-control' %>
-    </div>
+    <%= form_with(model: @user, local: true) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :name, '名前' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+          
+      <div class="form-group">
+        <div><%= f.label :image, '画像' %></div>
+        <%= f.file_field :image, id: 'fil' %>
+        <%= f.hidden_field :image_cache %>
+      </div>
         
-    <div class="form-group">
-      <div><%= f.label :image, '画像' %></div>
-      <%= f.file_field :image, id: 'fil' %>
-      <%= f.hidden_field :image_cache %>
-    </div>
-      
-    <div class="form-group">
-      <%= f.label :email, 'メールアドレス' %>
-      <%= f.email_field :email, class: 'form-control' %>
-    </div>
-      
-      <%= f.submit '変更' %>
-   
-  <% end %>
+      <div class="form-group">
+        <%= f.label :email, 'メールアドレス' %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+        
+        <%= f.submit '変更' %>
+     
+    <% end %>
+  </div>
 </div>
+
 
 <style>
   .edit {
@@ -31,7 +34,6 @@
     top: 40px;
     margin: 30px auto;
     padding: 20px 20px 20px;
-    width: 470px;
     height: 450px;
     background: white;
     border-radius: 3px;
@@ -71,13 +73,12 @@
   
  
   input {
-    font-size: 20px;
+    font-size: 18px;
   }
   
   input[type=text], input[type=email] {
     margin-bottom: 30px;
     padding: 0 10px;
-    width: 420px;
     height: 34px;
     color: #404040;
     background: white;
@@ -92,7 +93,6 @@
   
   input[type=email] {
     padding: 0 10px;
-    width: 420px;
     height: 34px;
     color: #404040;
     background: white;
@@ -111,8 +111,6 @@
  
   input[type=submit] {
     position: absolute;
-    
-    left: 380px;
     cursor: pointer;
     padding: 0 18px;
     height: 33px;

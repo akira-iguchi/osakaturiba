@@ -6,6 +6,7 @@ class SpotsController < ApplicationController
   end
   
   def search
+    @districts = District.all
     @comments = Comment.all.order(id: :desc).page(params[:page]).per(8)
     if params[:name].present?
       @spots = Spot.where('name LIKE ?', "%#{params[:name]}%")

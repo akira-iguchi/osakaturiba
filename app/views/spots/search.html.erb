@@ -1,57 +1,50 @@
-<div class="container">
-  <div class="row">
-      <div class="col-lg-6">
-        <img src="osaka.jpg" class="oosaka " alt="">
-        <span class="nannkou mx-auto d-block"><%= link_to '南港', '/districts/1' %></span>
-        <span class="ootu"><%= link_to '泉大津', '/districts/5' %></span>
-        <span class="kaiduka"><%= link_to '貝塚', '/districts/2' %></span>
-        <span class="misaki"><%= link_to '岬町', '/districts/3' %></span>
-        <span class="izumi"><%= link_to '泉佐野', '/districts/4' %></span>
-      </div>
+<div class="row">
+  <div class="mx-auto d-block col-md-10 col-lg-5">
+    <div class="mx-auto d-block" id='map'></div>
+  </div>
+  
+  <div class="turi mx-auto d-block col-md-10 col-lg-6">
+  
+    <%= form_with url: spot_search_path, id: "form1",  method: :get, local: true do |f| %>
+      <%= f.text_field :name, class: 'form-control', placeholder: "釣り場を入力しよう!" %>
+      <%= f.submit :検索, class: "btn btn-primary", id: "sbtn" %>
+    <% end %>
     
-        <div class="turi mx-auto d-block">
-          
-          <%= form_with url: spot_search_path, id: "form1",  method: :get, local: true do |f| %>
-            <%= f.text_field :name, class: 'form-control', placeholder: "釣り場を入力しよう!" %>
-            <%= f.submit :検索, class: "btn btn-primary", id: "sbtn" %>
-          <% end %>
-          
-          <div class="itirann">
-            <h1>釣り場一覧</h1>
-            <p><検索結果></p>
-            <ul>
-              <% @spots.each do |s| %>
-                <li><a href="/spots/<%= s.id %>"><%= s.name %></a></li>
-              <% end %>
-            </ul>
-          </div>
-          
-        </div>
-      
-        <div class = "right mx-auto d-block">
-          <h2>釣り場コメント一覧</h2>
-            <div class="center jumbotron">
-              <% @comments.each do |c| %>
-                <div>
-                  釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
-                </div>
-                <div>
-                  ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
-                </div>
-                <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
-                <div class="cimg">
-                  <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-                    <%= image_tag c.image.url if c.image? %>
-                  <% end %>
-                </div> 
-                <hr>
-              <% end %>
-              <%= paginate @comments %>
-            </div>
-        </div>
-        
+    <div class="itirann">
+      <h1>釣り場一覧</h1>
+      <p><検索結果></p>
+      <ul>
+        <% @spots.each do |s| %>
+          <li><a href="/spots/<%= s.id %>"><%= s.name %></a></li>
+        <% end %>
+      </ul>
+    </div>
+    
   </div>
 </div>
+
+<div class = "right mx-auto d-block">
+  <h2>釣り場コメント一覧</h2>
+    <div class="center jumbotron">
+      <% @comments.each do |c| %>
+        <div>
+          釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
+        </div>
+        <div>
+          ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
+        </div>
+        <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+        <div class="cimg">
+          <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
+            <%= image_tag c.image.url if c.image? %>
+          <% end %>
+        </div> 
+        <hr>
+      <% end %>
+      <%= paginate @comments %>
+    </div>
+</div>
+      
 
 <style>
   div h1 {
@@ -73,7 +66,7 @@
 
   .turi {
     position: relative;
-    right: 30px;
+    left: 40px;
     top: 10px;
     margin-bottom: 40px;
   }
@@ -86,13 +79,10 @@
     float: left;
   }
   
-  .oosaka {
-    position: relative;
-    top: 20px;
-    right: 23px;
-    width: 470px;
-    height: auto;
+  #map {
     border: 3px solid #FFCC33;
+    margin-bottom: 60px;
+    height: 500px;
   }
 
   .osaka {
@@ -134,46 +124,6 @@
     background: rgba(100,100,100, .5);
   }
   
-  .nannkou {
-    position: relative;
-    bottom: 395px;
-    left: 290px;
-    font-weight: bold; 
-    font-size: 30px
-  }
-  
-  .ootu {
-    position: relative;
-    bottom: 311px;
-    left: 270px;
-    font-weight: bold; 
-    font-size: 30px
-  }
-  
-  .kaiduka {
-    position: relative;
-    bottom: 252px;
-    left: 135px;
-    font-weight: bold;
-    font-size: 30px
-  }
-  
-  .izumi {
-    position: relative;
-    bottom: 204px;
-    right: 44px;
-    font-weight: bold;
-    font-size: 30px
-  }
-  
-  .misaki {
-    position: relative;
-    bottom: 100px;
-    right: 109px;
-    font-weight: bold;
-    font-size: 30px
-  }
-  
   #form1 {
     position: relative;
     width: 230px;
@@ -206,3 +156,39 @@
     width: 220px;
   }
 </style>
+
+<script>
+  function initMap() {
+
+      var test ={lat: 34.4952, lng: 135.3050};
+    
+      var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: test
+      });
+      var transitLayer = new google.maps.TransitLayer();
+      transitLayer.setMap(map);
+
+      <% @districts.each do |d| %>
+(function(){
+        var contentString = '<%= link_to d.name, spot_path(d) %>'; 
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position:{lat: <%= d.latitude %>, lng: <%= d.longitude %>},
+            map: map,
+            title: contentString,
+        });
+      marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+})();
+      <% end %>
+  }
+</script>
+
+<script async defer
+              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>

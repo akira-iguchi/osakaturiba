@@ -1,21 +1,20 @@
 <h1><%= @spot.name %></h1>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="mx-auto d-block" id='map'></div>
+<div class="row">
+  <div class="mx-auto d-block col-sm-9 col-md-8 col-lg-5">
+          <div class="mx-auto d-block" id='map'></div>
       <div class="favorite">
-        <%= render 'favorites/favorite_button', spot: @spot %>
-      </div>
+      <%= render 'favorites/favorite_button', spot: @spot %>
     </div>
-    <div class="col-lg-6">
-      <p class="spot">&emsp;<%= @spot.explanation %></p>
-    </div>
+  </div>
+
+  <div class="mx-auto d-block col-sm-9 col-md-8 col-lg-6">
+    <p class="spot">&emsp;<%= @spot.explanation %></p>
   </div>
 </div>
 
-<div class="box-title">コメント一覧</div>
-<div class="box2">
+<div class="box-title mx-auto d-block">コメント一覧</div>
+<div class="box2 mx-auto d-block">
   <div>
     <% @comments.each do |c| %>
       <div>
@@ -67,12 +66,9 @@
     
 
   #map {
-    position: relative;
     border: 3px solid #FFCC33;
     margin-bottom: 60px;
-    height: 440px;
-    width: 440px;
-    right: 10px;
+    height: 450px;
   }
   
   .favorite {
@@ -105,11 +101,13 @@
     color: #FFF;
     font-weight: bold;
     letter-spacing: 0.05em;
+    max-width: 800px;
   }
   
   .box2 {
     padding: 1em;
     background: #EEEEEE;
+    max-width: 800px;
   }
   
   .cimg {
@@ -119,12 +117,14 @@
   
   img {
     width: 200px;
+    margin-bottom: 10px;
   }
   
   #cmnt {
     margin-top: 5px;
   }
 </style>
+
 <script>
 function initMap() {
 
