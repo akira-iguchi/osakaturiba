@@ -1,9 +1,9 @@
-<h1><%= @spot.name %></h1>
 
 <div class="row">
   <div class="mx-auto d-block col-sm-9 col-md-8 col-lg-5">
-          <div class="mx-auto d-block" id='map'></div>
-      <div class="favorite">
+    <h1><%= @spot.name %></h1>
+    <div id='map'></div>
+    <div class="favorite">
       <%= render 'favorites/favorite_button', spot: @spot %>
     </div>
   </div>
@@ -25,7 +25,7 @@
       </div>
       <div class="cimg">
         <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-          <%= image_tag c.image.url if c.image? %>
+          <%= image_tag c.image.url, alt: "" if c.image? %>
         <% end %>
       </div>
       <div class="botton">
@@ -61,19 +61,20 @@
   }
 
   .spot {
+    position: relative;
+    top: 40px;
     font-size: 30px;
   }
     
 
   #map {
     border: 3px solid #FFCC33;
-    margin-bottom: 60px;
+    margin-bottom: 10px;
     height: 450px;
   }
   
   .favorite {
     position: relative;
-    bottom: 40px;
     right: 10px;
   }
     
@@ -81,7 +82,6 @@
     display: flex;
     justify-content: space-around;
   }
-  
   
   .commentbtn {
     margin-top: 10px;
@@ -94,6 +94,8 @@
   }
   
   .box-title {
+    position: relative;
+    top: 40px;
     font-size: 1.2em;
     background: #5fb3f5;
     padding: 4px;
@@ -105,6 +107,8 @@
   }
   
   .box2 {
+    position: relative;
+    top: 40px;
     padding: 1em;
     background: #EEEEEE;
     max-width: 800px;

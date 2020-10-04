@@ -12,7 +12,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-10 col-lg-6">
+    <div class="mx-auto d-block col-sm-10 col-lg-6">
       <div class="left">
         <h2>釣り場コメント一覧</h2>
         <div class="box">
@@ -23,7 +23,7 @@
             <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
             <div class="cimg">
               <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-                <%= image_tag c.image.url if c.image? %>
+                <%= image_tag c.image.url, alt: "" if c.image? %>
               <% end %>
             </div>
             <div class="botton">
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-10 col-lg-6">
+    <div class="mx-auto d-block col-sm-10 col-lg-6">
         <%= render 'favorites/likes', likes: @likes %>
     </div>
     </div>

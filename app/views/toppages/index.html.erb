@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="mx-auto d-block col-sm-9 col-md-8 col-lg-5">
-      <div class="mx-auto d-block" id='map'></div>
+      <div id='map'></div>
     </div>
     
       <div class="turi mx-auto d-block col-sm-10 col-md-9 col-lg-6">
@@ -41,7 +41,7 @@
             <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
             <div class="cimg">
               <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-                <%= image_tag c.image.url if c.image? %>
+                <%= image_tag c.image.url, alt: "" if c.image? %>
               <% end %>
             </div> 
             <hr>
@@ -216,8 +216,8 @@
   
   .item1 {
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 100%;
     box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
     -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
@@ -272,8 +272,8 @@
   
   .item3 {
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 55px;
+    height: 55px;
     border-radius: 100%;
     box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
     -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
@@ -300,8 +300,8 @@
   
   .item4 {
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 70px;
+    height: 70px;
     border-radius: 100%;
     box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
     -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
@@ -328,8 +328,8 @@
   
   .item5 {
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 100%;
     box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
     -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
@@ -356,8 +356,8 @@
   
   .item6 {
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 100%;
     box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
     -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
@@ -384,8 +384,8 @@
   
   .item7 {
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 100%;
     box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
     -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
