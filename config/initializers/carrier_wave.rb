@@ -2,16 +2,16 @@ if Rails.env.production?
   CarrierWave.configure do |config|
     config.fog_provider = 'fog/aws'
     config.fog_credentials = {
-
+     
       :provider              => 'AWS',
-      :region                => ENV['us-east-1'],
-      :aws_access_key_id     => ENV['AKIAIAGC3CPADIBKUZAA'],
-      :aws_secret_access_key => ENV['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']
+      :region                => ENV['S3_REGION'],   
+      :aws_access_key_id     => ENV['S3_ACCESS_KEY'],
+      :aws_secret_access_key => ENV['S3_SECRET_KEY']
     }
-    config.fog_directory     =  ENV['osakaturiba']
-  
+    config.fog_directory     =  ENV['S3_BUCKET']
+   
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" }
   end
-
+ 
   CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/ 
 end

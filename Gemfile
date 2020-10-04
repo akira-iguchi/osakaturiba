@@ -71,7 +71,6 @@ gem "jquery-rails"
 gem 'rails-i18n'
 
 group :production do
-  gem 'pg',             '0.18.0'
-  gem 'rails_12factor', '0.0.2'
+  gem 'pg', '0.20.0'
   gem 'fog-aws'
 end
