@@ -14,6 +14,8 @@ if Rails.env.production?
       :aws_secret_access_key => ENV['S3_SECRET_KEY']
     }
     config.fog_directory     =  ENV['S3_BUCKET']
+    
+    config.cache_storage = :fog
    
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" }
   end
