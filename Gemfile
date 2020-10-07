@@ -70,7 +70,4 @@ gem "jquery-rails"
 
 gem 'rails-i18n'
 
-group :production do
-  gem 'pg', '0.20.0'
-  gem 'fog-aws'
-end
+gem 'fog-aws'

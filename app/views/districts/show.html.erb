@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="mx-auto d-block col-sm-9 col-md-8 col-lg-5">
+    <div class="mx-auto d-block col-md-10 col-lg-5">
       <h1><%= @district.name %></h1>
       <div id='map'></div>
       <div class="name">
@@ -41,6 +41,10 @@
 
 
 <style>
+  body {
+   background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
+  }
+
   h1 {
     position: relative;
   }
@@ -69,6 +73,7 @@
   img {
     width: 220px;
     margin-bottom: 10px;
+    border: 1px solid blue;
   }
 
   .scroll {

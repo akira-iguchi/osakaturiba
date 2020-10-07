@@ -3,7 +3,7 @@
 </div>
 
 <div class="row">
-  <div class="log col-sm-10 col-md-8 col-lg-6">
+  <div class="log col-md-10 col-lg-6">
     <div class="log">
       <div class="center jumbotron">
     
@@ -16,33 +16,58 @@
     
         <div class="form-group">
           <%= f.label :password, 'パスワード' %>
-          <%= f.password_field :password, class: 'form-control' %>
+          <%= f.password_field :password, class: 'form-control', id: "js-password" %>
         </div>
+        
+        <p>
+          <label for="js-passcheck">パスワードを表示する</label>
+          <input type="checkbox" id="js-passcheck"/>
+        </p>
     
+       
+          <p><%= link_to 'パスワードを忘れましたか？', signup_path %></p>
+      
+        
         <div>
           <%= f.submit 'ログイン', class: 'btn btn-primary' %>
         </div>
-        
+       
         <% end %>
         
-      </div>
-        <p>ニューアングラー? <%= link_to '新規登録', signup_path %></p>
-    </div>
   </div>
 </div>
   
-  
-
-  
 <style>
+  body {
+   background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
+  }
+
   .log {
     margin: 0 auto;
   }
 
   p {
     position: relative;
-    bottom: 11px;
+    bottom: 9px;
   }
-  
-  
 </style>
+
+<script>
+  $(function() {
+      var password  = '#js-password';
+      var passcheck = '#js-passcheck';
+  	
+      changeInputtype(password, passcheck);
+  });
+  
+  
+  function changeInputtype(password, passcheck) {
+      $(passcheck).change(function() {       
+          if ($(this).prop('checked')) {
+              $(password).attr('type','text');
+          } else {
+              $(password).attr('type','password');
+          }
+      });
+  }
+</script>

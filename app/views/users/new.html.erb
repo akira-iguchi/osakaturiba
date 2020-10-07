@@ -3,7 +3,7 @@
 </div>
 
 <div class="row">
-  <div class="sinki col-sm-10 col-md-8 col-lg-6">
+  <div class="sinki col-md-10 col-lg-6">
     <div class="sinki">
   
       <%= form_with(model: @user, local: true) do |f| %>
@@ -23,17 +23,17 @@
     
           <div class="form-group">
             <%= f.label :password, 'パスワード' %>
-            <%= f.password_field :password, class: 'form-control' %>
+            <%= f.password_field :password, class: 'form-control', id: "js-password" %>
           </div>
-    
-          <div class="form-group">
-            <%= f.label :password_confirmation, '再パスワード' %>
-            <%= f.password_field :password_confirmation, class: 'form-control' %>
-          </div>
-    
-         <div class="btn">
+          
+          <p>
+            <label for="js-passcheck">パスワードを表示する</label>
+            <input type="checkbox" id="js-passcheck"/>
+          </p>
+          
+          <div class="btn">
           <%= f.submit '新規登録', class: 'btn btn-primary' %>
-         </div>
+          </div>
          
         </div>
       
@@ -44,12 +44,42 @@
 </div>
 
 <style>
+  body {
+   background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
+  }
+
   .sinki {
     margin: 0 auto;
   }
 
   .btn {
     position: relative;
+    bottom: 4px;
     right: 6px;
   }
+  
+  p {
+    position: relative;
+    bottom: 9px;
+  }
 </style>
+
+<script>
+  $(function() {
+      var password  = '#js-password';
+      var passcheck = '#js-passcheck';
+  	
+      changeInputtype(password, passcheck);
+  });
+  
+  
+  function changeInputtype(password, passcheck) {
+      $(passcheck).change(function() {       
+          if ($(this).prop('checked')) {
+              $(password).attr('type','text');
+          } else {
+              $(password).attr('type','password');
+          }
+      });
+  }
+</script>

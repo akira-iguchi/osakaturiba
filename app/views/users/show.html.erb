@@ -4,7 +4,7 @@
 <% end %>
 
 <% if @user.image? %>
-  <%= image_tag @user.image_url, class:"icon", alt: "", :size =>'180x180' %>
+  <%= image_tag @user.image.to_s, class:"icon", alt: "", :size =>'180x180' %>
 <% else %>
   <%= image_tag 'default.png', class:"icon",alt: "", :size =>'180x180' %>
 <% end %>
@@ -12,7 +12,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="mx-auto d-block col-sm-10 col-lg-6">
+    <div class="mx-auto d-block col-sm-12 col-lg-6">
       <div class="left">
         <h2>釣り場コメント一覧</h2>
         <div class="box">
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div class="mx-auto d-block col-sm-10 col-lg-6">
+    <div class="mx-auto d-block col-sm-12 col-lg-6">
         <%= render 'favorites/likes', likes: @likes %>
     </div>
     </div>
@@ -45,6 +45,11 @@
 </div>
 
  <style>
+   body {
+   background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
+   overflow-x: hidden;
+  }
+ 
   h1 {
    font-size: 50px;
    margin-left: 200px;
@@ -105,6 +110,7 @@
   
   img {
     width: 160px;
+    border: 1px solid blue;
   }
   
   .botton {

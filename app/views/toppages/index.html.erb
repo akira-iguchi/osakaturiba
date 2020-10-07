@@ -1,93 +1,98 @@
 <% if logged_in? %>
 
-  <div class="row">
-    <div class="mx-auto d-block col-sm-9 col-md-8 col-lg-5">
-      <div id='map'></div>
-    </div>
-    
-      <div class="turi mx-auto d-block col-sm-10 col-md-9 col-lg-6">
-        <%= form_with url: spot_search_path, id: "form1",  method: :get, local: true do |f| %>
-          <%= f.text_field :name, class: 'form-control', placeholder: "釣り場を入力しよう!" %>
-          <%= f.submit :検索, class: "btn btn-primary", id: "sbtn" %>
-        <% end %>
-       
-        <div class="itirann">
-          <h1 class="turiiti ">釣り場一覧</h1>
-          <h3><%= link_to '南港', '/districts/1', class: "text-dark" %></h3>
-            ・<%= link_to 'かもめ大橋', '/spots/1' %>&emsp;・<%= link_to 'シーサイドコスモ', '/spots/2' %>
-          <h3><%= link_to '泉大津', '/districts/5', class: "text-dark" %></h3>
-            ・<%= link_to '助松埠頭', '/spots/9' %>&emsp;・<%= link_to '汐見埠頭砂上げ場', '/spots/10' %>
-          <h3><%= link_to '貝塚', '/districts/2', class: "text-dark" %></h3>
-            ・<%= link_to '貝塚人工島', '/spots/3' %>&emsp;・<%= link_to '貝塚人工島水路', '/spots/4' %>
-          <h3><%= link_to '泉佐野', '/districts/4', class: "text-dark" %></h3>
-            ・<%= link_to '食品コンビナート', '/spots/7' %>&emsp;・<%= link_to 'りんくう', '/spots/8' %>
-          <h3><%= link_to '岬町', '/districts/3', class: "text-dark" %></h3>
-            ・<%= link_to 'とっとパーク小島', '/spots/5' %>&emsp;・<%= link_to '深日港', '/spots/6' %>
-        </div>
-      </div>       
-  </div>
-
-  <div class="container">
-    <div class = "right mx-auto d-block">
-      <h2>釣り場コメント一覧</h2>
-        <div class="center jumbotron">
-          <% @comments.each do |c| %>
-            <div>
-              釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
-            </div>
-            <div>
-              ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
-            </div>
-            <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
-            <div class="cimg">
-              <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-                <%= image_tag c.image.url, alt: "" if c.image? %>
-              <% end %>
-            </div> 
-            <hr>
+  <body class="main">
+    <div class="row">
+      <div class="mx-auto d-block col-md-10 col-lg-5">
+        <div id='map'></div>
+      </div>
+      
+        <div class="turi mx-auto d-block col-sm-10 col-md-9 col-lg-6">
+          <%= form_with url: spot_search_path, id: "form1",  method: :get, local: true do |f| %>
+            <%= f.text_field :name, class: 'form-control', placeholder: "釣り場を入力しよう!" %>
+            <%= f.submit :検索, class: "btn btn-primary", id: "sbtn" %>
           <% end %>
-          <%= paginate @comments %>
-        </div>
+         
+          <div class="itirann">
+            <h1 class="turiiti ">釣り場一覧</h1>
+            <h3><%= link_to '南港', '/districts/1', class: "text-dark" %></h3>
+              ・<%= link_to 'かもめ大橋', '/spots/1' %>&emsp;・<%= link_to 'シーサイドコスモ', '/spots/2' %>
+            <h3><%= link_to '泉大津', '/districts/5', class: "text-dark" %></h3>
+              ・<%= link_to '助松埠頭', '/spots/9' %>&emsp;・<%= link_to '汐見埠頭砂上げ場', '/spots/10' %>
+            <h3><%= link_to '貝塚', '/districts/2', class: "text-dark" %></h3>
+              ・<%= link_to '貝塚人工島', '/spots/3' %>&emsp;・<%= link_to '貝塚人工島水路', '/spots/4' %>
+            <h3><%= link_to '泉佐野', '/districts/4', class: "text-dark" %></h3>
+              ・<%= link_to '食品コンビナート', '/spots/7' %>&emsp;・<%= link_to 'りんくう', '/spots/8' %>
+            <h3><%= link_to '岬町', '/districts/3', class: "text-dark" %></h3>
+              ・<%= link_to 'とっとパーク小島', '/spots/5' %>&emsp;・<%= link_to '深日港', '/spots/6' %>
+          </div>
+        </div>       
+    </div>
+  
+    <div class="container">
+      <div class = "right mx-auto d-block">
+        <h2>釣り場コメント一覧</h2>
+          <div class="center jumbotron">
+            <% @comments.each do |c| %>
+              <div>
+                釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
+              </div>
+              <div>
+                ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
+              </div>
+              <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+              <div class="cimg">
+                <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
+                  <%= image_tag c.image.url, alt: "" if c.image? %>
+                <% end %>
+              </div> 
+              <hr>
+            <% end %>
+            <%= paginate @comments %>
+          </div>
+      </div>
     </div>
   </div>
+  
 
 <% else %>
-
-  <div class="text-center text-primary">
+  
+  <div class="text-center">
     <div>
-      <span class="osaka">
+      <p class="osaka">
         大阪の
-      </span>
+      </p>
     </div>
     <div><img class="mr-2 rounded" src="IMG_1889.JPG" alt="" id="sakana"></div>
     <div>
-      <span class="turiba">
+      <p class="turiba">
         釣り場
-      </span>
+      </p>
     </div>
   </div>
   
-    <div class="text-center">
+    <div class="text-center fade">
       <div class="btn">
         <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary', id: 'botn' %>
       </div>
-        <h2>気に入った釣り場をお気に入り登録したり、釣り場に釣果などをコメントしよう！</h2>
+        <h2 class="text-white">気に入った釣り場をお気に入り登録したり、釣り場に釣果などをコメントしよう！</h2>
     </div>
   </div>
-  
-  <div class="bubbles">
-    <div class="item1"></div>
-    <div class="item2"></div>
-    <div class="item3"></div>
-    <div class="item4"></div>
-    <div class="item5"></div>
-    <div class="item6"></div>
-    <div class="item7"></div>
-  </div>
-          
+ 
 <% end %>
 
 <style>
+  body {
+   background-image: url("turi.jpg");
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center center;
+   overflow-x: hidden;
+  }
+
+  .main {
+    background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
+  }
+
   h3 {
     color: black;
     margin-top: 10px;
@@ -127,7 +132,13 @@
   #sakana {
     width: 330px;
     height: auto;
+    border: 3px solid #FFCC33;
     border-radius: 50%;
+    opacity:0;
+    animation-name: fadedown;
+    animation-delay: 0.5s;
+    animation-duration: 2s; 
+    animation-fill-mode: forwards; 
   }
 
   .btn {
@@ -143,7 +154,10 @@
     right: 20%;
     font-weight: bold;
     font-size: 80px;
-    text-shadow: 5px 5px 5px #808080; 
+    color: #99FFFF;
+    text-shadow: 5px 5px 5px #808080;
+    animation-name: faderight;
+    animation-duration: 2s;
   }
   
   .turiba {
@@ -151,9 +165,22 @@
     left: 20%;
     font-weight: bold;
     font-size: 80px;
-    text-shadow: 5px 5px 5px #808080; 
+    color: #99FFFF;
+    text-shadow: 5px 5px 5px #808080;
+    opacity:0;
+    animation-name: fadeleft;
+    animation-delay: 1s;
+    animation-duration: 2s;
+    animation-fill-mode: forwards; 
   }
   
+  .fade {
+    animation-name: fade;
+    animation-delay: 2s;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards; 
+  }
+
   .right {
     position: relative;
     top: 10px;
@@ -205,210 +232,49 @@
   
   img {
     width: 220px;
+    border: 1px solid blue;
   }
   
-  .bubbles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 140px;
+ @keyframes fadedown {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    } 
   }
   
-  .item1 {
-    display: block;
-    width: 60px;
-    height: 60px;
-    border-radius: 100%;
-    box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
-    -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
-    position: relative;
-    bottom: 20px;
-    left: 5%;
+  @keyframes faderight {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+    transform: translateX(0px);
+    }
   }
   
-  .item1:after {
-    content: "";
-    display: block;
-    width: 40%;
-    height: 40%;
-    border-radius: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    position: absolute;
-    right: 15%;
-    top: 15%;
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
-    transform: rotateZ(45deg) scaleY(0.8);
-    -webkit-transform: rotateZ(45deg) scaleY(0.8);
+   @keyframes fadeleft {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+    transform: translateX(0px);
+    }
   }
   
-  .item2 {
-    display: block;
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
-    -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
-    position: relative;
-    top: 500px;
-    left: 15%;
-  }
-  
-  .item2:after {
-    content: "";
-    display: block;
-    width: 20%;
-    height: 20%;
-    border-radius: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    position: absolute;
-    right: 15%;
-    top: 15%;
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
-    transform: rotateZ(45deg) scaleY(0.8);
-    -webkit-transform: rotateZ(45deg) scaleY(0.8);
-  }
-  
-  .item3 {
-    display: block;
-    width: 55px;
-    height: 55px;
-    border-radius: 100%;
-    box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
-    -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
-    position: relative;
-    top: 200px;
-    left: 30%;
-  }
-  
-  .item3:after {
-    content: "";
-    display: block;
-    width: 20%;
-    height: 20%;
-    border-radius: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    position: absolute;
-    right: 15%;
-    top: 15%;
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
-    transform: rotateZ(45deg) scaleY(0.8);
-    -webkit-transform: rotateZ(45deg) scaleY(0.8);
-  }
-  
-  .item4 {
-    display: block;
-    width: 70px;
-    height: 70px;
-    border-radius: 100%;
-    box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
-    -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
-    position: relative;
-    top: 600px;
-    left: 40%;
-  }
-  
-  .item4:after {
-    content: "";
-    display: block;
-    width: 20%;
-    height: 20%;
-    border-radius: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    position: absolute;
-    right: 15%;
-    top: 15%;
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
-    transform: rotateZ(45deg) scaleY(0.8);
-    -webkit-transform: rotateZ(45deg) scaleY(0.8);
-  }
-  
-  .item5 {
-    display: block;
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
-    -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
-    position: relative;
-    bottom: 200px;
-    left: 60%;
-  }
-  
-  .item5:after {
-    content: "";
-    display: block;
-    width: 20%;
-    height: 20%;
-    border-radius: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    position: absolute;
-    right: 15%;
-    top: 15%;
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
-    transform: rotateZ(45deg) scaleY(0.8);
-    -webkit-transform: rotateZ(45deg) scaleY(0.8);
-  }
-  
-  .item6 {
-    display: block;
-    width: 45px;
-    height: 45px;
-    border-radius: 100%;
-    box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
-    -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
-    position: relative;
-    top: 100px;
-    left: 80%;
-  }
-  
-  .item6:after {
-    content: "";
-    display: block;
-    width: 20%;
-    height: 20%;
-    border-radius: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    position: absolute;
-    right: 15%;
-    top: 15%;
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
-    transform: rotateZ(45deg) scaleY(0.8);
-    -webkit-transform: rotateZ(45deg) scaleY(0.8);
-  }
-  
-  .item7 {
-    display: block;
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
-    -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.6) inset;
-    position: relative;
-    top: 600px;
-    left: 90%;
-  }
-  
-  .item7:after {
-    content: "";
-    display: block;
-    width: 20%;
-    height: 20%;
-    border-radius: 100%;
-    background: rgba(255, 255, 255, 0.8);
-    position: absolute;
-    right: 15%;
-    top: 15%;
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
-    transform: rotateZ(45deg) scaleY(0.8);
-    -webkit-transform: rotateZ(45deg) scaleY(0.8);
-  }
+   @keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 </style>
 
 <script>

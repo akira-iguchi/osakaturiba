@@ -1,6 +1,6 @@
 
 <div class="row">
-  <div class="mx-auto d-block col-sm-9 col-md-8 col-lg-5">
+  <div class="mx-auto d-block col-md-10 col-lg-5">
     <h1><%= @spot.name %></h1>
     <div id='map'></div>
     <div class="favorite">
@@ -42,7 +42,8 @@
   <div class="comment">
     <div class="text">
       <%= form_with(model: [@spot, @comment], local: true) do |f| %>
-        <%= f.label :画像 %><br />
+      <%= render 'layouts/error_messages', model: f.object %>
+        <%= f.label :画像も投稿できるよ！ %><br />
         <%= f.file_field :image %>
         <%= f.text_area :content, class: 'form-control js-text',id: "cmnt",  :placeholder => "釣果などをコメントしよう！" %>
         <p class="js-text-count pull-right"></p>
@@ -56,6 +57,10 @@
 
  
 <style>
+  body {
+   background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
+  }
+
   h1 {
     margin-bottom: 20px;
   }
@@ -122,6 +127,7 @@
   img {
     width: 200px;
     margin-bottom: 10px;
+    border: 1px solid blue;
   }
   
   #cmnt {

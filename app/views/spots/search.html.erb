@@ -23,30 +23,37 @@
   </div>
 </div>
 
-<div class = "right mx-auto d-block">
-  <h2>釣り場コメント一覧</h2>
-    <div class="center jumbotron">
-      <% @comments.each do |c| %>
-        <div>
-          釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
-        </div>
-        <div>
-          ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
-        </div>
-        <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
-        <div class="cimg">
-          <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-            <%= image_tag c.image.url if c.image? %>
-          <% end %>
-        </div> 
-        <hr>
-      <% end %>
-      <%= paginate @comments %>
-    </div>
+<div class="container">
+  <div class = "right mx-auto d-block">
+    <h2>釣り場コメント一覧</h2>
+      <div class="center jumbotron">
+        <% @comments.each do |c| %>
+          <div>
+            釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
+          </div>
+          <div>
+            ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
+          </div>
+          <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+          <div class="cimg">
+            <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
+              <%= image_tag c.image.url if c.image? %>
+            <% end %>
+          </div> 
+          <hr>
+        <% end %>
+        <%= paginate @comments %>
+      </div>
+  </div>
 </div>
+
       
 
 <style>
+  body {
+   background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
+  }
+
   div h1 {
     position: relative;
     margin-top: 15px;
@@ -58,6 +65,11 @@
   div p {
     margin-left: 20px;
     font-size: 20px;
+  }
+  
+  ul li {
+    position: relative;
+    bottom: 10px;
   }
 
   .nanko {
@@ -154,6 +166,7 @@
   
   img {
     width: 220px;
+    border: 1px solid blue;
   }
 </style>
 
