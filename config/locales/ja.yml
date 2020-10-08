@@ -24,3 +24,10 @@ ja:
         name: 名前
         email: メールアドレス
         password: パスワード
+        
+  activerecord:
+    models:
+      comment: コメント
+    attributes:
+      comment:
+        content: コメント 

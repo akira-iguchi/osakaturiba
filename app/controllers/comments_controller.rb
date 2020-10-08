@@ -11,7 +11,8 @@ class CommentsController < ApplicationController
       redirect_back(fallback_location: @spot)
     else
       flash[:success] = "コメントできませんでした"
-      redirect_back(fallback_location: @spot)
+      @comments = @spot.comments.order(id: :desc).page(params[:page]).per(6)
+      render 'spots/show'
     end
   end
   

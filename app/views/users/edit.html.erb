@@ -25,12 +25,18 @@
      
     <% end %>
   </div>
+  <p><%= link_to '戻る', user_path(@user) %></p>
 </div>
 
 
 <style>
   body {
    background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
+  }
+  
+  p {
+    position: relative;
+    top: 30px;
   }
 
   .edit {

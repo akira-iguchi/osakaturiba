@@ -6,23 +6,23 @@
         <div id='map'></div>
       </div>
       
-        <div class="turi mx-auto d-block col-sm-10 col-md-9 col-lg-6">
+        <div class="col-sm-10 col-md-9 col-lg-6">
           <%= form_with url: spot_search_path, id: "form1",  method: :get, local: true do |f| %>
             <%= f.text_field :name, class: 'form-control', placeholder: "釣り場を入力しよう!" %>
             <%= f.submit :検索, class: "btn btn-primary", id: "sbtn" %>
           <% end %>
          
           <div class="itirann">
-            <h1 class="turiiti ">釣り場一覧</h1>
-            <h3><%= link_to '南港', '/districts/1', class: "text-dark" %></h3>
+            <h1 class="turiiti">釣り場一覧</h1>
+            <h3 class="hidari"><%= link_to '南港', '/districts/1', class: "text-dark" %></h3>
               ・<%= link_to 'かもめ大橋', '/spots/1' %>&emsp;・<%= link_to 'シーサイドコスモ', '/spots/2' %>
             <h3><%= link_to '泉大津', '/districts/5', class: "text-dark" %></h3>
               ・<%= link_to '助松埠頭', '/spots/9' %>&emsp;・<%= link_to '汐見埠頭砂上げ場', '/spots/10' %>
-            <h3><%= link_to '貝塚', '/districts/2', class: "text-dark" %></h3>
+            <h3 class="hidari"><%= link_to '貝塚', '/districts/2', class: "text-dark" %></h3>
               ・<%= link_to '貝塚人工島', '/spots/3' %>&emsp;・<%= link_to '貝塚人工島水路', '/spots/4' %>
             <h3><%= link_to '泉佐野', '/districts/4', class: "text-dark" %></h3>
               ・<%= link_to '食品コンビナート', '/spots/7' %>&emsp;・<%= link_to 'りんくう', '/spots/8' %>
-            <h3><%= link_to '岬町', '/districts/3', class: "text-dark" %></h3>
+            <h3 class="hidari"><%= link_to '岬町', '/districts/3', class: "text-dark" %></h3>
               ・<%= link_to 'とっとパーク小島', '/spots/5' %>&emsp;・<%= link_to '深日港', '/spots/6' %>
           </div>
         </div>       
@@ -86,7 +86,6 @@
    background-repeat: no-repeat;
    background-size: cover;
    background-position: center center;
-   overflow-x: hidden;
   }
 
   .main {
@@ -94,8 +93,15 @@
   }
 
   h3 {
+    position: relative;
+    right: 75px;
     color: black;
     margin-top: 10px;
+  }
+  
+  .hidari {
+    position: relative;
+    right: 90px;
   }
   
   #map {
@@ -110,25 +116,6 @@
     text-shadow: 2px 1px 2px #808080; 
   }
 
-  .nanko {
-    margin-top: 100px;
-  }
-
-  .turi {
-    position: relative;
-    top: 20px;
-    left: 40px;
-    margin-bottom: 40px;
-  }
-
-  .district {
-    list-style: none;
-  }
-  
-  .spot {
-    float: left;
-  }
-  
   #sakana {
     width: 330px;
     height: auto;
@@ -151,7 +138,7 @@
   
   .osaka {
     position: relative;
-    right: 20%;
+    padding-right: 27%;
     font-weight: bold;
     font-size: 80px;
     color: #99FFFF;
@@ -162,7 +149,7 @@
   
   .turiba {
     position: relative;
-    left: 20%;
+    padding-left: 27%;
     font-weight: bold;
     font-size: 80px;
     color: #99FFFF;
@@ -171,7 +158,7 @@
     animation-name: fadeleft;
     animation-delay: 1s;
     animation-duration: 2s;
-    animation-fill-mode: forwards; 
+    animation-fill-mode: forwards;
   }
   
   .fade {
@@ -190,6 +177,7 @@
   .itirann {
     position: relative;
     bottom: 50px;
+    text-align: center;
   }
   
   .scroll {
@@ -213,6 +201,8 @@
 
   #form1 {
     position: relative;
+    right: 25px;
+    margin: auto;
     width: 230px;
   }
   

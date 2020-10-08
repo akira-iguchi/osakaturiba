@@ -3,7 +3,7 @@
     <div class="mx-auto d-block" id='map'></div>
   </div>
   
-  <div class="turi mx-auto d-block col-md-10 col-lg-6">
+  <div class="mx-auto d-block col-md-10 col-lg-6">
   
     <%= form_with url: spot_search_path, id: "form1",  method: :get, local: true do |f| %>
       <%= f.text_field :name, class: 'form-control', placeholder: "釣り場を入力しよう!" %>
@@ -15,7 +15,7 @@
       <p><検索結果></p>
       <ul>
         <% @spots.each do |s| %>
-          <li><a href="/spots/<%= s.id %>"><%= s.name %></a></li>
+          <li class="s_name"><a href="/spots/<%= s.id %>"><%= s.name %></a></li>
         <% end %>
       </ul>
     </div>
@@ -55,7 +55,6 @@
   }
 
   div h1 {
-    position: relative;
     margin-top: 15px;
     margin-bottom: 15px;
     font-size: 50px;
@@ -63,50 +62,21 @@
   }
   
   div p {
-    margin-left: 20px;
     font-size: 20px;
   }
   
-  ul li {
+  .s_name {
     position: relative;
     bottom: 10px;
+    right: 10px;
   }
 
-  .nanko {
-    margin-top: 100px;
-  }
-
-  .turi {
-    position: relative;
-    left: 40px;
-    top: 10px;
-    margin-bottom: 40px;
-  }
-
-  .district {
-    list-style: none;
-  }
-  
-  .spot {
-    float: left;
-  }
-  
   #map {
     border: 3px solid #FFCC33;
     margin-bottom: 60px;
     height: 500px;
   }
 
-  .osaka {
-    font-size: 80px;
-    text-shadow: 3px 3px 3px #808080; 
-  }
-  
-  .turiba {
-    font-size: 80px;
-    text-shadow: 3px 3px 3px #808080; 
-  }
-  
   .right {
     position: relative;
     top: 10px;
@@ -116,6 +86,7 @@
   .itirann {
     position: relative;
     bottom: 40px;
+    padding-left: 50px;
   }
 
   .scroll {
@@ -138,7 +109,8 @@
   
   #form1 {
     position: relative;
-    width: 230px;
+    width: 270px;
+    padding-left: 42px;
   }
   
   #sbox {
@@ -184,7 +156,7 @@
 
       <% @districts.each do |d| %>
 (function(){
-        var contentString = '<%= link_to d.name, spot_path(d) %>'; 
+        var contentString = '<%= link_to d.name, district_path(d) %>'; 
         var infowindow = new google.maps.InfoWindow({
             content: contentString
         });
