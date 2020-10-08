@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+/*new*/
+
+.log {
+  margin: 0 auto;
+}
+
+.check {
+  position: relative;
+  bottom: 9px;
+}
+
+.forget {
+  position: relative;
+  bottom: 9px;
+}

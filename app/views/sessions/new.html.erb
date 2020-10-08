@@ -19,14 +19,12 @@
           <%= f.password_field :password, class: 'form-control', id: "js-password" %>
         </div>
         
-        <p>
+        <p class="check">
           <label for="js-passcheck">パスワードを表示する</label>
           <input type="checkbox" id="js-passcheck"/>
         </p>
-    
        
-          <p><%= link_to 'パスワードを忘れましたか？', signup_path %></p>
-      
+        <p class="forget"><%= link_to 'パスワードを忘れましたか？', signup_path %></p>
         
         <div>
           <%= f.submit 'ログイン', class: 'btn btn-primary' %>
@@ -37,21 +35,6 @@
   </div>
 </div>
   
-<style>
-  body {
-   background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
-  }
-
-  .log {
-    margin: 0 auto;
-  }
-
-  p {
-    position: relative;
-    bottom: 9px;
-  }
-</style>
-
 <script>
   $(function() {
       var password  = '#js-password';

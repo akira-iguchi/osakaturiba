@@ -1,5 +1,5 @@
 <h2 class="okiniiri">お気に入り一覧</h2>
-<div class="scroll">
+<div class="scroll1">
   <div class="kakomi">
     <% @likes.each do |like| %>
       <div>
@@ -9,7 +9,7 @@
         <%= like.explanation %>
       </div>
       <% if @user == current_user %>
-      <div class="btm">
+      <div class="f_btn">
         <%= render 'favorites/favorite_button', spot: like %>
       </div>
       <% end %>
@@ -17,56 +17,3 @@
     <% end %>
   </div>
 </div>
-
-
-<style>
-  .okiniiri {
-    position: relative;
-    top: 20px;
-  }
-
-  .btm {
-    margin-top: 10px;
-  }
-  
-  .scroll {
-    position: relative;
-    top: 20px;
-    overflow-y: scroll;
-    max-height: 850px;
-  }
-  
-  .scroll::-webkit-scrollbar {
-    width: 7px;
-  }
-  
-  .scroll::-webkit-scrollbar-thumb {
-    background-color: blue;
-    border-radius: 3px;
-  }
-  
-  .scroll::-webkit-scrollbar-track {
-    background: rgba(100,100,100, .5);
-  }
-  
-  .kakomi {
-    position: relative;
-    padding: 1.2em;
-    color: #555555; 
-    background-color: #fff;
-    border: 3px solid #f09199; 
-    box-shadow: 0 0 5px 2px #fce2c4 inset;
-    border-top-left-radius : 8px;
-    -webkit-border-top-left-radius: 8px;
-    -moz-border-radius-topleft: 8px;
-    border-bottom-left-radius : 8px;
-    -webkit-border-bottom-left-radius: 8px;
-    -moz-border-radius-bottomleft: 8px;
-    border-top-right-radius : 0px;
-    -webkit-border-top-right-radius: 0px;
-    -moz-border-radius-topright: 0px;
-     border-bottom-right-radius : 0px;
-    -webkit-border-bottom-right-radius: 0px;
-    -moz-border-radius-bottomright: 0px;
-  }
-</style>

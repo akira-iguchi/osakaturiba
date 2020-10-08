@@ -1,15 +1,15 @@
 
 <div class="row">
   <div class="mx-auto d-block col-md-10 col-lg-5">
-    <h1><%= @spot.name %></h1>
-    <div id='map'></div>
+    <h1 class="spot_name"><%= @spot.name %></h1>
+    <div id='spot_map'></div>
     <div class="favorite">
       <%= render 'favorites/favorite_button', spot: @spot %>
     </div>
   </div>
 
   <div class="mx-auto d-block col-sm-9 col-md-8 col-lg-6">
-    <p class="spot">&emsp;<%= @spot.explanation %></p>
+    <p class="spot_e">&emsp;<%= @spot.explanation %></p>
   </div>
 </div>
 
@@ -39,108 +39,26 @@
     
   <%= paginate @comments %>
   
-  <div class="comment">
-    <div class="text">
-      <%= form_with(model: [@spot, @comment], local: true) do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
-        <%= f.label :画像も投稿できるよ！ %><br />
-        <%= f.file_field :image %>
-        <%= f.text_area :content, class: 'form-control js-text',id: "cmnt",  :placeholder => "釣果などをコメントしよう！" %>
-        <p class="js-text-count pull-right"></p>
-        <div class="commentbtn">
-          <%= f.submit 'コメントする', class: 'btn btn-info' %>
-        </div>
-      <% end %>
-    </div>
+  
+  <div class="text">
+    <%= form_with(model: [@spot, @comment], local: true) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+      <%= f.label :画像も投稿できるよ！ %><br />
+      <%= f.file_field :image %>
+      <%= f.text_area :content, class: 'form-control js-text',id: "cmnt",  :placeholder => "釣果などをコメントしよう！" %>
+      <p class="js-text-count pull-right"></p>
+      <div class="commentbtn">
+        <%= f.submit 'コメントする', class: 'btn btn-info' %>
+      </div>
+    <% end %>
   </div>
 </div>
-
- 
-<style>
-  body {
-   background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
-  }
-
-  h1 {
-    margin-bottom: 20px;
-  }
-
-  .spot {
-    position: relative;
-    top: 40px;
-    font-size: 30px;
-  }
-    
-
-  #map {
-    border: 3px solid #FFCC33;
-    margin-bottom: 10px;
-    height: 450px;
-  }
-  
-  .favorite {
-    position: relative;
-    right: 10px;
-  }
-    
-  #list {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .commentbtn {
-    margin-top: 10px;
-    margin-bottom: 30px;
-  }
-  
-  .botton {
-    position: relative;
-    right: 5px;
-  }
-  
-  .box-title {
-    position: relative;
-    top: 40px;
-    font-size: 1.2em;
-    background: #5fb3f5;
-    padding: 4px;
-    text-align: center;
-    color: #FFF;
-    font-weight: bold;
-    letter-spacing: 0.05em;
-    max-width: 800px;
-  }
-  
-  .box2 {
-    position: relative;
-    top: 40px;
-    padding: 1em;
-    background: #EEEEEE;
-    max-width: 800px;
-  }
-  
-  .cimg {
-    margin-top: 20px;
-    text-align : center;
-  }
-  
-  img {
-    width: 200px;
-    margin-bottom: 10px;
-    border: 1px solid blue;
-  }
-  
-  #cmnt {
-    margin-top: 10px;
-    height: 110px;
-  }
-</style>
 
 <script>
 function initMap() {
 
   var test ={lat: <%= @spot.latitude %>, lng: <%= @spot.longitude %>};
-  var map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map(document.getElementById('spot_map'), {
             zoom: 16, 
             center: test
             });

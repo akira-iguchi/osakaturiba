@@ -1,9 +1,9 @@
 <div class="row">
     <div class="mx-auto d-block col-md-10 col-lg-5">
-      <h1><%= @district.name %></h1>
-      <div id='map'></div>
-      <div class="name">
-        <h2><%= @district.name %>の釣り場一覧</h2>
+      <h1 class="d_name"><%= @district.name %></h1>
+      <div id='district_map'></div>
+      <div class="d_turi">
+        <h2 class="d_turiba"><%= @district.name %>の釣り場一覧</h2>
         <ul>
           <% @spots.each do |spot| %>
             <li><%= link_to spot.name, spot %></li>
@@ -14,7 +14,7 @@
     
     <div class="mx-auto d-block col-md-8 col-lg-6">
       <h2><%= @district.name %>の釣り場コメント一覧</h2>
-      <div class="scroll">
+      <div class="scroll2">
         <div class="center jumbotron">
           <% @spots.each do |s| %>
             <% s.comments.each do |c| %>
@@ -38,70 +38,12 @@
     </div>
 </div>
 
-
-
-<style>
-  body {
-   background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
-  }
-
-  h1 {
-    position: relative;
-  }
-  
-  h2 {
-    position: relative;
-  }
-
-  #map {
-    border: 3px solid #FFCC33;
-    margin-bottom: 40px;
-    height: 500px;
-  }
- 
-  .name {
-    padding-left: 50px;
-    margin-bottom: 65px;
-  }
- 
-  .cimg {
-    margin-top: 20px;
-    text-align : center;
-  }
-  
-  img {
-    width: 220px;
-    margin-bottom: 10px;
-    border: 1px solid blue;
-  }
-
-  .scroll {
-    position: relative;
-    overflow-y: scroll;
-    max-height: 750px;
-    margin-bottom: 40px;
-  }
-  
-  .scroll::-webkit-scrollbar {
-    width: 7px;
-  }
-  
-  .scroll::-webkit-scrollbar-thumb {
-    background-color: blue;
-    border-radius: 3px;
-  }
-  
-  .scroll::-webkit-scrollbar-track {
-    background: rgba(100,100,100, .5);
-  }
-</style>
-
 <script>
   function initMap() {
 
       var test ={lat: <%= @district.latitude %>, lng: <%= @district.longitude %>};
     
-      var map = new google.maps.Map(document.getElementById('map'), {
+      var map = new google.maps.Map(document.getElementById('district_map'), {
           zoom: 13,
           center: test
       });

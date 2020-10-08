@@ -1,12 +1,12 @@
 <% if logged_in? %>
 
-  <body class="main">
+  <body class="in">
     <div class="row">
       <div class="mx-auto d-block col-md-10 col-lg-5">
-        <div id='map'></div>
+        <div id='top_map'></div>
       </div>
       
-        <div class="col-sm-10 col-md-9 col-lg-6">
+        <div class="right col-sm-10 col-md-9 col-lg-6">
           <%= form_with url: spot_search_path, id: "form1",  method: :get, local: true do |f| %>
             <%= f.text_field :name, class: 'form-control', placeholder: "釣り場を入力しよう!" %>
             <%= f.submit :検索, class: "btn btn-primary", id: "sbtn" %>
@@ -14,22 +14,22 @@
          
           <div class="itirann">
             <h1 class="turiiti">釣り場一覧</h1>
-            <h3 class="hidari"><%= link_to '南港', '/districts/1', class: "text-dark" %></h3>
+            <h3><%= link_to '南港', '/districts/1', class: "text-dark" %></h3>
               ・<%= link_to 'かもめ大橋', '/spots/1' %>&emsp;・<%= link_to 'シーサイドコスモ', '/spots/2' %>
             <h3><%= link_to '泉大津', '/districts/5', class: "text-dark" %></h3>
               ・<%= link_to '助松埠頭', '/spots/9' %>&emsp;・<%= link_to '汐見埠頭砂上げ場', '/spots/10' %>
-            <h3 class="hidari"><%= link_to '貝塚', '/districts/2', class: "text-dark" %></h3>
+            <h3><%= link_to '貝塚', '/districts/2', class: "text-dark" %></h3>
               ・<%= link_to '貝塚人工島', '/spots/3' %>&emsp;・<%= link_to '貝塚人工島水路', '/spots/4' %>
             <h3><%= link_to '泉佐野', '/districts/4', class: "text-dark" %></h3>
               ・<%= link_to '食品コンビナート', '/spots/7' %>&emsp;・<%= link_to 'りんくう', '/spots/8' %>
-            <h3 class="hidari"><%= link_to '岬町', '/districts/3', class: "text-dark" %></h3>
+            <h3><%= link_to '岬町', '/districts/3', class: "text-dark" %></h3>
               ・<%= link_to 'とっとパーク小島', '/spots/5' %>&emsp;・<%= link_to '深日港', '/spots/6' %>
           </div>
         </div>       
     </div>
   
     <div class="container">
-      <div class = "right mx-auto d-block">
+      <div class = "sita mx-auto d-block">
         <h2>釣り場コメント一覧</h2>
           <div class="center jumbotron">
             <% @comments.each do |c| %>
@@ -53,226 +53,40 @@
     </div>
   </div>
   
-
 <% else %>
   
-  <div class="text-center">
-    <div>
-      <p class="osaka">
-        大阪の
-      </p>
-    </div>
-    <div><img class="mr-2 rounded" src="IMG_1889.JPG" alt="" id="sakana"></div>
-    <div>
-      <p class="turiba">
-        釣り場
-      </p>
-    </div>
-  </div>
-  
-    <div class="text-center fade">
-      <div class="btn">
-        <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary', id: 'botn' %>
+  <body class="out">
+    <div class="text-center">
+      <div>
+        <p class="osaka">
+          大阪の
+        </p>
       </div>
-        <h2 class="text-white">気に入った釣り場をお気に入り登録したり、釣り場に釣果などをコメントしよう！</h2>
+      <div><img class="mr-2 rounded" src="IMG_1889.JPG" alt="" id="sakana"></div>
+      <div>
+        <p class="turiba">
+          釣り場
+        </p>
+      </div>
     </div>
-  </div>
+    
+      <div class="text-center fade">
+        <div>
+          <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary', id: 'sinki_btn' %>
+        </div>
+          <h2 class="text-white">気に入った釣り場をお気に入り登録したり、釣り場に釣果などをコメントしよう！</h2>
+      </div>
+    </div>
+  </body>
  
 <% end %>
-
-<style>
-  body {
-   background-image: url("turi.jpg");
-   background-repeat: no-repeat;
-   background-size: cover;
-   background-position: center center;
-  }
-
-  .main {
-    background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
-  }
-
-  h3 {
-    position: relative;
-    right: 75px;
-    color: black;
-    margin-top: 10px;
-  }
-  
-  .hidari {
-    position: relative;
-    right: 90px;
-  }
-  
-  #map {
-    border: 3px solid #FFCC33;
-    margin-bottom: 60px;
-    height: 500px;
-  }
- 
-  .turiiti {
-    margin-top: 5px;
-    font-size: 50px;
-    text-shadow: 2px 1px 2px #808080; 
-  }
-
-  #sakana {
-    width: 330px;
-    height: auto;
-    border: 3px solid #FFCC33;
-    border-radius: 50%;
-    opacity:0;
-    animation-name: fadedown;
-    animation-delay: 0.5s;
-    animation-duration: 2s; 
-    animation-fill-mode: forwards; 
-  }
-
-  .btn {
-    position: relative;
-    right: 8px;
-    width: 300px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .osaka {
-    position: relative;
-    padding-right: 27%;
-    font-weight: bold;
-    font-size: 80px;
-    color: #99FFFF;
-    text-shadow: 5px 5px 5px #808080;
-    animation-name: faderight;
-    animation-duration: 2s;
-  }
-  
-  .turiba {
-    position: relative;
-    padding-left: 27%;
-    font-weight: bold;
-    font-size: 80px;
-    color: #99FFFF;
-    text-shadow: 5px 5px 5px #808080;
-    opacity:0;
-    animation-name: fadeleft;
-    animation-delay: 1s;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-  }
-  
-  .fade {
-    animation-name: fade;
-    animation-delay: 2s;
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards; 
-  }
-
-  .right {
-    position: relative;
-    top: 10px;
-    max-width: 700px;
-  }
-
-  .itirann {
-    position: relative;
-    bottom: 50px;
-    text-align: center;
-  }
-  
-  .scroll {
-    overflow-y: scroll;
-    max-height: 600px;
-  }
-
-  .scroll::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  .scroll::-webkit-scrollbar-thumb {
-    background-color: blue;
-    border-radius: 3px;
-  }
-  
-  .scroll::-webkit-scrollbar-track {
-    background: rgba(100,100,100, .5);
-    
-  }
-
-  #form1 {
-    position: relative;
-    right: 25px;
-    margin: auto;
-    width: 230px;
-  }
-  
-  #sbtn {
-    position: relative;
-    padding: 2px;
-    bottom: 48.5px;
-    left: 240px;
-    width: 55px;
-    height: 40px;
-  }
-  
-  .cimg {
-    margin-top: 20px;
-    text-align : center;
-  }
-  
-  img {
-    width: 220px;
-    border: 1px solid blue;
-  }
-  
- @keyframes fadedown {
-    0% {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0px);
-    } 
-  }
-  
-  @keyframes faderight {
-    0% {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    100% {
-        opacity: 1;
-    transform: translateX(0px);
-    }
-  }
-  
-   @keyframes fadeleft {
-    0% {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    100% {
-        opacity: 1;
-    transform: translateX(0px);
-    }
-  }
-  
-   @keyframes fade {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-</style>
 
 <script>
   function initMap() {
 
       var test ={lat: 34.4952, lng: 135.3050};
     
-      var map = new google.maps.Map(document.getElementById('map'), {
+      var map = new google.maps.Map(document.getElementById('top_map'), {
           zoom: 10,
           center: test
       });

@@ -1,5 +1,5 @@
-<ul>
-  <li>
+<ul class="name_icon">
+  <li class="profile">
     <% if @user.image? %>
       <%= image_tag @user.image.url, class:"icon", alt: "" %>
     <% else %>
@@ -7,10 +7,10 @@
     <% end %>
   </li>
   
-  <li>
-    <h1><%= @user.name %></h1>
+  <li class="profile">
+    <h1 class="u_name"><%= @user.name %></h1>
     <% if @user == current_user %>
-      <p><%= link_to("編集", "/users/#{@user.id}/edit", class: "btn btn-radius-solid") %></p>
+      <p class="u_edit"><%= link_to("編集", "/users/#{@user.id}/edit", class: "btn btn-radius-solid") %></p>
     <% end %>
   </li>
 </ul>
@@ -48,88 +48,3 @@
     </div>
   </div>
 </div>
-
- <style>
-   body {
-   background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
-  }
- 
-  h1 {
-    position: relative;
-    font-size: 50px;
-    top: 20px;
-    left: 30px;
-  }
-  
-  p {
-    position: relative;
-    left: 35px;
-    top: 30px;
-  }
-  
-  ul {
-    position: relative;
-    right: 30px;
-    list-style-type: none;
-  }
-  
-  ul li {
-     display: inline-block;
-  }
- 
-  .icon {
-    position: relative;
- 
-    height: 160px;
-    border: 3px solid #FFCC33;
-    border-radius: 100px;
-    background-color: white;
-  }
-  
-  .left {
-   position: relative;
-   top: 20px;
-   margin-bottom: 40px;
-  }
-  
-  .box {
-    position: relative;
-    padding: 0.5em 1em;
-    border: solid 3px #95ccff;
-    border-radius: 8px;
-    background-color: white;
-  }
-  
-  a.btn-radius-solid {
-    border: 1px solid #ccc;
-    background: #f1e767;
-    background: -webkit-gradient(linear, left top, left bottom, from(#fdfbfb), to(#ebedee));
-    background: -webkit-linear-gradient(top, #fdfbfb 0%, #ebedee 100%);
-    background: linear-gradient(to bottom, #fdfbfb 0%, #ebedee 100%);
-    -webkit-box-shadow: inset 1px 1px 1px #fff;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, .3);
-  }
-  
-  a.btn-radius-solid:hover {
-    background: -webkit-gradient(linear, left bottom, left top, from(#fdfbfb), to(#ebedee));
-    background: -webkit-linear-gradient(bottom, #fdfbfb 0%, #ebedee 100%);
-    background: linear-gradient(to top, #fdfbfb 0%, #ebedee 100%);
-    box-shadow: 0px 5px 7px rgba(0, 0, 0, .3);
-  }
-  
-  .cimg {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    text-align : center;
-  }
-  
-  img {
-    width: 160px;
-    border: 1px solid blue;
-  }
-  
-  .botton {
-    position: relative;
-    right: 5px;
-  }
- </style>

@@ -1,0 +1,122 @@
+@charset "utf-8";
+
+/*show*/
+
+.spot_name {
+  margin-bottom: 10px;
+}
+
+#spot_map {
+  border: 3px solid #FFCC33;
+  margin-bottom: 10px;
+  height: 450px;
+}
+
+.favorite {
+  position: relative;
+  right: 10px;
+}
+
+.spot_e {
+  position: relative;
+  top: 40px;
+  font-size: 30px;
+}
+
+.box-title {
+  position: relative;
+  top: 40px;
+  font-size: 1.2em;
+  background: #5fb3f5;
+  padding: 4px;
+  text-align: center;
+  color: #FFF;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  max-width: 800px;
+}
+
+.box2 {
+  position: relative;
+  top: 40px;
+  padding: 1em;
+  background: #EEEEEE;
+  max-width: 800px;
+}
+
+.cimg {
+  margin-top: 20px;
+  text-align : center;
+}
+
+.botton {
+  position: relative;
+  right: 5px;
+}
+
+.commentbtn {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+#cmnt {
+  margin-top: 10px;
+  height: 110px;
+}
+
+/*search*/
+
+#search_map {
+  border: 3px solid #FFCC33;
+  margin-bottom: 60px;
+  height: 500px;
+}
+
+#form2 {
+  position: relative;
+  width: 270px;
+  padding-left: 42px;
+}
+
+#sbtn {
+  position: relative;
+  padding: 2px;
+  bottom: 38.5px;
+  left: 240px;
+  width: 55px;
+  height: 40px;
+}
+
+.ichirann {
+  position: relative;
+  bottom: 40px;
+  padding-left: 50px;
+}
+
+.turibaiti {
+  margin-bottom: 15px;
+  font-size: 50px;
+  text-shadow: 2px 1px 2px #808080; 
+}
+
+.kensaku {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.s_name {
+  position: relative;
+  bottom: 10px;
+  right: 10px;
+}
+
+.sita {
+  position: relative;
+  top: 10px;
+  max-width: 500px;
+}
+
+.cimg {
+  margin-top: 20px;
+  text-align : center;
+}

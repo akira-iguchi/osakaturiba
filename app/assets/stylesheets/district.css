@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+/*show*/
+
+.d_name {
+  position: relative;
+}
+
+#district_map {
+  border: 3px solid #FFCC33;
+  margin-bottom: 40px;
+  height: 500px;
+}
+
+.d_turi {
+  padding-left: 50px;
+  margin-bottom: 65px;
+}
+
+.d_turiba {
+  position: relative;
+}
+
+.scroll2 {
+  position: relative;
+  overflow-y: scroll;
+  max-height: 700px;
+  margin-bottom: 40px;
+}
+
+.scroll2::-webkit-scrollbar {
+  width: 7px;
+}
+
+.scroll2::-webkit-scrollbar-thumb {
+  background-color: blue;
+  border-radius: 3px;
+}
+
+.scroll2::-webkit-scrollbar-track {
+  background: rgba(100,100,100, .5);
+}
+
+.cimg {
+  margin-top: 20px;
+  text-align : center;
+}
