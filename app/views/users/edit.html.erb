@@ -1,4 +1,4 @@
-<div class="mx-auto d-block col-sm-10 col-md-8 col-lg-6">
+<div class="mx-auto d-block col-md-10 col-lg-6">
   <div class="edit">
     <h1>プロフィール編集</h1>
     
@@ -12,7 +12,7 @@
           
       <div class="form-group">
         <div><%= f.label :image, '画像' %></div>
-        <%= f.file_field :image, id: 'fil' %>
+        <%= f.file_field :image, id: 'f_img' %>
         <%= f.hidden_field :image_cache %>
       </div>
         
@@ -21,133 +21,9 @@
         <%= f.email_field :email, class: 'form-control' %>
       </div>
         
-        <%= f.submit '変更' %>
+      <%= f.submit '変更' %>
      
     <% end %>
   </div>
-  <p><%= link_to '戻る', user_path(@user) %></p>
+  <p class="return"><%= link_to '戻る', user_path(@user), class: "h5 text-primary" %></p>
 </div>
-
-
-<style>
-  body {
-   background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
-  }
-  
-  p {
-    position: relative;
-    top: 30px;
-  }
-
-  .edit {
-    position: relative;
-    top: 40px;
-    margin: 30px auto;
-    padding: 20px 20px 20px;
-    height: 450px;
-    background: white;
-    border-radius: 3px;
-    -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
-  }
-  
-  .edit:before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    bottom: -8px;
-    left: -8px;
-    z-index: -1;
-    background: rgba(0, 0, 0, 0.08);
-    border-radius: 4px;
-  }
-  
-  .edit h1 {
-    margin: -20px -20px 21px;
-    line-height: 60px;
-    font-size: 30px;
-    color: #555;
-    text-align: center;
-    text-shadow: 0 1px white;
-    background: #f3f3f3;
-    border-bottom: 1px solid #cfcfcf;
-    border-radius: 3px 3px 0 0;
-    background-image: -webkit-linear-gradient(top, whiteffd, #eef2f5);
-    background-image: -moz-linear-gradient(top, whiteffd, #eef2f5);
-    background-image: -o-linear-gradient(top, whiteffd, #eef2f5);
-    background-image: linear-gradient(to bottom, whiteffd, #eef2f5);
-    -webkit-box-shadow: 0 1px whitesmoke;
-    box-shadow: 0 1px whitesmoke;
-  }
-  
- 
-  input {
-    font-size: 18px;
-  }
-  
-  input[type=text], input[type=email] {
-    margin-bottom: 30px;
-    padding: 0 10px;
-    height: 34px;
-    color: #404040;
-    background: white;
-    border: 1px solid;
-    border-color: #c4c4c4 #d1d1d1 #d4d4d4;
-    border-radius: 2px;
-    outline: 5px solid #eff4f7;
-    -moz-outline-radius: 3px;
-    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
-  }
-  
-  input[type=email] {
-    padding: 0 10px;
-    height: 34px;
-    color: #404040;
-    background: white;
-    border: 1px solid;
-    border-color: #c4c4c4 #d1d1d1 #d4d4d4;
-    border-radius: 2px;
-    outline: 5px solid #eff4f7;
-    -moz-outline-radius: 3px;
-    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
-  }
- 
-  #fil {
-    margin-bottom: 20px;
-  }
- 
-  input[type=submit] {
-    position: absolute;
-    cursor: pointer;
-    padding: 0 18px;
-    height: 33px;
-    font-size: 17px;
-    font-weight: bold;
-    color: #527881;
-    text-shadow: 0 1px #e3f1f1;
-    background: #cde5ef;
-    border: 1px solid;
-    border-color: #b4ccce #b3c0c8 #9eb9c2;
-    border-radius: 16px;
-    outline: 0;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    background-image: -webkit-linear-gradient(top, #edf5f8, #cde5ef);
-    background-image: -moz-linear-gradient(top, #edf5f8, #cde5ef);
-    background-image: -o-linear-gradient(top, #edf5f8, #cde5ef);
-    background-image: linear-gradient(to bottom, #edf5f8, #cde5ef);
-    -webkit-box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
-    box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
-  }
-  
-  input[type=submit]:active {
-    background: #cde5ef;
-    border-color: #9eb9c2 #b3c0c8 #b4ccce;
-    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
-  }
-</style>

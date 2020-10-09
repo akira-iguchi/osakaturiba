@@ -1,5 +1,5 @@
 <header class="mb-4">
-  <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <i class="fas fa-fish fa-2x"></i>&emsp;<a class="navbar-brand" href="/">大阪釣りスポット</a><i class="fas fa-fish fa-2x fa-rotate-180"></i>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
@@ -8,8 +8,22 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <% if logged_in? %>
+          <li class="nav-item">
+            <%= form_with url: spot_search_path, id: "form1",  method: :get, local: true do |f| %>
+              <%= f.text_field :name, class: 'form-control', placeholder: "釣り場を入力しよう!" %>
+              <%= f.submit :検索, class: "btn btn-success", id: "sbtn" %>
+            <% end %>
+          </li>
           <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
+            <a href="#" class="h5 nav-link dropdown-toggle" data-toggle="dropdown">お気に入りランキング<i class="fas fa-crown"></i></a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <% @all_ranks.each.with_index(1) do |spot, i| %>
+                <li>第<%= i %>位 : <%= link_to spot.name, spot_path(spot) %></li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="h5 nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item"><%= link_to 'マイプロフィール', user_path(current_user) %></li>
               <li class="dropdown-item"><%= link_to 'ログアウト', logout_path, method: :delete %></li>

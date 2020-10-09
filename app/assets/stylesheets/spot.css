@@ -68,28 +68,12 @@
 
 #search_map {
   border: 3px solid #FFCC33;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   height: 500px;
-}
-
-#form2 {
-  position: relative;
-  width: 270px;
-  padding-left: 42px;
-}
-
-#sbtn {
-  position: relative;
-  padding: 2px;
-  bottom: 38.5px;
-  left: 240px;
-  width: 55px;
-  height: 40px;
 }
 
 .ichirann {
   position: relative;
-  bottom: 40px;
   padding-left: 50px;
 }
 

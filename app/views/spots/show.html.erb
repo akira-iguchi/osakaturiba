@@ -43,7 +43,7 @@
   <div class="text">
     <%= form_with(model: [@spot, @comment], local: true) do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
-      <%= f.label :画像も投稿できるよ！ %><br />
+      <%= f.label :画像も投稿できるよ！, class: "text-primary" %><br />
       <%= f.file_field :image %>
       <%= f.text_area :content, class: 'form-control js-text',id: "cmnt",  :placeholder => "釣果などをコメントしよう！" %>
       <p class="js-text-count pull-right"></p>
