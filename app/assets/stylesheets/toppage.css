@@ -47,10 +47,6 @@ img {
 
 /*login*/
 
-.in {
-  background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
-}
-
 #top_map {
   border: 3px solid #FFCC33;
   margin-bottom: 40px;
@@ -91,7 +87,7 @@ h3 {
 
 /*logout*/
 
-.out {
+.toppages.logout_top {
   background-image: url("turi.jpg");
   background-repeat: no-repeat;
   background-size: cover;

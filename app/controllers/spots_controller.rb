@@ -1,4 +1,6 @@
 class SpotsController < ApplicationController
+before_action :require_user_logged_in
+
   def show
     @spot = Spot.find(params[:id])
     @comments = @spot.comments.order(id: :desc).page(params[:page]).per(6)

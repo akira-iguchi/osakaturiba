@@ -15,36 +15,34 @@
   </li>
 </ul>
     
-<div class="container">
-  <div class="row">
-    <div class="mx-auto d-block col-sm-12 col-lg-6">
-      <div class="left">
-        <h2>釣り場コメント一覧</h2>
-        <div class="box">
-          <% @comments.each do |c| %>
-            <div>
-              釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
-            </div>
-            <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
-            <div class="cimg">
-              <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-                <%= image_tag c.image.url, alt: "" if c.image? %>
-              <% end %>
-            </div>
-            <div class="botton">
-              <% if current_user == c.user %>
-                &nbsp;<%= link_to "削除", user_comment_path(@user,c), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger btn-sm' %>
-              <% end %>
-            </div>
-            <hr>
-          <% end %>
-          <%= paginate @comments %>
-        </div>
+
+<div class="row">
+  <div class="mx-auto d-block col-sm-11 col-lg-6">
+    <div class="left">
+      <h2>釣り場コメント一覧</h2>
+      <div class="box">
+        <% @comments.each do |c| %>
+          <div>
+            釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
+          </div>
+          <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+          <div class="cimg">
+            <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
+              <%= image_tag c.image.url, alt: "" if c.image? %>
+            <% end %>
+          </div>
+          <div class="botton">
+            <% if current_user == c.user %>
+              &nbsp;<%= link_to "削除", user_comment_path(@user,c), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger btn-sm' %>
+            <% end %>
+          </div>
+          <hr>
+        <% end %>
+        <%= paginate @comments %>
       </div>
     </div>
-    <div class="mx-auto d-block col-sm-12 col-lg-6">
-        <%= render 'favorites/likes', likes: @likes %>
-    </div>
-    </div>
+  </div>
+  <div class="mx-auto d-block col-sm-11 col-lg-6">
+      <%= render 'favorites/likes', likes: @likes %>
   </div>
 </div>

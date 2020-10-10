@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="mx-auto d-block col-md-10 col-lg-5">
+    <div id='top_map'></div>
+  </div>
+  
+    <div class="right col-sm-10 col-md-9 col-lg-6">
+      <div class="itirann">
+        <h1 class="turiiti">釣り場一覧</h1>
+        <h3><%= link_to '南港', '/districts/1', class: "text-dark" %></h3>
+          ・<%= link_to 'かもめ大橋', '/spots/1' %>&emsp;・<%= link_to 'シーサイドコスモ', '/spots/2' %>
+        <h3><%= link_to '泉大津', '/districts/5', class: "text-dark" %></h3>
+          ・<%= link_to '助松埠頭', '/spots/9' %>&emsp;・<%= link_to '汐見埠頭砂上げ場', '/spots/10' %>
+        <h3><%= link_to '貝塚', '/districts/2', class: "text-dark" %></h3>
+          ・<%= link_to '貝塚人工島', '/spots/3' %>&emsp;・<%= link_to '貝塚人工島水路', '/spots/4' %>
+        <h3><%= link_to '泉佐野', '/districts/4', class: "text-dark" %></h3>
+          ・<%= link_to '食品コンビナート', '/spots/7' %>&emsp;・<%= link_to 'りんくう', '/spots/8' %>
+        <h3><%= link_to '岬町', '/districts/3', class: "text-dark" %></h3>
+          ・<%= link_to 'とっとパーク小島', '/spots/5' %>&emsp;・<%= link_to '深日港', '/spots/6' %>
+      </div>
+    </div>       
+</div>
+
+<div class="container">
+  <div class = "sita mx-auto d-block">
+    <h2>釣り場コメント一覧</h2>
+      <div class="center jumbotron">
+        <% @comments.each do |c| %>
+          <div>
+            釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
+          </div>
+          <div>
+            ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
+          </div>
+          <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+          <div class="cimg">
+            <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
+              <%= image_tag c.image.url, alt: "" if c.image? %>
+            <% end %>
+          </div> 
+          <hr>
+        <% end %>
+        <%= paginate @comments %>
+      </div>
+  </div>
+</div>
+
+<script>
+  function initMap() {
+
+      var test ={lat: 34.4952, lng: 135.3050};
+    
+      var map = new google.maps.Map(document.getElementById('top_map'), {
+          zoom: 10,
+          center: test
+      });
+      var transitLayer = new google.maps.TransitLayer();
+      transitLayer.setMap(map);
+
+      <% @districts.each do |d| %>
+(function(){
+        var contentString = '<%= link_to d.name, district_path(d) %>'; 
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position:{lat: <%= d.latitude %>, lng: <%= d.longitude %>},
+            map: map,
+            title: contentString,
+        });
+      marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+})();
+      <% end %>
+  }
+</script>
+
+<script async defer
+              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>

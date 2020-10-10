@@ -1,0 +1,24 @@
+<% unless logged_in? %>
+
+  <div class="text-center">
+    <div>
+      <p class="osaka">
+        大阪の
+      </p>
+    </div>
+    <div><img class="mr-2 rounded" src="IMG_1889.JPG" alt="" id="sakana"></div>
+    <div>
+      <p class="turiba">
+        釣り場
+      </p>
+    </div>
+  </div>
+  
+  <div class="text-center fade">
+    <div>
+      <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary', id: 'sinki_btn' %>
+    </div>
+    <h2 class="text-white">気に入った釣り場をお気に入り登録したり、釣り場に釣果などをコメントしよう！</h2>
+  </div>
+
+<% end %>

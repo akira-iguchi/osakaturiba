@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
   def new
+    if logged_in?
+      redirect_to controller: :toppages, action: :login_top
+    end
   end
 
   def create

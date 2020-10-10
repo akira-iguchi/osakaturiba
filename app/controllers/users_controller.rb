@@ -11,6 +11,9 @@ before_action :correct_user, only: [:edit, :update, :likes]
 
   def new
     @user = User.new
+    if logged_in?
+      redirect_to controller: :toppages, action: :login_top
+    end
   end
 
   def create
@@ -64,7 +67,7 @@ before_action :correct_user, only: [:edit, :update, :likes]
   def correct_user
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to root_url
+      redirect_to controller: :toppages, action: :login_top
     end
   end
 end

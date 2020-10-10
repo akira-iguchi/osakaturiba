@@ -1,6 +1,6 @@
 <header class="mb-4">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <i class="fas fa-fish fa-2x"></i>&emsp;<a class="navbar-brand" href="/">大阪釣りスポット</a><i class="fas fa-fish fa-2x fa-rotate-180"></i>
+    <i class="fas fa-fish fa-2x"></i>&emsp;<a class="navbar-brand" href="/login_top">大阪釣りスポット</a><i class="fas fa-fish fa-2x fa-rotate-180"></i>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,15 +15,16 @@
             <% end %>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="h5 nav-link dropdown-toggle" data-toggle="dropdown">お気に入りランキング<i class="fas fa-crown"></i></a>
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">お気に入りランキング<i class="fas fa-crown"></i></a>
             <ul class="dropdown-menu dropdown-menu-right">
               <% @all_ranks.each.with_index(1) do |spot, i| %>
                 <li>第<%= i %>位 : <%= link_to spot.name, spot_path(spot) %></li>
               <% end %>
             </ul>
           </li>
+          
           <li class="nav-item dropdown">
-            <a href="#" class="h5 nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item"><%= link_to 'マイプロフィール', user_path(current_user) %></li>
               <li class="dropdown-item"><%= link_to 'ログアウト', logout_path, method: :delete %></li>

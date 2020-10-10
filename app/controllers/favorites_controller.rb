@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_action :require_user_logged_in
+before_action :require_user_logged_in
 
   def create
     spot = Spot.find(params[:spot_id])
