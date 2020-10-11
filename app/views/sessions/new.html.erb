@@ -23,16 +23,15 @@
           <label for="js-passcheck">パスワードを表示する</label>
           <input type="checkbox" id="js-passcheck"/>
         </p>
-       
-        <p class="forget"><%= link_to 'パスワードを忘れましたか？', signup_path %></p>
         
         <div>
           <%= f.submit 'ログイン', class: 'btn btn-primary' %>
         </div>
-       
+        
         <% end %>
         
       </div>
+      <p class="new_user"><%= link_to '初めてのユーザー？', signup_path %></p>
     </div>
   </div>
 </div>
