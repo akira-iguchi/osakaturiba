@@ -15,7 +15,7 @@ before_action :correct_user, only: [:destroy]
       @spot = Spot.find(params[:spot_id])
       @comments = @spot.comments.order(id: :desc).page(params[:page]).per(6)
       @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
-      render template: 'spots/show'
+      render 'spots/show'
     end
   end
   
