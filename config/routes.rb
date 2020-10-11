@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   resources :districts, only: [:show]
  
   resources :spots, only: [:show] do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy] do 
+    end
   end
   
   get 'spot_search', to: 'spots#search'

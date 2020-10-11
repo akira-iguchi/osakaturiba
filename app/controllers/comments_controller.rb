@@ -9,12 +9,13 @@ before_action :correct_user, only: [:destroy]
     @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
     if @comment.save
       flash[:success] = "コメントしました"
-      redirect_back(fallback_location: @spot)
+      redirect_to @comment.spot
     else
       flash.now[:danger] = "コメントできませんでした"
+      @spot = Spot.find(params[:spot_id])
       @comments = @spot.comments.order(id: :desc).page(params[:page]).per(6)
       @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
-      render 'spots/show'
+      render template: 'spots/show'
     end
   end
   
@@ -22,7 +23,7 @@ before_action :correct_user, only: [:destroy]
     @spot = @comment.spot
     @comment.destroy
     flash[:success] = 'コメントを削除しました。'
-    redirect_back(fallback_location: @spot)
+    redirect_to @comment.spot
   end
 
   private
@@ -34,7 +35,7 @@ before_action :correct_user, only: [:destroy]
   def correct_user
     @comment = current_user.comments.find_by(id: params[:id])
     unless @comment
-      redirect_to root_url
+      redirect_to redirect_to controller: :toppages, action: :login_top
     end
   end
 end
