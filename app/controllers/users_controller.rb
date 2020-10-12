@@ -21,7 +21,7 @@ before_action :correct_user, only: [:edit, :update, :likes]
 
     if @user.save
       flash[:success] = 'ユーザーを登録しました。'
-      redirect_to sessions_path
+      redirect_to login_path
     else
       flash.now[:danger] = 'ユーザーの登録に失敗しました。'
       render :new

@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   
   get 'login_top', to: 'toppages#login_top' 
   
-  get 'sessions', to: 'sessions#new'
-  post 'sessions', to: 'sessions#create'
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
   get 'signup', to: 'users#new'
