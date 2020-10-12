@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    @login = Session.new
     if logged_in?
       redirect_to controller: :toppages, action: :login_top
     end
@@ -8,7 +9,8 @@ class SessionsController < ApplicationController
   def create
     email = params[:session][:email].downcase
     password = params[:session][:password]
-    if login(email, password)
+    @login = Session.new(email: params[:session][:email].downcase, password: params[:session][:password])
+    if @login.save && login(email, password)
       flash[:success] = 'ログインに成功しました。'
       redirect_to controller: :toppages, action: :login_top
     else
@@ -24,7 +26,19 @@ class SessionsController < ApplicationController
   end
 
   private
-
+  
+  def @login.save
+    @user = User.find_by(email: @login.email)
+    if @user && @user.authenticate(@login.password)
+      # ログイン成功
+      session[:user_id] = @user.id
+      return true
+    else
+      # ログイン失敗
+      return false
+    end
+  end
+  
   def login(email, password)
     @user = User.find_by(email: email)
     if @user && @user.authenticate(password)

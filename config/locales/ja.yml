@@ -30,4 +30,10 @@ ja:
       comment: コメント
     attributes:
       comment:
-        content: コメント 
+        content: コメント
+        
+  activemodel:
+    attributes:
+        session:
+            email: メールアドレス
+            password: パスワード

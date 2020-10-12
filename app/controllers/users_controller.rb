@@ -21,7 +21,7 @@ before_action :correct_user, only: [:edit, :update, :likes]
 
     if @user.save
       flash[:success] = 'ユーザーを登録しました。'
-      redirect_to @user
+      redirect_to sessions_path
     else
       flash.now[:danger] = 'ユーザーの登録に失敗しました。'
       render :new
@@ -57,7 +57,7 @@ before_action :correct_user, only: [:edit, :update, :likes]
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)
+    params.require(:user).permit(:name, :email, :password, :image)
   end
   
   def update_params
