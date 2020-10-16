@@ -7,38 +7,46 @@
     <div class="ichirann">
       <h1 class="turibaiti">釣り場一覧</h1>
       <p class="kensaku"><検索結果></p>
-      <ul>
-        <% @spots.each do |s| %>
-          <li class="s_name"><a href="/spots/<%= s.id %>"><%= s.name %></a></li>
-        <% end %>
-      </ul>
+      <% if @spots.none? %>
+      <p class="none">該当なし</p>
+      <% else %>
+        <ul>
+          <% @spots.each do |s| %>
+            <li class="s_name"><a href="/spots/<%= s.id %>"><%= s.name %></a></li>
+          <% end %>
+        </ul>
+      <% end %>
     </div>
   </div>
 </div>
 
-<div class="container">
-  <div class = "sita mx-auto d-block">
-    <h2>釣り場コメント一覧</h2>
-      <div class="center jumbotron">
-        <% @comments.each do |c| %>
-          <div>
-            釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
-          </div>
-          <div>
-            ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
-          </div>
-          <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
-          <div class="cimg">
-            <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-              <%= image_tag c.image.url if c.image? %>
-            <% end %>
-          </div> 
-          <hr>
-        <% end %>
-        <%= paginate @comments %>
-      </div>
-  </div>
+<div class="tenki">
+  <div id="city-name"></div>
+  <div id="weather"></div>
 </div>
+
+<div class = "sita mx-auto d-block">
+  <h2 class="turicome">釣り場コメント一覧</h2>
+    <div class="center jumbotron">
+      <% @comments.each do |c| %>
+        <div>
+          釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
+        </div>
+        <div>
+          ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
+        </div>
+        <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+        <div class="cimg">
+          <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
+            <%= image_tag c.image.url if c.image? %>
+          <% end %>
+        </div> 
+        <hr>
+      <% end %>
+      <%= paginate @comments %>
+    </div>
+</div>
+
 
 <script>
   function initMap() {
@@ -70,6 +78,47 @@
 })();
       <% end %>
   }
+  
+$(function() {
+  var apikey = gon.api_key;
+  var city = 'Osaka';
+  var url = '//api.openweathermap.org/data/2.5/forecast?q=' + city + ',jp&units=metric&APPID=' + apikey;
+  $.ajax({
+    url: url,
+    dataType: "json",
+    type: 'GET',
+  })
+  .done(function(data) {
+    var insertHTML = "";
+    var cityName = '<h2>' + "大阪の天気" + '</h2>';
+    $('#city-name').html(cityName);
+    for (var i = 0; i <= 8; i = i + 2) {
+      insertHTML += buildHTML(data, i);
+    }
+    $('#weather').html(insertHTML);
+  })
+  .fail(function(data) {
+    console.log("失敗しました");
+  });
+});
+
+function buildHTML(data, i) {
+  var Week = new Array("（日）","（月）","（火）","（水）","（木）","（金）","（土）");
+  var date = new Date (data.list[i].dt_txt);
+  date.setHours(date.getHours() + 9);
+  var month = date.getMonth()+1;
+  var day = month + "月" + date.getDate() + "日" + Week[date.getDay()];
+  var time = date.getHours() + "：00";
+  var icon = data.list[i].weather[0].icon;
+  var html =
+  '<div class="weather-report">' +
+    '<div class="weather-date">' + day + '</div>' +
+    '<div class="weather-time">' + time + '</div>' +
+    '<img class="weather-icon" src="http://openweathermap.org/img/w/' + icon + '.png">' +
+    '<div class="weather-temp">' + Math.round(data.list[i].main.temp) + '℃</div>' +
+  '</div>';
+  return html
+}
 </script>
 
 <script async defer

@@ -23,7 +23,11 @@ before_action :correct_user, only: [:destroy]
     @spot = @comment.spot
     @comment.destroy
     flash[:success] = 'コメントを削除しました。'
-    redirect_to @comment.spot
+    if @page_id.to_i == 1
+      redirect_to current_user
+    else
+      redirect_to @spot
+    end
   end
 
   private
@@ -33,6 +37,7 @@ before_action :correct_user, only: [:destroy]
   end
   
   def correct_user
+    @page_id = params[:page_id]
     @comment = current_user.comments.find_by(id: params[:id])
     unless @comment
       redirect_to redirect_to controller: :toppages, action: :login_top

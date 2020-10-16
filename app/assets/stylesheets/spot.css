@@ -88,6 +88,10 @@
   margin-bottom: 15px;
 }
 
+.none {
+  padding-left: 20px;
+}
+
 .s_name {
   position: relative;
   bottom: 10px;

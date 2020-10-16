@@ -4,7 +4,7 @@ class Session
   attr_accessor :email, :password 
   
   validates :email, presence: true 
-  validates :password, presence: true 
+  validates :password, presence: true
   validate  :true_email
   validate  :true_password
   
@@ -16,8 +16,6 @@ class Session
       @user = User.find_by(email: email)
       if @user 
           errors.add(:password, "は正しくありません。") unless @user.authenticate(password)
-      else  
-          errors.add(:password, "は正しくありません。")
       end 
   end 
   

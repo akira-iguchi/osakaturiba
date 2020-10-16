@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   def new
     @login = Session.new
     if logged_in?
+      flash[:danger] = 'ログインしています。'
       redirect_to controller: :toppages, action: :login_top
     end
   end
@@ -10,9 +11,7 @@ class SessionsController < ApplicationController
     email = params[:session][:email].downcase
     password = params[:session][:password]
     @login = Session.new(email: params[:session][:email].downcase, password: params[:session][:password])
-    unless @login.save
-      flash.now[:danger] = 'ログインに失敗しました。'
-    end
+    @login.save
     if login(email, password)
       flash[:success] = 'ログインに成功しました。'
       redirect_to controller: :toppages, action: :login_top

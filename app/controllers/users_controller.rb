@@ -12,6 +12,7 @@ before_action :correct_user, only: [:edit, :update, :likes]
   def new
     @user = User.new
     if logged_in?
+      flash[:danger] = 'ログインしています。'
       redirect_to controller: :toppages, action: :login_top
     end
   end
@@ -35,7 +36,7 @@ before_action :correct_user, only: [:edit, :update, :likes]
   
   def update
   @user = User.find(params[:id])
-  
+  @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
    if current_user == @user
     if @user.update(user_params)
       flash[:success] = 'ユーザー情報を編集しました。'
@@ -45,7 +46,7 @@ before_action :correct_user, only: [:edit, :update, :likes]
       render :edit
     end   
    else
-      redirect_to root_url
+      redirect_to controller: :toppages, action: :login_top
    end
   end
   

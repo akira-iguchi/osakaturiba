@@ -6,29 +6,42 @@ body {
   background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
 }
 
+/*.container {*/
+/*  overflow-x: hidden;*/
+/*}*/
+
+/*.container::-webkit-scrollbar {*/
+/*  display:none;*/
+/*}*/
+
 img {
   width: 220px;
   margin-bottom: 10px;
   border: 1px solid blue;
+  border-radius: 20px;
 }
   
 /*header*/
 
 #form1 {
   position: relative;
-  top: 4px;
-  height: 45px;
+  top: 3px;
+  height: 41px;
   width: 202px;
   margin-right: 65px;
 }
 
+.form2 {
+  height: 35px;
+}
+
 #sbtn {
   position: relative;
-  left: 200px;
-  bottom: 38.5px;
+  left: 199px;
+  bottom: 35px;
   padding: 2px;
   width: 55px;
-  height: 39px;
+  height: 35px;
   border-top-left-radius : 6px;
   -webkit-border-top-right-radius: 6px;
   -moz-border-radius-topright: 6px;
@@ -55,6 +68,7 @@ img {
 
 .right {
   padding-left: 50px;
+  margin-bottom: 20px;
 }
 
 .itirann {
@@ -69,15 +83,74 @@ img {
 }
 
 h3 {
-  position: relative;
   color: black;
   margin-top: 10px;
 }
 
-.sita {
-  position: relative;
-  top: 10px;
+.tenki {
+  margin: 0 auto;
   max-width: 700px;
+  /*text-align: center;*/
+}
+
+#city-name {
+  margin-top: 20px;
+  padding: 0.25em 0.5em;
+  color: #364e96;
+  background: #CCFFFF	;
+  border-left: solid 5px #7db4e6;
+}
+
+#weather {
+  overflow-y: hidden;
+  display: flex;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#weather::-webkit-scrollbar {
+  display:none;
+}
+
+.weather-report {
+  width: 150px;
+  float: left;
+  height: 136px;
+  background-color: white;
+}
+
+.weather-icon {
+  position: relative;
+  bottom: 20px;
+  border-style: hidden;
+  width: 100px;
+}
+
+.weather-date {
+  opacity: 0.7;
+}
+
+.weather-time {
+  opacity: 0.7;
+}
+
+.weather-temp {
+  position: relative;
+  bottom: 50px;
+  margin-bottom: 10px;
+  opacity: 0.7;
+}
+
+.sita {
+  max-width: 800px;
+  margin-top: 60px;
+}
+
+.turicome {
+  padding: 0.25em 0.5em;
+  color: #364e96;
+  background: #CCFFFF;
+  border-left: solid 5px #7db4e6;
 }
 
 .cimg {
