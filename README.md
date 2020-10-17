@@ -1,24 +1,27 @@
-# README
+現在の機能一覧
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+・ログイン機能
 
-Things you may want to cover:
+・新規登録機能
 
-* Ruby version
+・ユーザー編集機能
 
-* System dependencies
+・googlemapAPI
 
-* Configuration
+・天気予報API
 
-* Database creation
+・コメント機能
 
-* Database initialization
+・お気に入り機能
 
-* How to run the test suite
+・ランキング機能
 
-* Services (job queues, cache servers, search engines, etc.)
+・検索機能
 
-* Deployment instructions
 
-* ...
+
+苦労した機能一覧
+
+・googlemapAPI
+
+・天気予報API

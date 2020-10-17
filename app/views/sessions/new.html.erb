@@ -5,10 +5,11 @@
 <div class="row">
   <div class="log col-md-10 col-lg-6">
     <div class="log">
-      <div class="center jumbotron">
     
-        <%= form_with(url: login_path, model: @login, local: true) do |f| %>
-        <%= render 'layouts/error_messages', model: f.object %>
+      <%= form_with(url: login_path, model: @login, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="center jumbotron">
       
         <div class="form-group">
           <%= f.label :email, 'メールアドレス' %>
@@ -29,9 +30,9 @@
           <%= f.submit 'ログイン', class: 'btn btn-primary' %>
         </div>
         
-        <% end %>
+        </div>
         
-      </div>
+        <% end %>
       <p class="new_user"><%= link_to '初めてのユーザー？', signup_path %></p>
     </div>
   </div>
