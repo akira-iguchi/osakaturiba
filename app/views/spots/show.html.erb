@@ -36,7 +36,7 @@
       </div>
       <div class="cimg">
         <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-          <%= image_tag c.image.url, alt: "" if c.image? %>
+          <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
         <% end %>
       </div>
       <div class="botton">

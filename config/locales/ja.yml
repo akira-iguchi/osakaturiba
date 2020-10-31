@@ -7,24 +7,21 @@ ja:
       next: "次 &rsaquo;"
       truncate: "..."
         
-  activerecord:
-    models:
-      user: ユーザー
-    attributes:
-      user:
-        name: 名前
-        email: メールアドレス
-        password: パスワード
-        
-  activerecord:
-    models:
-      comment: コメント
-    attributes:
-      comment:
-        content: コメント
-        
   activemodel:
     attributes:
         session:
             email: メールアドレス
             password: パスワード
+  
+  
+  activerecord:
+    models:
+      user: ユーザー
+      comment: コメント
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+      comment:
+        content: コメント

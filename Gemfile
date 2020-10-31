@@ -76,3 +76,7 @@ group :production do
 end
 
 gem 'gon'
+
+group :production, :staging do
+    gem 'unicorn'
+end
