@@ -4,6 +4,11 @@ body {
   background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
 }
 
+.cimg {
+  margin-top: 20px;
+  text-align : center;
+}
+
 .comment_img {
   width: 220px;
   margin-bottom: 10px;
@@ -63,7 +68,7 @@ body {
 
 .itirann {
   position: relative;
- 
+  padding-left: 50px;
 }
 
 .turiiti {
@@ -80,7 +85,6 @@ h3 {
 .tenki {
   margin: 0 auto;
   max-width: 700px;
-  /*text-align: center;*/
 }
 
 #city-name {
@@ -93,25 +97,35 @@ h3 {
 
 #weather {
   overflow-y: hidden;
+  overflow-x: scroll;
   display: flex;
   margin-top: 10px;
   text-align: center;
 }
 
 #weather::-webkit-scrollbar {
-  display:none;
+  height: 3px;
+}
+
+#weather::-webkit-scrollbar-thumb {
+  background-color: blue;
+  border-radius: 3px;
+}
+
+#weather::-webkit-scrollbar-track {
+  background: rgba(100,100,100, .5);
 }
 
 .weather-report {
   width: 150px;
   float: left;
-  height: 136px;
+  height: 160px;
   background-color: white;
 }
 
 .weather-icon {
   position: relative;
-  bottom: 20px;
+  bottom: 10px;
   border-style: hidden;
   width: 100px;
 }
@@ -126,7 +140,7 @@ h3 {
 
 .weather-temp {
   position: relative;
-  bottom: 50px;
+  bottom: 38px;
   margin-bottom: 10px;
   opacity: 0.7;
 }
@@ -141,11 +155,6 @@ h3 {
   color: #364e96;
   background: #CCFFFF;
   border-left: solid 5px #7db4e6;
-}
-
-.cimg {
-  margin-top: 20px;
-  text-align : center;
 }
 
 /*logout*/

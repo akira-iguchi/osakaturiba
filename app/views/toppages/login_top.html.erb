@@ -3,7 +3,7 @@
     <div id='top_map'></div>
   </div>
   
-    <div class="right col-sm-10 col-md-9 col-lg-6">
+    <div class="col-md-10 col-lg-6">
       <div class="itirann">
         <h1 class="turiiti">釣り場一覧</h1>
         <h3><%= link_to '南港', '/districts/1', class: "text-dark" %></h3>
@@ -47,7 +47,6 @@
       <%= paginate @comments %>
     </div>
 </div>
-
 
 <script>
   function initMap() {
@@ -120,8 +119,4 @@ function buildHTML(data, i) {
   '</div>';
   return html
 }
-</script>
-
-<script async defer
-              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
 </script>

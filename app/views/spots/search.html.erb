@@ -4,8 +4,8 @@
   </div>
   
   <div class="col-md-10 col-lg-6">
-    <div class="ichirann">
-      <h1 class="turibaiti">釣り場一覧</h1>
+    <div class="itirann">
+      <h1 class="turiiti">釣り場一覧</h1>
       <p class="kensaku"><検索結果></p>
       <% if @spots.none? %>
       <p class="none">該当なし</p>
@@ -119,8 +119,4 @@ function buildHTML(data, i) {
   '</div>';
   return html
 }
-</script>
-
-<script async defer
-              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
 </script>
