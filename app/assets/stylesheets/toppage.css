@@ -61,14 +61,9 @@ body {
   height: 500px;
 }
 
-.right {
-  padding-left: 50px;
-  margin-bottom: 20px;
-}
-
 .itirann {
-  position: relative;
-  padding-left: 50px;
+  padding-left: 20%;
+  margin-bottom: 25px;
 }
 
 .turiiti {
@@ -119,7 +114,7 @@ h3 {
 .weather-report {
   width: 150px;
   float: left;
-  height: 160px;
+  height: 165px;
   background-color: white;
 }
 
@@ -140,9 +135,64 @@ h3 {
 
 .weather-temp {
   position: relative;
-  bottom: 38px;
+  bottom: 34px;
   margin-bottom: 10px;
   opacity: 0.7;
+}
+
+.calendar {
+  padding-left: 90px;
+  
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid #eee;
+  background-color: white;
+}
+
+thead,
+tfoot {
+  background: #eee;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: center;
+}
+
+tbody td:first-child {
+  color: red;
+}
+
+tbody td:last-child {
+  color: blue;
+}
+
+tfoot {
+  font-weight: bold;
+}
+
+td.disabled {
+  opacity: 0.3;
+}
+
+td.today {
+  font-weight: bold;
+}
+
+#prev,
+#next,
+#today {
+  cursor: pointer;
+  user-select: none;
+}
+
+#prev:hover,
+#next:hover,
+#today:hover {
+  color: #C0C0C0;
 }
 
 .under {

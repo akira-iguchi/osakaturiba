@@ -1,5 +1,6 @@
 <div class="row">
   <div class="mx-auto d-block col-md-10 col-lg-5">
+     <!--googlemap-->
     <div id='top_map'></div>
   </div>
   
@@ -20,23 +21,64 @@
     </div>       
 </div>
 
+<div class="row">
+  <!--カレンダー-->
+  <div class="calendar col-lg-4">
+    <table>
+      <thead>
+        <tr>
+          <th id="prev">&laquo;</th>
+          <th id="title" colspan="5"></th>
+          <th id="next">&raquo;</th>
+        </tr>
+        <tr>
+          <th>日</th>
+          <th>月</th>
+          <th>火</th>
+          <th>水</th>
+          <th>木</th>
+          <th>金</th>
+          <th>土</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td id="today" colspan="7">今日の日付</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
 
-<div class="tenki">
-  <div id="city-name"></div>
-  <div id="weather"></div>
+  <div class="col-lg-8">
+    <!--天気予報-->
+    <div class="tenki">
+      <div id="city-name"></div>
+      <div id="weather"></div>
+    </div>
+  </div>
 </div>
 
 <div class = "under mx-auto d-block">
+  
   <h2 class="turicome">釣り場コメント一覧</h2>
+  
     <div class="center jumbotron">
       <% @comments.each do |c| %>
+      
         <div>
           釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
         </div>
+        
         <div>
           ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
         </div>
+        
+        <!--改行-->
         <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+        
+        <!--画像-->
         <div class="cimg">
           <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
             <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
@@ -49,74 +91,34 @@
 </div>
 
 <script>
-  function initMap() {
+// googlemap
+function initMap() {
 
-      var test ={lat: 34.4952, lng: 135.3050};
-    
-      var map = new google.maps.Map(document.getElementById('top_map'), {
-          zoom: 10,
-          center: test
+  var position ={lat: 34.4952, lng: 135.3050};
+
+  var map = new google.maps.Map(document.getElementById('top_map'), {
+      zoom: 10,
+      center: position
+  });
+  var transitLayer = new google.maps.TransitLayer();
+  transitLayer.setMap(map);
+
+  <% @districts.each do |d| %>
+    (function(){
+      var contentString = '<%= link_to d.name, district_path(d) %>'; 
+      var infowindow = new google.maps.InfoWindow({
+          content: contentString
       });
-      var transitLayer = new google.maps.TransitLayer();
-      transitLayer.setMap(map);
 
-      <% @districts.each do |d| %>
-(function(){
-        var contentString = '<%= link_to d.name, district_path(d) %>'; 
-        var infowindow = new google.maps.InfoWindow({
-            content: contentString
-        });
-
-        var marker = new google.maps.Marker({
-            position:{lat: <%= d.latitude %>, lng: <%= d.longitude %>},
-            map: map,
-            title: contentString,
-        });
+      var marker = new google.maps.Marker({
+          position:{lat: <%= d.latitude %>, lng: <%= d.longitude %>},
+          map: map,
+          title: contentString,
+      });
       marker.addListener('click', function() {
             infowindow.open(map, marker);
-        });
-})();
-      <% end %>
-  }
-  
-$(function() {
-  var apikey = gon.api_key;
-  var city = 'Osaka';
-  var url = '//api.openweathermap.org/data/2.5/forecast?q=' + city + ',jp&units=metric&APPID=' + apikey;
-  $.ajax({
-    url: url,
-    dataType: "json",
-    type: 'GET',
-  })
-  .done(function(data) {
-    var insertHTML = "";
-    var cityName = '<h2>' + "大阪の天気" + '</h2>';
-    $('#city-name').html(cityName);
-    for (var i = 0; i <= 8; i = i + 2) {
-      insertHTML += buildHTML(data, i);
-    }
-    $('#weather').html(insertHTML);
-  })
-  .fail(function(data) {
-    console.log("失敗しました");
-  });
-});
-
-function buildHTML(data, i) {
-  var Week = new Array("（日）","（月）","（火）","（水）","（木）","（金）","（土）");
-  var date = new Date (data.list[i].dt_txt);
-  date.setHours(date.getHours() + 9);
-  var month = date.getMonth()+1;
-  var day = month + "月" + date.getDate() + "日" + Week[date.getDay()];
-  var time = date.getHours() + "：00";
-  var icon = data.list[i].weather[0].icon;
-  var html =
-  '<div class="weather-report">' +
-    '<div class="weather-date">' + day + '</div>' +
-    '<div class="weather-time">' + time + '</div>' +
-    '<img class="weather-icon" src="http://openweathermap.org/img/w/' + icon + '.png">' +
-    '<div class="weather-temp">' + Math.round(data.list[i].main.temp) + '℃</div>' +
-  '</div>';
-  return html
+      });
+    })();
+  <% end %>
 }
 </script>

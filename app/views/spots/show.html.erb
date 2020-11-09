@@ -1,25 +1,35 @@
-
 <div class="row">
   <div class="mx-auto d-block col-md-10 col-lg-5">
+    
     <h1 class="spot_name"><%= @spot.name %></h1>
+    
+    <!--googlemap-->
     <div id='spot_map'></div>
+    
     <div class="favorite">
+      <!--お気に入り登録をしているならお気に入り解除ボタンを表示-->
       <% if current_user.like?(@spot) %>
         <%= form_with(model: current_user.favorites.find_by(spot_id: @spot.id), local: true, method: :delete) do |f| %>
           <%= hidden_field_tag :spot_id, @spot.id %>
           <%= hidden_field_tag :page_id, 4 %>
           <%= f.submit 'お気に入り解除', data: { confirm: "本当にお気に入り解除しますか?" }, class: 'btn btn-danger btan mx-auto d-block' %>
         <% end %>
+        
       <% else %>
+      
+        <!--お気に入り解除をしているならお気に入りボタンを表示-->
         <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
           <%= hidden_field_tag :spot_id, @spot.id %>
           <%= f.submit 'お気に入り登録', class: 'btn btn-primary btan mx-auto d-block' %>
         <% end %>
+        
       <% end %>
     </div>
+    
   </div>
 
   <div class="mx-auto d-block col-sm-9 col-md-8 col-lg-6">
+    <!--釣り場の説明-->
     <p class="spot_e">&emsp;<%= @spot.explanation %></p>
   </div>
 </div>
@@ -28,17 +38,23 @@
 <div class="box2 mx-auto d-block">
   <div>
     <% @comments.each do |c| %>
+    
       <div>
         <a href="/users/<%= c.user.id %>"><%= c.user.name %></a><%= @comment.created_at %>
       </div>
+      
+      <!--改行-->
       <div>
         <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
       </div>
+      
+      <!--画像-->
       <div class="cimg">
         <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
           <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
         <% end %>
       </div>
+      
       <div class="botton">
         <% if current_user == c.user %>
           &nbsp;<%= link_to "削除", spot_comment_path(@spot,c,page_id: 2), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger btn-sm' %>
@@ -50,7 +66,7 @@
     
   <%= paginate @comments %>
   
-  
+  <!--コメント投稿-->
   <div class="text">
     <%= form_with(model: [@spot, @comment], local: true) do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
@@ -66,55 +82,61 @@
 </div>
 
 <script>
-function initMap() {
-
-  var test ={lat: <%= @spot.latitude %>, lng: <%= @spot.longitude %>};
-  var map = new google.maps.Map(document.getElementById('spot_map'), {
-            zoom: 16, 
-            center: test
-            });
-  var transitLayer = new google.maps.TransitLayer();
-  transitLayer.setMap(map);
-
-  var contentString = '<%= @spot.address %>';
-  var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
-
-
-  var marker = new google.maps.Marker({
-                position:test,
-                map: map,
-                title: contentString
-               });
-
-   marker.addListener('click', function() {
-     infowindow.open(map, marker);
-   });
-}
+// googlemap
+{
+  function initMap() {
   
-$(function (){
+    var position ={lat: <%= @spot.latitude %>, lng: <%= @spot.longitude %>};
+    var map = new google.maps.Map(document.getElementById('spot_map'), {
+              zoom: 16, 
+              center: position
+              });
+    var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
   
-  var count = $(".js-text").text().replace(/\n/g, "改行").length;
+    var contentString = '<%= @spot.address %>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
   
-  var now_count = 150 - count;
   
-  if (count > 150) {
-    $(".js-text-count").css("color","red");
+    var marker = new google.maps.Marker({
+                  position:position,
+                  map: map,
+                  title: contentString
+                 });
+  
+     marker.addListener('click', function() {
+       infowindow.open(map, marker);
+     });
   }
-  $(".js-text-count").text( "残り" + now_count + "文字");
+}
 
-  $(".js-text").on("keyup", function() {
-
-    var count = $(this).val().replace(/\n/g, "改行").length;
+// コメントの残り文字数
+{
+  $(function (){
+    
+    var count = $(".js-text").text().replace(/\n/g, "改行").length;
+    
     var now_count = 150 - count;
-
+    
     if (count > 150) {
       $(".js-text-count").css("color","red");
-    } else {
-      $(".js-text-count").css("color","black");
     }
     $(".js-text-count").text( "残り" + now_count + "文字");
+  
+    $(".js-text").on("keyup", function() {
+  
+      var count = $(this).val().replace(/\n/g, "改行").length;
+      var now_count = 150 - count;
+  
+      if (count > 150) {
+        $(".js-text-count").css("color","red");
+      } else {
+        $(".js-text-count").css("color","black");
+      }
+      $(".js-text-count").text( "残り" + now_count + "文字");
+    });
   });
-});
+}
 </script>

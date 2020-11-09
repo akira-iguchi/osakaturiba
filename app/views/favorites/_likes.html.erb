@@ -2,29 +2,41 @@
 <div class="scroll1">
   <div class="kakomi">
     <% @likes.each do |like| %>
+      
+      <!--釣り場名-->
       <div>
         <a href="/spots/<%= like.id %>"><%= like.name %></a>
       </div>
+      
+      <!--釣り場コメント-->
       <div>
         <%= like.explanation %>
       </div>
+      
       <% if @user == current_user %>
-      <div class="f_btn">
-        <% if current_user.like?(like) %>
-          <%= form_with(model: current_user.favorites.find_by(spot_id: like.id), local: true, method: :delete) do |f| %>
-            <%= hidden_field_tag :spot_id, like.id %>
-            <%= hidden_field_tag :page_id, 3 %>
-            <%= f.submit 'お気に入り解除', data: { confirm: "本当にお気に入り解除しますか?" }, class: 'btn btn-danger btan mx-auto d-block' %>
+        <div class="f_btn">
+          <!--お気に入り登録をしているならお気に入り解除ボタンを表示-->
+          <% if current_user.like?(like) %>
+            <%= form_with(model: current_user.favorites.find_by(spot_id: like.id), local: true, method: :delete) do |f| %>
+              <%= hidden_field_tag :spot_id, like.id %>
+              <%= hidden_field_tag :page_id, 3 %>
+              <%= f.submit 'お気に入り解除', data: { confirm: "本当にお気に入り解除しますか?" }, class: 'btn btn-danger btan mx-auto d-block' %>
+            <% end %>
+            
+          <% else %>
+            
+            <!--お気に入り解除をしているならお気に入りボタンを表示-->
+            <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
+              <%= hidden_field_tag :spot_id, like.id %>
+              <%= f.submit 'お気に入り登録', class: 'btn btn-primary btan mx-auto d-block' %>
+            <% end %>
+            
           <% end %>
-        <% else %>
-          <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
-            <%= hidden_field_tag :spot_id, like.id %>
-            <%= f.submit 'お気に入り登録', class: 'btn btn-primary btan mx-auto d-block' %>
-          <% end %>
-        <% end %>
-      </div>
+        </div>
       <% end %>
+      
       <hr>
+      
     <% end %>
   </div>
 </div>

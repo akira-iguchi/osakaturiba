@@ -1,7 +1,11 @@
 <div class="row">
     <div class="mx-auto d-block col-md-10 col-lg-5">
+      
       <h1 class="d_name"><%= @district.name %></h1>
+      
+      <!--googlemap-->
       <div id='district_map'></div>
+      
       <div class="d_turi">
         <h2 class="d_turiba"><%= @district.name %>の釣り場一覧</h2>
         <ul>
@@ -10,21 +14,32 @@
           <% end %>
         </ul>
       </div>
+      
     </div>
     
     <div class="mx-auto d-block col-md-8 col-lg-6">
+      
       <h2 class="turicome"><%= @district.name %>の釣り場コメント一覧</h2>
+      
+      <!--その地区内の釣り場のコメント-->
       <div class="scroll2">
         <div class="center jumbotron">
           <% @spots.each do |s| %>
+            <!--釣り場のコメントを表示-->
             <% s.comments.each do |c| %>
+            
               <div>
                 釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
               </div>
+              
               <div>
                 ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
               </div>
+              
+              <!--改行-->
               <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+              
+              <!--画像-->
               <div class="cimg">
                 <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
                   <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
@@ -39,13 +54,14 @@
 </div>
 
 <script>
+// googlemap
   function initMap() {
 
-      var test ={lat: <%= @district.latitude %>, lng: <%= @district.longitude %>};
+      var position ={lat: <%= @district.latitude %>, lng: <%= @district.longitude %>};
     
       var map = new google.maps.Map(document.getElementById('district_map'), {
           zoom: 13,
-          center: test
+          center: position
       });
       var transitLayer = new google.maps.TransitLayer();
       transitLayer.setMap(map);
