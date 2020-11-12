@@ -3,7 +3,7 @@
   
     <!--ログイン後のトップページに移動-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <i class="fas fa-fish fa-2x"></i>&emsp;<a class="navbar-brand" href="/login_top">大阪釣りスポット</a><i class="fas fa-fish fa-2x fa-rotate-180"></i>
+      <i class="fish fas fa-fish fa-2x"></i><a class="title navbar-brand" href="/login_top">大阪釣りスポット</a><i class="fish2 fas fa-fish fa-2x fa-rotate-180"></i>
       
   <% else %>
   
@@ -22,8 +22,8 @@
         
           <!--釣り場検索機能-->
           <li class="nav-item">
-            <%= form_with url: spot_search_path, id: "form1",  method: :get, local: true do |f| %>
-              <%= f.text_field :name, class: 'form-control form2', placeholder: "釣り場を入力しよう!" %>
+            <%= form_with url: spot_search_path, id: "search",  method: :get, local: true do |f| %>
+              <%= f.text_field :name, class: 'form-control search_form', placeholder: "釣り場を入力しよう!" %>
               <%= f.submit :検索, class: "btn btn-success", id: "sbtn" %>
             <% end %>
           </li>
@@ -31,10 +31,32 @@
           <!--釣り場のお気に入りランキング機能-->
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">お気に入りランキング<i class="fas fa-crown"></i></a>
-            <ul class="dropdown-menu dropdown-menu-right">
+            <ul class="ranking dropdown-menu dropdown-menu-right">
+              <!--前のいいね数を一時的に保存できる変数lastFavoriteを作成-->
+              <% lastFavorite = 0 %>
+              <% j = 1 %>
               <% @all_ranks.each.with_index(1) do |spot, i| %>
-                <li>第<%= i %>位 : <%= link_to spot.name, spot_path(spot) %></li>
-              <% end %>
+                <% if i == 1 %>
+                  <% lastFavorite = spot.favorites.count %>
+                <% end %>
+                <!--前のお気に入り数と今のお気に入り数が違うなら変数jにiの値を代入-->
+                <% if spot.favorites.count != lastFavorite %>
+                  <% j = i %>
+                  第<strong><%= j %></strong>位
+                  <%= link_to spot.name, spot_path(spot) %>
+                  <br>
+                  お気に入り数：<span class="badge badge-secondary"><%=spot.favorites.count %></span>
+                  <% lastFavorite = spot.favorites.count %>
+                <% else %>
+                  <!--次のお気に入り数と比べるため前のお気に入り数に今のいいね数を代入-->
+                  <% lastFavorite = spot.favorites.count %>
+                  第<strong><%= j %></strong>位
+                  <%= link_to spot.name, spot_path(spot) %>
+                  <br>
+                  お気に入り数：<span class="badge badge-secondary"><%=spot.favorites.count %></span>
+                <% end %>
+              <br>
+             <% end %>
             </ul>
           </li>
           

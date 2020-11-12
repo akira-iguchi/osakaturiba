@@ -18,7 +18,21 @@ body {
 
 /*header*/
 
-#form1 {
+.title {
+  position: absolute;
+  left: 70px;
+}
+
+.fish1 {
+  position: absolute;
+}
+
+.fish2 {
+  position: absolute;
+  left: 250px;
+}
+
+#search {
   position: relative;
   top: 3px;
   height: 41px;
@@ -26,7 +40,7 @@ body {
   margin-right: 65px;
 }
 
-.form2 {
+.search_form {
   height: 35px;
 }
 
@@ -50,7 +64,11 @@ body {
   -webkit-border-bottom-left-radius: 0px;
   -moz-border-radius-bottomleft: 0px;
 }
-  
+
+.ranking {
+  padding: 7px;
+}
+
 /*index*/
 
 /*login*/
