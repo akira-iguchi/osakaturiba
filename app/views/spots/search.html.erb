@@ -5,7 +5,7 @@
   </div>
   
   <!--検索した釣り場一覧-->
-  <div class="col-md-10 col-lg-6">
+  <div class="area col-md-10 col-lg-6">
     <div class="itirann">
       <h1 class="turiiti">釣り場一覧</h1>
       <p class="kensaku"><検索結果></p>
@@ -74,11 +74,13 @@
         </div>
         
         <div>
-          ユーザー名&nbsp;:&nbsp;<a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
+          <%= image_tag c.user.image.url, class:"c_user_icon", alt: "" %><a class="c_user" href="/users/<%= c.user.id %>"><%= c.user.name %></a>
         </div>
         
         <!--改行-->
-        <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+        <div class="content">
+          <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+        </div>
         
         <!--画像-->
         <div class="cimg">

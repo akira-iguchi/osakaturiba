@@ -13,7 +13,7 @@ before_action :correct_user, only: [:edit, :update, :likes]
     @user = User.new
     if logged_in?
       flash[:danger] = 'ログインしています。'
-      redirect_to controller: :toppages, action: :login_top
+      redirect_to root_url
     end
   end
 
@@ -46,7 +46,7 @@ before_action :correct_user, only: [:edit, :update, :likes]
       render :edit
     end   
    else
-      redirect_to controller: :toppages, action: :login_top
+      redirect_to root_url
    end
   end
   
@@ -68,7 +68,7 @@ before_action :correct_user, only: [:edit, :update, :likes]
   def correct_user
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to controller: :toppages, action: :login_top
+      redirect_to root_url
     end
   end
   

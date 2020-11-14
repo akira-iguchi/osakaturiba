@@ -21,6 +21,7 @@
 
 .scroll2 {
   position: relative;
+  overflow-x: hidden;
   overflow-y: scroll;
   max-height: 700px;
   margin-bottom: 40px;

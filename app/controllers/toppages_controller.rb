@@ -1,6 +1,6 @@
 class ToppagesController < ApplicationController
   
-  def login_top
+  def index
     gon.api_key = ENV['OPEN_WEATHER_MAP_API_KEY']
     @districts = District.all
     @spots = Spot.all
@@ -8,10 +8,4 @@ class ToppagesController < ApplicationController
     @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
   end
   
-  def logout_top
-    if logged_in?
-      flash[:danger] = 'ログインしています。'
-      redirect_to controller: :toppages, action: :login_top
-    end
-  end
 end

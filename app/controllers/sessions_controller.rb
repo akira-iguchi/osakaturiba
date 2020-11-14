@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     @login = Session.new
     if logged_in?
       flash[:danger] = 'ログインしています。'
-      redirect_to controller: :toppages, action: :login_top
+      redirect_to root_url
     end
   end
 
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     @login.save
     if login(email, password)
       flash[:success] = 'ログインに成功しました。'
-      redirect_to controller: :toppages, action: :login_top
+      redirect_to root_url
     else
       flash.now[:danger] = 'ログインに失敗しました。'
       render :new

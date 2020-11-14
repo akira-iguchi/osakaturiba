@@ -39,7 +39,7 @@ before_action :correct_user, only: [:destroy]
     @page_id = params[:page_id]
     @comment = current_user.comments.find_by(id: params[:id])
     unless @comment
-      redirect_to redirect_to controller: :toppages, action: :login_top
+      redirect_to root_url
     end
   end
   
