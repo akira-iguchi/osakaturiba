@@ -1,5 +1,4 @@
 class DistrictsController < ApplicationController
-before_action :require_user_logged_in
 
   def show
      @district = District.find(params[:id])

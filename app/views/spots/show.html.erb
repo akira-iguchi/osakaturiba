@@ -6,25 +6,27 @@
     <!--googlemap-->
     <div id='spot_map'></div>
     
-    <div class="favorite">
-      <!--お気に入り登録をしているならお気に入り解除ボタンを表示-->
-      <% if current_user.like?(@spot) %>
-        <%= form_with(model: current_user.favorites.find_by(spot_id: @spot.id), local: true, method: :delete) do |f| %>
-          <%= hidden_field_tag :spot_id, @spot.id %>
-          <%= hidden_field_tag :page_id, 4 %>
-          <%= f.submit 'お気に入り解除', data: { confirm: "本当にお気に入り解除しますか?" }, class: 'btn btn-danger btan mx-auto d-block' %>
-        <% end %>
+    <% if logged_in? %>
+      <div class="favorite">
+        <!--お気に入り登録をしているならお気に入り解除ボタンを表示-->
+        <% if current_user.like?(@spot) %>
+          <%= form_with(model: current_user.favorites.find_by(spot_id: @spot.id), local: true, method: :delete) do |f| %>
+            <%= hidden_field_tag :spot_id, @spot.id %>
+            <%= hidden_field_tag :page_id, 4 %>
+            <%= f.submit 'お気に入り解除', data: { confirm: "本当にお気に入り解除しますか?" }, class: 'btn btn-danger btan mx-auto d-block' %>
+          <% end %>
+          
+        <% else %>
         
-      <% else %>
-      
-        <!--お気に入り解除をしているならお気に入りボタンを表示-->
-        <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
-          <%= hidden_field_tag :spot_id, @spot.id %>
-          <%= f.submit 'お気に入り登録', class: 'btn btn-primary btan mx-auto d-block' %>
+          <!--お気に入り解除をしているならお気に入りボタンを表示-->
+          <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
+            <%= hidden_field_tag :spot_id, @spot.id %>
+            <%= f.submit 'お気に入り登録', class: 'btn btn-primary btan mx-auto d-block' %>
+          <% end %>
+          
         <% end %>
-        
-      <% end %>
-    </div>
+      </div>
+    <% end %>
     
   </div>
 
@@ -40,7 +42,7 @@
     <% @comments.each do |c| %>
     
       <div>
-        <a href="/users/<%= c.user.id %>"><%= c.user.name %></a><%= @comment.created_at %>
+        <a href="/users/<%= c.user.id %>"><%= c.user.name %></a>
       </div>
       
       <!--改行-->
@@ -66,19 +68,21 @@
     
   <%= paginate @comments %>
   
-  <!--コメント投稿-->
-  <div class="text">
-    <%= form_with(model: [@spot, @comment], local: true) do |f| %>
-    <%= render 'layouts/error_messages', model: f.object %>
-      <%= f.label :画像も投稿できるよ！, class: "text-primary" %><br />
-      <%= f.file_field :image, id: "comment_画像も投稿できるよ！" %>
-      <%= f.text_area :content, class: 'form-control js-text',id: "cmnt",  :placeholder => "釣果などをコメントしよう！" %>
-      <p class="js-text-count pull-right"></p>
-      <div class="commentbtn">
-        <%= f.submit 'コメントする', class: 'btn btn-info' %>
-      </div>
-    <% end %>
-  </div>
+  <% if logged_in? %>
+    <!--コメント投稿-->
+    <div class="text">
+      <%= form_with(model: [@spot, @comment], local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+        <%= f.label :画像も投稿できるよ！, class: "text-primary" %><br />
+        <%= f.file_field :image, id: "comment_画像も投稿できるよ！" %>
+        <%= f.text_area :content, class: 'form-control js-text',id: "cmnt",  :placeholder => "釣果などをコメントしよう！" %>
+        <p class="js-text-count pull-right"></p>
+        <div class="commentbtn">
+          <%= f.submit 'コメントする', class: 'btn btn-info' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 <script>

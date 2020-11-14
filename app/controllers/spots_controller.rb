@@ -1,10 +1,9 @@
 class SpotsController < ApplicationController
-before_action :require_user_logged_in
 
   def show
     @spot = Spot.find(params[:id])
     @comments = @spot.comments.order(id: :desc).page(params[:page]).per(6)
-    @comment = current_user.comments.build
+
     @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
   end
   

@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-before_action :require_user_logged_in
 before_action :correct_user, only: [:destroy]
   
   def create
@@ -41,6 +40,13 @@ before_action :correct_user, only: [:destroy]
     @comment = current_user.comments.find_by(id: params[:id])
     unless @comment
       redirect_to redirect_to controller: :toppages, action: :login_top
+    end
+  end
+  
+  def require_user_logged_in
+    unless logged_in?
+      flash[:danger] = "ログインしてください"
+      redirect_to login_url
     end
   end
 end

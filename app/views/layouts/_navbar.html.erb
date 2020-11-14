@@ -70,6 +70,8 @@
           
         <% else %>
         
+          <li class="gest nav-item"><%= link_to 'ゲストログイン', root_path, class: 'nav-link' %></li>
+          <p class="fukidashi">閲覧のみ可能です</p>
           <li class="nav-item"><%= link_to '新規登録', signup_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'ログイン', login_path, class: 'nav-link' %></li>
           

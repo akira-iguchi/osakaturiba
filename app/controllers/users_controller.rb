@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-before_action :require_user_logged_in, only: [:show, :edit, :update ,:likes]
+before_action :require_user_logged_in, only: [:edit, :update ,:likes]
 before_action :correct_user, only: [:edit, :update, :likes]
   
   def show
@@ -69,6 +69,13 @@ before_action :correct_user, only: [:edit, :update, :likes]
     @user = User.find(params[:id])
     unless @user == current_user
       redirect_to controller: :toppages, action: :login_top
+    end
+  end
+  
+  def require_user_logged_in
+    unless logged_in?
+      flash[:danger] = "ログインしてください"
+      redirect_to login_url
     end
   end
 end

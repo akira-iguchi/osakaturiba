@@ -1,5 +1,4 @@
 class ToppagesController < ApplicationController
-before_action :require_user_logged_in, only: [:login_top]  
   
   def login_top
     gon.api_key = ENV['OPEN_WEATHER_MAP_API_KEY']
