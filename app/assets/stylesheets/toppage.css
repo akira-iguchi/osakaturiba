@@ -36,8 +36,8 @@ body {
 
 .content {
   position: relative;
-  top: 13px;
-  right: 52px;
+  bottom: 32px;
+  padding-left: 64px;
 }
 
 /*header*/
@@ -72,9 +72,8 @@ body {
   z-index: 10;
 }
 
-.sign_up:hover + .fukidashi {
+.login:hover + .fukidashi {
   display: block;
-  
 }
 
 #search {

@@ -62,9 +62,9 @@
           
         <% else %>
           
-          <li class="nav-item sign_up"><%= link_to '新規登録', signup_path, class: 'nav-link' %></li>
-          <p class="fukidashi">釣り場検索、コメント投稿、お気に入り登録などができます。</p>
-          <li class="nav-item"><%= link_to 'ログイン', login_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to '新規登録', signup_path, class: 'nav-link' %></li>
+          <li class="nav-item login"><%= link_to 'ログイン', login_path, class: 'nav-link' %></li>
+          <p class="fukidashi">ゲストログインができます。</p>
           
         <% end %>
       </ul>
