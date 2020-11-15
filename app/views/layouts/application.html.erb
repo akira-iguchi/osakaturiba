@@ -23,12 +23,10 @@
   <body>
     <%= render 'layouts/navbar' %>
 
-    <div class="container">
-      <%= render 'layouts/flash_messages' %>
+    <%= render 'layouts/flash_messages' %>
 
-      <%= yield %>
-    </div>
-    
+    <%= yield %>
+  
     <%= javascript_include_tag 'application' %>
     
     <script async defer

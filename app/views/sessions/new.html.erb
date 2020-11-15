@@ -1,39 +1,45 @@
-<div class="text-center">
-  <h1 >ログイン</h1>
-</div>
-
-<div class="row">
-  <div class="log col-md-10 col-lg-6">
-    <div class="log">
-    
-      <%= form_with(url: login_path, model: @login, local: true) do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
+<div class="container">
+  <div class="text-center">
+    <h1 >ログイン</h1>
+  </div>
+  
+  <div class="row">
+    <div class="log col-md-10 col-lg-6">
+      <div class="log">
       
-      <div class="center jumbotron">
+        <%= form_with(url: login_path, model: @login, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+        
+        <div class="center jumbotron">
+        
+          <div class="form-group">
+            <%= f.label :email, 'メールアドレス' %>
+            <%= f.email_field :email, class: 'form-control' %>
+          </div>
       
-        <div class="form-group">
-          <%= f.label :email, 'メールアドレス' %>
-          <%= f.email_field :email, class: 'form-control' %>
+          <div class="form-group">
+            <label for="js-passcheck">パスワード</label>
+            <%= f.password_field :password, class: 'form-control', id: "js-password" %>
+          </div>
+          
+          <p class="check">
+            <label for="js-passcheck">パスワードを表示する</label>
+            <input type="checkbox" id="js-passcheck"/>
+          </p>
+          
+          <div>
+            <%= f.submit 'ログイン', class: 'btn btn-primary' %>
+          </div>
+          
+          
+          <div>
+            <%= link_to 'ゲストログインする', guest_path, method: :post, class: 'btn btn-secondary guest' %>
+          </div>
         </div>
-    
-        <div class="form-group">
-          <label for="js-passcheck">パスワード</label>
-          <%= f.password_field :password, class: 'form-control', id: "js-password" %>
-        </div>
-        
-        <p class="check">
-          <label for="js-passcheck">パスワードを表示する</label>
-          <input type="checkbox" id="js-passcheck"/>
-        </p>
-        
-        <div>
-          <%= f.submit 'ログイン', class: 'btn btn-primary' %>
-        </div>
-        
-        </div>
-        
-        <% end %>
-      <p class="new_user"><%= link_to 'アカウントをお持ちでない方はこちらから', signup_path %></p>
+          
+          <% end %>
+        <p class="new_user"><%= link_to 'アカウントをお持ちでない方はこちらから', signup_path %></p>
+      </div>
     </div>
   </div>
 </div>

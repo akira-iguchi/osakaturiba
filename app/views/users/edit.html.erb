@@ -1,36 +1,39 @@
-<div class="mx-auto d-block col-md-10 col-lg-6">
-  <div id="edit">
+<div class="container">
+  <div class="mx-auto d-block col-md-10 col-lg-6">
+    <div id="edit">
+      
+      <h2 class="text-center">ユーザー編集</h2>
     
-    <h2 class="text-center">ユーザー編集</h2>
-  
-    <fieldset>
-        
-      <%= form_with(model: @user, local: true) do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
-    
-        <div class="form-group">
-          <%= f.label :name, '名前' %>
-          <%= f.text_field :name, class: 'form-control' %>
-        </div>
-  
-        <div class="form-group">
-          <div><%= f.label :image, '画像' %></div>
-          <%= f.file_field :image %>
-          <%= f.hidden_field :image_cache %>
-        </div>
-    
-        <div class="form-group">
-          <%= f.label :email, 'メールアドレス' %>
-          <%= f.email_field :email, class: 'form-control' %>
-        </div>
-  
-        <%= f.submit '変更', class: "btn btn-success" %>
+      <fieldset>
           
-      <% end %>
+        <%= form_with(model: @user, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+      
+          <div class="form-group">
+            <%= f.label :name, '名前' %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+    
+          <div class="form-group">
+            <div><%= f.label :image, '画像' %></div>
+            <%= f.file_field :image %>
+            <%= f.hidden_field :image_cache %>
+          </div>
+      
+          <div class="form-group">
+            <%= f.label :email, 'メールアドレス' %>
+            <%= f.email_field :email, class: 'form-control' %>
+          </div>
+    
+          <%= f.submit '変更', class: "btn btn-success" %>
+            
+        <% end %>
+    
+      </fieldset>
   
-    </fieldset>
-
-  </div> 
-  <p class="return"><%= link_to '戻る', user_path(@user), class: "h5 text-primary" %></p>
+    </div> 
+    <p class="return"><%= link_to '戻る', user_path(@user), class: "h5 text-primary" %></p>
+  </div>
 </div>
+  
 

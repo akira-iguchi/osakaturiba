@@ -36,8 +36,8 @@ body {
 
 .content {
   position: relative;
-  bottom: 30px;
-  left: 65px;
+  top: 13px;
+  right: 52px;
 }
 
 /*header*/
@@ -114,9 +114,104 @@ body {
   padding: 7px;
 }
 
+/*flash_messages*/
+
+.flash {
+  position: absolute;
+  top: 7%;
+  text-align: center;
+  width: 100%;
+  z-index: 20;
+  animation: fadeout 1.5s ease 2s 1 forwards;
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 /*index*/
 
-/*login*/
+.top {
+  position: relative;
+  bottom: 25px;
+  background-image: url("turi.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding: 20px;
+  margin-bottom: 20px;
+  z-index: 0;
+}
+
+.osaka {
+  position: relative;
+  top: 10px;
+  padding-right: 15%;
+  font-weight: bold;
+  font-size: 70px;
+  color: #99FFFF;
+  text-shadow: 5px 5px 5px #808080;
+  animation-name: faderight;
+  animation-duration: 2s;
+}
+
+@keyframes faderight {
+  0% {
+      opacity: 0;
+      transform: translateX(-30px);
+  }
+  100% {
+      opacity: 1;
+  transform: translateX(0px);
+  }
+}
+
+.turiba {
+  position: relative;
+  bottom: 15px;
+  padding-left: 15%;
+  font-weight: bold;
+  font-size: 70px;
+  color: #99FFFF;
+  text-shadow: 5px 5px 5px #808080;
+  opacity:0;
+  animation-name: fadeleft;
+  animation-delay: 0.5s;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+ @keyframes fadeleft {
+  0% {
+      opacity: 0;
+      transform: translateX(30px);
+  }
+  100% {
+      opacity: 1;
+  transform: translateX(0px);
+  }
+}
+
+.fade {
+  animation-name: fade;
+  animation-delay: 1s;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards; 
+}
+
+ @keyframes fade {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
 
 #top_map {
   border: 3px solid #FFCC33;

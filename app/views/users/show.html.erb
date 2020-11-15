@@ -1,61 +1,65 @@
-<ul class="name_icon">
-  <li class="profile">
-    <!--ユーザーアイコンを変更するまで初期画像-->
-    <% if @user.image? %>
-      <%= image_tag @user.image.url, class:"icon", alt: "" %>
-    <% else %>
-      <%= image_tag 'default.png', class:"icon",alt: "" %>
-    <% end %>
-  </li>
-  
-  <li class="profile">
-    <h1 class="u_name"><%= @user.name %></h1>
-    <!--ユーザー詳細ページと現在のユーザーの名前が同じなら編集ボタン表示-->
-    <% if @user == current_user %>
-      <p class="u_edit"><%= link_to("編集", "/users/#{@user.id}/edit", class: "btn btn-radius-solid") %></p>
-    <% end %>
-  </li>
-</ul>
+<div class="container">
+  <ul class="name_icon">
+    <li class="profile">
+      <!--ユーザーアイコンを変更するまで初期画像-->
+      <% if @user.image? %>
+        <%= image_tag @user.image.url, class:"icon", alt: "" %>
+      <% else %>
+        <%= image_tag 'default.jpg', class:"icon",alt: "" %>
+      <% end %>
+    </li>
     
-
-<div class="row">
-  <div class="mx-auto d-block col-sm-11 col-lg-6">
-    <div class="left">
-      
-      <h2 class="u_come">釣り場コメント一覧</h2>
-      
-      <div class="box">
-        <% @comments.each do |c| %>
-        
-          <div>
-            釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
-          </div>
-          
-          <!--改行-->
-          <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
-          
-          <!--画像-->
-          <div class="cimg">
-            <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-              <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
-            <% end %>
-          </div>
-          <div class="botton">
-            <!--ユーザー詳細ページと現在のユーザーの名前が同じならコメント削除ボタン表示-->
-            <% if current_user == c.user %>
-              &nbsp;<%= link_to "削除", user_comment_path(@user,c,page_id: 1), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger btn-sm' %>
-            <% end %>
-          </div>
-          <hr>
+    <li class="profile">
+      <h1 class="u_name"><%= @user.name %></h1>
+      <!--ユーザー詳細ページと現在のユーザーの名前が同じなら編集ボタン表示（ゲストユーザーなら表示しない）-->
+        <% if @user == current_user %>
+      <% unless @user.id.to_i == 12 %>
+          <p class="u_edit"><%= link_to("編集", "/users/#{@user.id}/edit", class: "btn btn-radius-solid") %></p>
         <% end %>
-        <%= paginate @comments %>
+      <% end %>
+    </li>
+  </ul>
+      
+  
+  <div class="row">
+    <div class="mx-auto d-block col-sm-11 col-lg-6">
+      <div class="left">
+        
+        <h2 class="u_come">釣り場コメント一覧</h2>
+        
+        <div class="box">
+          <% @comments.each do |c| %>
+          
+            <div>
+              釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
+            </div>
+            
+            <!--改行-->
+            <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+            
+            <!--画像-->
+            <div class="cimg">
+              <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
+                <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
+              <% end %>
+            </div>
+            <div class="botton">
+              <!--ユーザー詳細ページと現在のユーザーの名前が同じならコメント削除ボタン表示-->
+              <% if current_user == c.user %>
+                &nbsp;<%= link_to "削除", user_comment_path(@user,c,page_id: 1), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger btn-sm' %>
+              <% end %>
+            </div>
+            <hr>
+          <% end %>
+          <%= paginate @comments %>
+        </div>
       </div>
     </div>
+    
+    <!--お気に入りした釣り場一覧-->
+    <div class="mx-auto d-block col-sm-11 col-lg-6">
+        <%= render 'favorites/likes', likes: @likes %>
+    </div>
+    
   </div>
-  
-  <!--お気に入りした釣り場一覧-->
-  <div class="mx-auto d-block col-sm-11 col-lg-6">
-      <%= render 'favorites/likes', likes: @likes %>
-  </div>
-  
 </div>

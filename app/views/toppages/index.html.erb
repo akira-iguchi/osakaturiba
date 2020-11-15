@@ -1,95 +1,117 @@
-<div class="row">
-  <div class="mx-auto d-block col-md-10 col-lg-5">
-     <!--googlemap-->
-    <div id='top_map'></div>
+<div class="top">
+  <div class="text-center">
+    <div>
+      <p class="osaka">
+        大阪の
+      </p>
+    </div>
+    
+    <div>
+      <p class="turiba">
+        釣り場
+      </p>
+    </div>
   </div>
   
-    <div class="area col-md-10 col-lg-6">
-      <div class="itirann">
-        <h1 class="turiiti">釣り場一覧</h1>
-        <h3><%= link_to '南港', '/districts/1', class: "text-dark" %></h3>
-          ・<%= link_to 'かもめ大橋', '/spots/1' %>&emsp;・<%= link_to 'シーサイドコスモ', '/spots/2' %>
-        <h3><%= link_to '泉大津', '/districts/5', class: "text-dark" %></h3>
-          ・<%= link_to '助松埠頭', '/spots/9' %>&emsp;・<%= link_to '汐見埠頭砂上げ場', '/spots/10' %>
-        <h3><%= link_to '貝塚', '/districts/2', class: "text-dark" %></h3>
-          ・<%= link_to '貝塚人工島', '/spots/3' %>&emsp;・<%= link_to '貝塚人工島水路', '/spots/4' %>
-        <h3><%= link_to '泉佐野', '/districts/4', class: "text-dark" %></h3>
-          ・<%= link_to '食品コンビナート', '/spots/7' %>&emsp;・<%= link_to 'りんくう', '/spots/8' %>
-        <h3><%= link_to '岬町', '/districts/3', class: "text-dark" %></h3>
-          ・<%= link_to 'とっとパーク小島', '/spots/5' %>&emsp;・<%= link_to '深日港', '/spots/6' %>
+  <div class="text-center fade">
+    <h2 class="text-white">気に入った釣り場をお気に入り登録したり、釣り場に釣果などをコメントしよう！</h2>
+  </div>
+</div>
+  
+<div class="container">
+  <div class="row">
+    <div class="mx-auto d-block col-md-10 col-lg-5">
+       <!--googlemap-->
+      <div id='top_map'></div>
+    </div>
+    
+      <div class="area col-md-10 col-lg-6">
+        <div class="itirann">
+          <h1 class="turiiti">釣り場一覧</h1>
+          <h3><%= link_to '南港', '/districts/1', class: "text-dark" %></h3>
+            ・<%= link_to 'かもめ大橋', '/spots/1' %>&emsp;・<%= link_to 'シーサイドコスモ', '/spots/2' %>
+          <h3><%= link_to '泉大津', '/districts/5', class: "text-dark" %></h3>
+            ・<%= link_to '助松埠頭', '/spots/9' %>&emsp;・<%= link_to '汐見埠頭砂上げ場', '/spots/10' %>
+          <h3><%= link_to '貝塚', '/districts/2', class: "text-dark" %></h3>
+            ・<%= link_to '貝塚人工島', '/spots/3' %>&emsp;・<%= link_to '貝塚人工島水路', '/spots/4' %>
+          <h3><%= link_to '泉佐野', '/districts/4', class: "text-dark" %></h3>
+            ・<%= link_to '食品コンビナート', '/spots/7' %>&emsp;・<%= link_to 'りんくう', '/spots/8' %>
+          <h3><%= link_to '岬町', '/districts/3', class: "text-dark" %></h3>
+            ・<%= link_to 'とっとパーク小島', '/spots/5' %>&emsp;・<%= link_to '深日港', '/spots/6' %>
+        </div>
+      </div>       
+  </div>
+  
+  <div class="row">
+    <!--カレンダー-->
+    <div class="col-lg-4">
+      <table>
+        <thead>
+          <tr>
+            <th id="prev">&laquo;</th>
+            <th id="title" colspan="5"></th>
+            <th id="next">&raquo;</th>
+          </tr>
+          <tr>
+            <th>日</th>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th>土</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td id="today" colspan="7">今日の日付</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  
+    <div class="col-lg-8">
+      <!--天気予報-->
+      <div class="tenki">
+        <div id="city-name"></div>
+        <div id="weather"></div>
       </div>
-    </div>       
-</div>
-
-<div class="row">
-  <!--カレンダー-->
-  <div class="col-lg-4">
-    <table>
-      <thead>
-        <tr>
-          <th id="prev">&laquo;</th>
-          <th id="title" colspan="5"></th>
-          <th id="next">&raquo;</th>
-        </tr>
-        <tr>
-          <th>日</th>
-          <th>月</th>
-          <th>火</th>
-          <th>水</th>
-          <th>木</th>
-          <th>金</th>
-          <th>土</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td id="today" colspan="7">今日の日付</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-
-  <div class="col-lg-8">
-    <!--天気予報-->
-    <div class="tenki">
-      <div id="city-name"></div>
-      <div id="weather"></div>
     </div>
   </div>
-</div>
-
-<div class = "under mx-auto d-block">
   
-  <h2 class="turicome">釣り場コメント一覧</h2>
-  
-    <div class="center jumbotron">
-      <% @comments.each do |c| %>
-      
-        <div>
-          釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
-        </div>
+  <div class = "under mx-auto d-block">
+    
+    <h2 class="turicome">釣り場コメント一覧</h2>
+    
+      <div class="center jumbotron">
+        <% @comments.each do |c| %>
         
-        <div>
-         <%= image_tag c.user.image.url, class:"c_user_icon", alt: "" %><a class="c_user" href="/users/<%= c.user.id %>"><%= c.user.name %></a>
-        </div>
-        
-        <!--改行-->
-        <div class="content">
-          <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
-        </div>
-        
-        <!--画像-->
-        <div class="cimg">
-          <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-            <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
-          <% end %>
-        </div> 
-        <hr>
-      <% end %>
-      <%= paginate @comments %>
-    </div>
+          <div>
+            釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
+          </div>
+          
+          <div>
+            <%= image_tag c.user.image.url, class:"c_user_icon", alt: "" %><a class="c_user" href="/users/<%= c.user.id %>"><%= c.user.name %></a>
+            <!--改行-->
+            <span class="content">
+              <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+            </span>
+          </div>
+          
+          
+          <!--画像-->
+          <div class="cimg">
+            <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
+              <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
+            <% end %>
+          </div> 
+          <hr>
+        <% end %>
+        <%= paginate @comments %>
+      </div>
+  </div>
 </div>
 
 <script>

@@ -34,11 +34,10 @@
               
               <div>
                 <%= image_tag c.user.image.url, class:"c_user_icon", alt: "" %><a class="c_user" href="/users/<%= c.user.id %>"><%= c.user.name %></a>
-              </div>
-              
-              <!--改行-->
-              <div class="content">
-                <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+                <!--改行-->
+                <span class="content">
+                  <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+                </span>
               </div>
                     
               <!--画像-->

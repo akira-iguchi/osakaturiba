@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 before_action :require_user_logged_in, only: [:edit, :update ,:likes]
 before_action :correct_user, only: [:edit, :update, :likes]
+before_action :cannot_guest_user, only: [:edit, :update]
   
   def show
     @user = User.find(params[:id])
@@ -21,8 +22,9 @@ before_action :correct_user, only: [:edit, :update, :likes]
     @user = User.new(user_params)
 
     if @user.save
+      log_in (@user)
       flash[:success] = 'ユーザーを登録しました。'
-      redirect_to login_path
+      redirect_to root_url
     else
       flash.now[:danger] = 'ユーザーの登録に失敗しました。'
       render :new
@@ -76,6 +78,13 @@ before_action :correct_user, only: [:edit, :update, :likes]
     unless logged_in?
       flash[:danger] = "ログインしてください"
       redirect_to login_url
+    end
+  end
+  
+  def cannot_guest_user
+    if @user.id.to_i == 12
+      flash[:danger] = "ゲストユーザーは編集できません"
+      redirect_to @user
     end
   end
 end

@@ -1,99 +1,99 @@
-<div class="row">
-  <div class="mx-auto d-block col-md-10 col-lg-5">
-    <!--googlemap-->
-    <div id='search_map'></div>
-  </div>
-  
-  <!--検索した釣り場一覧-->
-  <div class="area col-md-10 col-lg-6">
-    <div class="itirann">
-      <h1 class="turiiti">釣り場一覧</h1>
-      <p class="kensaku"><検索結果></p>
-      <% if @spots.none? %>
-        <p class="none">該当なし</p>
-      <% else %>
-        <ul>
-          <% @spots.each do |s| %>
-            <li class="s_name"><a href="/spots/<%= s.id %>"><%= s.name %></a></li>
-          <% end %>
-        </ul>
-      <% end %>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto d-block col-md-10 col-lg-5">
+      <!--googlemap-->
+      <div id='search_map'></div>
     </div>
-  </div>
-</div>
-
-<div class="row">
-  <!--カレンダー-->
-  <div class="col-lg-4">
-    <table>
-      <thead>
-        <tr>
-          <th id="prev">&laquo;</th>
-          <th id="title" colspan="5">2020/05</th>
-          <th id="next">&raquo;</th>
-        </tr>
-        <tr>
-          <th>日</th>
-          <th>月</th>
-          <th>火</th>
-          <th>水</th>
-          <th>木</th>
-          <th>金</th>
-          <th>土</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td id="today" colspan="7">今日の日付</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-
-  <div class="col-lg-8">
-    <!--天気予報-->
-    <div class="tenki">
-      <div id="city-name"></div>
-      <div id="weather"></div>
+    
+    <!--検索した釣り場一覧-->
+    <div class="area col-md-10 col-lg-6">
+      <div class="itirann">
+        <h1 class="turiiti">釣り場一覧</h1>
+        <p class="kensaku"><検索結果></p>
+        <% if @spots.none? %>
+          <p class="none">該当なし</p>
+        <% else %>
+          <ul>
+            <% @spots.each do |s| %>
+              <li class="s_name"><a href="/spots/<%= s.id %>"><%= s.name %></a></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
     </div>
   </div>
   
-</div>
-
-<div class = "under mx-auto d-block">
-  
-  <h2 class="turicome">釣り場コメント一覧</h2>
-  
-    <div class="center jumbotron">
-      <% @comments.each do |c| %>
-      
-        <div>
-          釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
-        </div>
-        
-        <div>
-          <%= image_tag c.user.image.url, class:"c_user_icon", alt: "" %><a class="c_user" href="/users/<%= c.user.id %>"><%= c.user.name %></a>
-        </div>
-        
-        <!--改行-->
-        <div class="content">
-          <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
-        </div>
-        
-        <!--画像-->
-        <div class="cimg">
-          <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-            <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
-          <% end %>
-        </div>
-        <hr>
-      <% end %>
-      <%= paginate @comments %>
+  <div class="row">
+    <!--カレンダー-->
+    <div class="col-lg-4">
+      <table>
+        <thead>
+          <tr>
+            <th id="prev">&laquo;</th>
+            <th id="title" colspan="5">2020/05</th>
+            <th id="next">&raquo;</th>
+          </tr>
+          <tr>
+            <th>日</th>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th>土</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td id="today" colspan="7">今日の日付</td>
+          </tr>
+        </tfoot>
+      </table>
     </div>
+  
+    <div class="col-lg-8">
+      <!--天気予報-->
+      <div class="tenki">
+        <div id="city-name"></div>
+        <div id="weather"></div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class = "under mx-auto d-block">
+    
+    <h2 class="turicome">釣り場コメント一覧</h2>
+    
+      <div class="center jumbotron">
+        <% @comments.each do |c| %>
+        
+          <div>
+            釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
+          </div>
+          
+          <div>
+            <%= image_tag c.user.image.url, class:"c_user_icon", alt: "" %><a class="c_user" href="/users/<%= c.user.id %>"><%= c.user.name %></a>
+            <!--改行-->
+            <span class="content">
+              <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+            </span>
+          </div>
+          
+          <!--画像-->
+          <div class="cimg">
+            <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
+              <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
+            <% end %>
+          </div>
+          <hr>
+        <% end %>
+        <%= paginate @comments %>
+      </div>
+  </div>
 </div>
-
 
 <script>
 // googlemap

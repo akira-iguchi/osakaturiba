@@ -9,12 +9,12 @@
   bottom: 9px;
 }
 
-.forget {
-  position: relative;
-  bottom: 10px;
-}
-
 .new_user {
   position: relative;
   bottom: 20px;
+}
+
+.guest {
+  position: relative;
+  top: 20px;
 }
