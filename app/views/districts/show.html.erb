@@ -1,57 +1,59 @@
-<div class="row">
-    <div class="mx-auto d-block col-md-10 col-lg-5">
-      
-      <h1 class="d_name"><%= @district.name %></h1>
-      
-      <!--googlemap-->
-      <div id='district_map'></div>
-      
-      <div class="d_turi">
-        <h2 class="d_turiba"><%= @district.name %>の釣り場一覧</h2>
-        <ul>
-          <% @spots.each do |spot| %>
-            <li><%= link_to spot.name, spot %></li>
-          <% end %>
-        </ul>
+<div class="container">
+  <div class="row">
+      <div class="mx-auto d-block col-md-10 col-lg-5">
+        
+        <h1 class="d_name"><%= @district.name %></h1>
+        
+        <!--googlemap-->
+        <div id='district_map'></div>
+        
+        <div class="d_turi">
+          <h2 class="d_turiba"><%= @district.name %>の釣り場一覧</h2>
+          <ul>
+            <% @spots.each do |spot| %>
+              <li><%= link_to spot.name, spot %></li>
+            <% end %>
+          </ul>
+        </div>
+        
       </div>
       
-    </div>
-    
-    <div class="mx-auto d-block col-md-8 col-lg-6">
-      
-      <h2 class="turicome"><%= @district.name %>の釣り場コメント一覧</h2>
-      
-      <!--その地区内の釣り場のコメント-->
-      <div class="scroll2">
-        <div class="center jumbotron">
-          <% @spots.each do |s| %>
-            <!--釣り場のコメントを表示-->
-            <% s.comments.each do |c| %>
-            
-              <div>
-                釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
-              </div>
+      <div class="mx-auto d-block col-md-8 col-lg-6">
+        
+        <h2 class="turicome"><%= @district.name %>の釣り場コメント一覧</h2>
+        
+        <!--その地区内の釣り場のコメント-->
+        <div class="scroll2">
+          <div class="center jumbotron">
+            <% @spots.each do |s| %>
+              <!--釣り場のコメントを表示-->
+              <% s.comments.each do |c| %>
               
-              <div>
-                <%= image_tag c.user.image.url, class:"c_user_icon", alt: "" %><a class="c_user" href="/users/<%= c.user.id %>"><%= c.user.name %></a>
-                <!--改行-->
-                <span class="content">
-                  <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
-                </span>
-              </div>
-                    
-              <!--画像-->
-              <div class="cimg">
-                <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-                  <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
-                <% end %>
-              </div> 
-              <hr>
+                <div>
+                  釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
+                </div>
+                
+                <div>
+                  <%= image_tag c.user.image.url, class:"c_user_icon", alt: "" %><a class="c_user" href="/users/<%= c.user.id %>"><%= c.user.name %></a>
+                  <!--改行-->
+                  <span class="content">
+                    <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
+                  </span>
+                </div>
+                      
+                <!--画像-->
+                <div class="cimg">
+                  <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
+                    <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
+                  <% end %>
+                </div> 
+                <hr>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
-    </div>
+  </div>
 </div>
 
 <script>

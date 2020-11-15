@@ -1,7 +1,7 @@
 /*全体*/
 
 body {
-  background: linear-gradient(to right, rgba(156, 250, 197, 0.4), rgba(0, 255, 192, 0.4));
+  background: linear-gradient(to right, rgba(250, 250, 197, 0.4), rgba(100, 255, 192, 0.4));
 }
 
 .cimg {
@@ -118,11 +118,10 @@ body {
 
 .flash {
   position: absolute;
-  top: 7%;
   text-align: center;
   width: 100%;
   z-index: 20;
-  animation: fadeout 1.5s ease 2s 1 forwards;
+  animation: fadeout 1.5s ease 1.5s 1 forwards;
 }
 
 @keyframes fadeout {
@@ -227,6 +226,9 @@ body {
   display: inline-block;
   text-align: left;
   margin-bottom: 25px;
+  padding: 0.5em 2em .5em;
+  background-color: #badcad;
+  box-shadow: 0 0 10px 10px #badcad;
 }
 
 .turiiti {

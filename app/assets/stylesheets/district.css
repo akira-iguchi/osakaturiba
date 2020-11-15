@@ -13,6 +13,8 @@
 .d_turi {
   padding-left: 50px;
   margin-bottom: 65px;
+  background-color: #badcad;
+  box-shadow: 0 0 10px 10px #badcad;
 }
 
 .d_turiba {
