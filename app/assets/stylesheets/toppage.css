@@ -5,13 +5,13 @@ body {
 }
 
 .cimg {
-  margin-top: 20px;
   text-align : center;
 }
 
 .comment_img {
+  position: relative;
+  bottom: 20px;
   width: 220px;
-  margin-bottom: 10px;
   border: 1px solid blue;
   border-radius: 20px;
 }
@@ -232,13 +232,14 @@ body {
 
 .turiiti {
   margin-top: 5px;
-  font-size: 50px;
+  font-size: 55px;
   text-shadow: 2px 1px 2px #808080; 
 }
 
-h3 {
+.district {
+  font-size: 35px;
   color: black;
-  margin-top: 10px;
+  margin: 3px;
 }
 
 .tenki {
@@ -247,7 +248,6 @@ h3 {
 }
 
 #city-name {
-  margin-top: 20px;
   padding: 0.25em 0.5em;
   color: #364e96;
   background: #CCFFFF	;
@@ -276,9 +276,9 @@ h3 {
 }
 
 .weather-report {
-  width: 150px;
+  width: 200px;
   float: left;
-  height: 165px;
+  height: 260px;
   background-color: white;
 }
 
@@ -286,18 +286,21 @@ h3 {
   position: relative;
   bottom: 10px;
   border-style: hidden;
-  width: 100px;
+  width: 200px;
 }
 
 .weather-date {
+  font-size: 20px;
   opacity: 0.7;
 }
 
 .weather-time {
+  font-size: 20px;
   opacity: 0.7;
 }
 
 .weather-temp {
+  font-size: 20px;
   position: relative;
   bottom: 34px;
   margin-bottom: 10px;
@@ -308,6 +311,7 @@ table {
   width: 70%;
   margin-left:auto; 
   margin-right:auto;
+  margin-bottom: 15px;
   border-collapse: collapse;
   border: 2px solid #eee;
   background-color: white;
@@ -359,7 +363,7 @@ td.today {
 
 .under {
   max-width: 800px;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .turicome {

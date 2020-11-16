@@ -60,7 +60,7 @@
         
         <div class="botton">
           <% if current_user == c.user %>
-            &nbsp;<%= link_to "削除", spot_comment_path(@spot,c,page_id: 2), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger btn-sm' %>
+            &nbsp;<%= link_to "削除", spot_comment_path(@spot,c,page_id: 2), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger btn-sm delete' %>
           <% end %>
         </div>
         <hr>
