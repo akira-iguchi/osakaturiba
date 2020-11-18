@@ -51,6 +51,14 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
+  
+  config.assets.compile = true
+  
+  config.assets.precompile += ['toppage.js']
+  config.assets.precompile += ['session.js']
+  config.assets.precompile += ['search.js']
+  config.assets.precompile += ['user.js']
+  config.assets.precompile += ['spot.js']
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
