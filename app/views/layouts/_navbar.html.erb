@@ -1,6 +1,10 @@
 <header class="mb-4">
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <% if logged_in? %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <% else %>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+  <% end %>
     <p><i class="fish1 fas fa-fish fa-2x"></i><a class="title navbar-brand" href="/">大阪釣りスポット</a><i class="fish2 fas fa-fish fa-2x fa-rotate-180"></i></p>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
