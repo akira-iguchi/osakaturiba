@@ -8,7 +8,7 @@
         <div id='district_map'></div>
         
         <div class="d_turi">
-          <h2 class="d_turiba"><%= @district.name %>の釣り場一覧</h2>
+          <h2 class="d_spot"><%= @district.name %>の釣り場一覧</h2>
           <ul>
             <% @spots.each do |spot| %>
               <li><%= link_to spot.name, spot %></li>
@@ -23,7 +23,7 @@
         <h2 class="turicome"><%= @district.name %>の釣り場コメント一覧</h2>
         
         <!--その地区内の釣り場のコメント-->
-        <div class="scroll2">
+        <div class="d_scroll">
           <div class="center jumbotron">
             <% @spots.each do |s| %>
               <!--釣り場のコメントを表示-->
@@ -43,7 +43,7 @@
                 </div>      
                 
                 <!--画像-->
-                <div class="cimg">
+                <div class="img_position">
                   <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
                     <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
                   <% end %>

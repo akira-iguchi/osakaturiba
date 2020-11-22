@@ -17,11 +17,11 @@
   box-shadow: 0 0 10px 10px #badcad;
 }
 
-.d_turiba {
+.d_spot {
   position: relative;
 }
 
-.scroll2 {
+.d_scroll {
   position: relative;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -29,16 +29,16 @@
   margin-bottom: 40px;
 }
 
-.scroll2::-webkit-scrollbar {
+.d_scroll::-webkit-scrollbar {
   width: 7px;
 }
 
-.scroll2::-webkit-scrollbar-thumb {
+.d_scroll::-webkit-scrollbar-thumb {
   background-color: blue;
   border-radius: 3px;
 }
 
-.scroll2::-webkit-scrollbar-track {
+.d_scroll::-webkit-scrollbar-track {
   background: rgba(100,100,100, .5);
 }
 

@@ -1,6 +1,6 @@
 /*new*/
 
-.sinki {
+.user_new_form {
   margin: 0 auto;
 }
 
@@ -23,6 +23,7 @@
 
 .icon {
   position: relative;
+  bottom: 60px;
   width: 140px;
   height: 140px;
   border: 3px solid #FFCC33;
@@ -30,17 +31,22 @@
   background-color: white;
 }
 
-.u_name {
+.user_name {
   position: relative;
   font-size: 50px;
   top: 20px;
-  left: 30px;
+  left: 20px;
 }
 
-.u_edit {
+.user_email {
   position: relative;
-  left: 35px;
-  top: 30px;
+  font-size: 20px;
+  left: 20px;
+}
+
+.user_edit {
+  position: relative;
+  left: 25px;
 }
 
 a.btn-radius-solid {
@@ -91,14 +97,13 @@ a.btn-radius-solid:hover {
   background-color: white;
 }
 
-.cimg {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  text-align : center;
+.user_content {
+  margin-bottom: 30px;
 }
 
 .botton {
   position: relative;
+  top: 5px;
   right: 5px;
 }
 

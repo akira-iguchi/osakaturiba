@@ -26,17 +26,17 @@
     </div>
     
       <div class="area col-md-10 col-lg-6">
-        <div class="itirann">
-          <h1 class="turiiti">釣り場一覧</h1>
-          <p class="district"><%= link_to '南港', '/districts/1', class: "text-dark" %></p>
+        <div class="list">
+          <h1 class="spot_title">釣り場一覧</h1>
+          <p class="district_name"><%= link_to '南港', '/districts/1', class: "text-dark" %></p>
             ・<%= link_to 'かもめ大橋', '/spots/1' %>&emsp;・<%= link_to 'シーサイドコスモ', '/spots/2' %>
-          <p class="district"><%= link_to '泉大津', '/districts/5', class: "text-dark" %></p>
+          <p class="district_name"><%= link_to '泉大津', '/districts/5', class: "text-dark" %></p>
             ・<%= link_to '助松埠頭', '/spots/9' %>&emsp;・<%= link_to '汐見埠頭砂上げ場', '/spots/10' %>
-          <p class="district"><%= link_to '貝塚', '/districts/2', class: "text-dark" %></p>
+          <p class="district_name"><%= link_to '貝塚', '/districts/2', class: "text-dark" %></p>
             ・<%= link_to '貝塚人工島', '/spots/3' %>&emsp;・<%= link_to '貝塚人工島水路', '/spots/4' %>
-          <p class="district"><%= link_to '泉佐野', '/districts/4', class: "text-dark" %></p>
+          <p class="district_name"><%= link_to '泉佐野', '/districts/4', class: "text-dark" %></p>
             ・<%= link_to '食品コンビナート', '/spots/7' %>&emsp;・<%= link_to 'りんくう', '/spots/8' %>
-          <p class="district"><%= link_to '岬町', '/districts/3', class: "text-dark" %></p>
+          <p class="district_name"><%= link_to '岬町', '/districts/3', class: "text-dark" %></p>
             ・<%= link_to 'とっとパーク小島', '/spots/5' %>&emsp;・<%= link_to '深日港', '/spots/6' %>
         </div>
       </div>       
@@ -74,7 +74,7 @@
   
     <div class="col-lg-8">
       <!--天気予報-->
-      <div class="tenki">
+      <div class="entire_weather">
         <div id="city-name"></div>
         <div id="weather"></div>
       </div>
@@ -83,7 +83,7 @@
   
   <div class = "under mx-auto d-block">
     
-    <h2 class="turicome">釣り場コメント一覧</h2>
+    <h2 class="comment_title">釣り場コメント一覧</h2>
     
       <div class="center jumbotron">
         <% @comments.each do |c| %>
@@ -102,7 +102,7 @@
           </div>
           
           <!--画像-->
-          <div class="cimg">
+          <div class="img_position">
             <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
               <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
             <% end %>

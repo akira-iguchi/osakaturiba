@@ -52,7 +52,7 @@
         </div>
           
         <!--画像-->
-        <div class="cimg">
+        <div class="img_position">
           <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
             <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
           <% end %>
@@ -71,14 +71,15 @@
     
     <% if logged_in? %>
       <!--コメント投稿-->
-      <div class="text">
+      <div>
         <%= form_with(model: [@spot, @comment], local: true) do |f| %>
         <%= render 'layouts/error_messages', model: f.object %>
           <%= f.label :画像も投稿できるよ！, class: "text-primary" %><br />
+          <!--画像のidをlabelと合わせる-->
           <%= f.file_field :image, id: "comment_画像も投稿できるよ！" %>
-          <%= f.text_area :content, class: 'form-control js-text',id: "cmnt",  :placeholder => "釣果などをコメントしよう！" %>
+          <%= f.text_area :content, class: 'form-control js-text',id: "comment_text",  :placeholder => "釣果などをコメントしよう！" %>
           <p class="js-text-count pull-right"></p>
-          <div class="commentbtn">
+          <div class="comment_button">
             <%= f.submit 'コメントする', class: 'btn btn-info' %>
           </div>
         <% end %>

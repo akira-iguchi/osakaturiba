@@ -24,7 +24,7 @@
   });
   
   function buildHTML(data, i) {
-    var Week = new Array("（日）","��月）","（火）","（水）","（木）","（金）","（土）");
+    var Week = new Array("（日）","（月）","（火）","（水）","（木）","（金）","（土）");
     var date = new Date (data.list[i].dt_txt);
     date.setHours(date.getHours() + 9);
     var month = date.getMonth()+1;
