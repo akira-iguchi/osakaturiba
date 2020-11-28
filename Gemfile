@@ -39,7 +39,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 3.6.0'
+  gem "factory_girl_rails"
+  gem "faker", "~> 1.4.3" 
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -52,6 +55,22 @@ group :development do
   gem 'spring-commands-rspec'
 end
 
+group :test do 
+  gem "capybara", "~> 2.4.3" 
+  gem "database_cleaner", "~> 1.3.0"  
+  gem "launchy", "~> 2.4.2"
+  gem "selenium-webdriver", "~> 2.43.0"
+end
+
+group :production do
+  gem 'pg', '0.20.0'
+  gem 'fog-aws'
+end
+
+
+group :production, :staging do
+    gem 'unicorn'
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -72,13 +91,6 @@ gem "jquery-rails"
 
 gem 'rails-i18n'
 
-group :production do
-  gem 'pg', '0.20.0'
-  gem 'fog-aws'
-end
-
 gem 'gon'
 
-group :production, :staging do
-    gem 'unicorn'
-end
+gem 'rake', '< 11.0'
