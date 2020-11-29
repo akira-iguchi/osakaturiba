@@ -3,89 +3,148 @@ require 'rails_helper'
 RSpec.describe User, :type => :model do
   
   let(:user) { create(:user) }
+  let(:spot) { create(:spot) }
   
-  describe "プロフィール" do
-    it "有効なファクトリを持つこと" do
-      expect(build(:user)).to be_valid
+  let(:comment) { create(:comment) }
+  
+  it "有効なファクトリを持つこと" do
+    expect(build(:user)).to be_valid
+  end
+  
+  it "名前、メールアドレス、パスワード、パスワード確認があれば有効な状態であること" do
+    user = User.new(
+      name: "test",
+      email: "test@example.com",
+      password: "testtest",
+      password_confirmation: "testtest",
+    )
+    expect(user).to be_valid
+  end
+  
+  describe '存在性の検証' do
+    it "名前がない場合は登録できないこと" do
+      user.name = nil
+      user.valid?
+      expect(user.errors[:name]).to include("を入力してください")
     end
     
-    it "名前、メールアドレス、パスワードがあれば有効な状態であること" do
-      user = User.new(
-        name: "test",
-        email: "test@example.com",
-        password: "test",
-      )
+    it "メールアドレスがない場合は登録できないこと" do
+      user.email = nil
+      user.valid?
+      expect(user.errors[:email]).to include("を入力してください")
+    end
+    
+    it "パスワードがない場合は登録できないこと" do
+      user.password = nil
+      user.valid?
+      expect(user.errors[:password]).to include("を入力してください")
+    end
+    
+    it "画像がある場合でも登録できること" do
+      user.image
+      user.valid?
       expect(user).to be_valid
     end
     
-    context '存在性の検証' do
-      it "名前がない場合は登録できないこと" do
-        user.name = nil
-        user.valid?
-        expect(user.errors[:name]).to include("を入力してください")
-      end
-      
-      it "メールアドレスがない場合は登録できないこと" do
-        user.email = nil
-        user.valid?
-        expect(user.errors[:email]).to include("を入力してください")
-      end
-      
-      it "パスワードがない場合は登録できないこと" do
-        user.password = nil
-        user.valid?
-        expect(user.errors[:password]).to include("を入力してください")
-      end
-      
-      it "画像がある場合でも登録できること" do
-        user.image
-        user.valid?
-        expect(user).to be_valid
-      end
-      
-      it "画像がない場合でも登録できること" do
-        user.image = nil
-        user.valid?
-        expect(user).to be_valid
-      end
-    end
-    
-    context '文字数の検証' do
-      it "名前が21文字以上の場合は登録できない" do
-        user.name = "a" * 21
-        user.valid?
-        expect(user.errors[:name]).to include("は20文字以内で入力してください")
-      end
-    end
-    
-    context '独自性の検証' do
-      it "重複したメールアドレスなら登録できないこと" do
-        user.save
-        User.create(
-          name: 'test',
-          email: 'test@example.com'
-        )
-        expect(user.errors[:email]).not_to include("はすでに存在します")
-      end
-    end
-    
-    context '正確性の検証' do
-      it "不正なメールアドレスは無効であること" do
-        user.email = 'aa@com'
-        user.valid?
-        expect(user.errors[:email]).to include("は不正な値です")
-      end
+    it "画像がない場合でも登録できること" do
+      user.image = nil
+      user.valid?
+      expect(user).to be_valid
     end
   end
   
-  # describe 'メソッドの検証' do
-  #   it 'お気に入りしていたらtrueを返すこと' do
-  #     spot1 = build(:spot)
-  #     spot2 = build(:spot)
-  #     user = build(:user)
-  #     create(:favorite, user_id: user.id, spot_id: spot1.id)
-  #     expect(user.already_favorite?(spot1)).to be_truthy
-  #     expect(user.already_favorite?(spot2)).to be_falsy
-  #   end
-  # end
+  describe '一致性の検証' do
+    it 'パスワードが確認用と一致していない場合は無効であること' do
+      user.password_confirmation = 'bbbbbbbb'
+      user.valid?
+      expect(user.errors[:password_confirmation]).to include('とパスワードの入力が一致しません')
+    end
+  end
+  
+  describe '文字数の検証' do
+    it "名前が21文字以上の場合は登録できない" do
+      user.name = "a" * 21
+      user.valid?
+      expect(user.errors[:name]).to include("は20文字以内で入力してください")
+    end
+    
+    it "パスワードが73文字以上の場合は登録できない" do
+      user.password = "a" * 73
+      user.valid?
+      expect(user.errors[:password]).to include("は72文字以内で入力してください")
+    end
+    
+    it "パスワードが6文字以上であれば登録できること" do
+      user.password = "test123"
+      user.password_confirmation = "test123"
+      expect(user).to be_valid
+    end
+  end
+  
+  describe '一意性の検証' do
+    it "重複したメールアドレスなら登録できないこと" do
+      user.save
+      User.create(
+        name: 'test',
+        email: 'test@example.com'
+      )
+      expect(user.errors[:email]).not_to include("はすでに存在します")
+    end
+    
+    it "メールアドレスは大文字でも小文字に変換されること" do
+      user.email = 'Test@example.com'
+      user.save
+      expect(user.reload.email).to eq 'test@example.com'
+    end
+  end
+  
+  describe '正確性の検証' do
+    it "不正なメールアドレスは無効であること" do
+      user.email = 'aa@com'
+      user.valid?
+      expect(user.errors[:email]).to include("は不正な値です")
+    end
+    
+    it "パスワードは半角英数字混合でも有効であること" do
+      build(:user, password: "test123")
+      user.valid?
+      expect(user).to be_valid
+    end
+  end
+ 
+  
+  describe 'コメントの生成' do
+    it '有効なコメントを生成できること' do
+      expect(create(:comment)).to be_valid
+    end
+  end
+    
+  describe '削除依存性の検証' do
+    it '削除すると紐づくコメントも削除されること' do
+      create(:comment, user: user)
+      expect { user.destroy }.to change(user.comments, :count).by(-1)
+    end
+    
+    it '削除すると紐づくお気に入りも削除されること' do
+      create(:favorite, user: user)
+      expect { user.destroy }.to change(user.favorites, :count).by(-1)
+    end
+  end
+  
+  describe 'メソッドの検証' do
+    it 'お気に入りすることができること' do
+      expect { user.favorite(spot) }.to change(spot.favorites, :count).by(1)
+    end
+
+    it 'お気に入りを解除することができること' do
+      user.favorite(spot)
+      expect { user.unfavorite(spot) }.to change(spot.favorites, :count).by(-1)
+    end
+    
+    it 'お気に入りしていたらtrueを返すこと' do
+      create(:favorite, user_id: user.id, spot_id: spot.id)
+      user.favorite(spot)
+      expect(user.favorite(spot)).to be_truthy
+    end
+  end
 end

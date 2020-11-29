@@ -22,8 +22,13 @@
           </div>
     
           <div class="form-group">
-             <label for="js-passcheck">パスワード</label>
+             <label for="js-passcheck">パスワード（６文字以上）</label>
             <%= f.password_field :password, class: 'form-control', id: "js-password" %>
+          </div>
+          
+          <div class="form-group">
+            <label for="js-passcheck_confirmation">パスワード確認</label>
+            <%= f.password_field :password_confirmation, class: 'form-control', id: "js-password_confirmation" %>
           </div>
           
           <p class="check">

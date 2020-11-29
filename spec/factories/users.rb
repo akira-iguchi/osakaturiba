@@ -2,9 +2,10 @@
 
 FactoryGirl.define do
   factory :user do
-    name { Faker::Name.name }
+    name { "test" }
     email { Faker::Internet.email }
-    password { "test" }
+    password { "testtest" }
+    password_confirmation { "testtest" }
     
     factory :invalid_user do
       id { nil }

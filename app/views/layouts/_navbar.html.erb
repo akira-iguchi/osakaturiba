@@ -14,15 +14,15 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
         
-        <!--釣り場検索機能-->
-        <li class="nav-item dropdown">
-          <%= form_with url: spot_search_path, id: "search",  method: :get, local: true do |f| %>
-            <%= f.text_field :name, class: 'form-control search_form', placeholder: "釣り場を入力しよう!" %>
-            <%= f.submit :検索, class: "btn btn-success", id: "sbtn" %>
-          <% end %>
-        </li>
         
         <% if logged_in? %>
+          <!--釣り場検索機能-->
+          <li class="nav-item dropdown">
+            <%= form_with url: spot_search_path, id: "search",  method: :get, local: true do |f| %>
+              <%= f.text_field :name, class: 'form-control search_form', placeholder: "釣り場を入力しよう!" %>
+              <%= f.submit :検索, class: "btn btn-success", id: "sbtn" %>
+            <% end %>
+          </li>
         
           <!--釣り場のお気に入りランキング機能-->
           <li class="nav-item dropdown">

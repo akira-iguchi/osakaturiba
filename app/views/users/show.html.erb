@@ -14,7 +14,7 @@
       <p class="user_email"><%= @user.email %></p>
       <!--ユーザー詳細ページと現在のユーザーの名前が同じなら編集ボタン表示（ゲストユーザーなら表示しない）-->
         <% if @user == current_user %>
-      <% unless @user.id.to_i == 3 %>
+      <% unless @user.id.to_i == 1 %>
           <p class="user_edit"><%= link_to("編集", "/users/#{@user.id}/edit", class: "btn btn-radius-solid") %></p>
         <% end %>
       <% end %>

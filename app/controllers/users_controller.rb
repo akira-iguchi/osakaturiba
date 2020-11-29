@@ -82,7 +82,7 @@ before_action :cannot_guest_user, only: [:edit, :update]
   end
   
   def cannot_guest_user
-    if @user.id.to_i == 3
+    if @user.id.to_i == 1
       flash[:danger] = "ゲストユーザーは編集できません"
       redirect_to @user
     end
