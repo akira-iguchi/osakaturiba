@@ -36,6 +36,18 @@ RSpec.describe User, :type => :model do
         user.valid?
         expect(user.errors[:password]).to include("を入力してください")
       end
+      
+      it "画像がある場合でも登録できること" do
+        user.image
+        user.valid?
+        expect(user).to be_valid
+      end
+      
+      it "画像がない場合でも登録できること" do
+        user.image = nil
+        user.valid?
+        expect(user).to be_valid
+      end
     end
     
     context '文字数の検証' do

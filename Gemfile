@@ -45,6 +45,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'guard-rspec', require: false
   gem 'spring-commands-rspec'
+  gem 'vcr'
 end
 
 group :development do
