@@ -9,17 +9,17 @@ class Session
   validate  :true_password
   
   def true_email
-      errors.add(:email, "は使われていません。") unless User.find_by(email: email)
+      errors.add(:email, "は使われていません") unless User.find_by(email: email)
   end 
   
   def true_password
       @user = User.find_by(email: email)
       if @user 
-          errors.add(:password, "は正しくありません。") unless @user.authenticate(password)
+          errors.add(:password, "は正しくありません") unless @user.authenticate(password)
       end 
   end 
   
-  def save
+  def save!
    return false unless invalid?
    true
   end

@@ -62,21 +62,42 @@ RSpec.describe User, :type => :model do
   end
   
   describe '文字数の検証' do
-    it "名前が21文字以上の場合は登録できない" do
+    it "名前が20文字以内の場合は登録できること" do
+      user.name = "a" * 20
+      user.valid?
+      expect(user).to be_valid
+    end
+    
+    it "名前が21文字以上の場合は登録できないこと" do
       user.name = "a" * 21
       user.valid?
       expect(user.errors[:name]).to include("は20文字以内で入力してください")
     end
     
-    it "パスワードが73文字以上の場合は登録できない" do
-      user.password = "a" * 73
+    it "パスワードが32文字以内の場合は登録できること" do
+      user.password = "a" * 32
+      user.password_confirmation = "a" * 32
       user.valid?
-      expect(user.errors[:password]).to include("は72文字以内で入力してください")
+      expect(user).to be_valid
+    end
+    
+    it "パスワードが33文字以上の場合は登録できないこと" do
+      user.password = "a" * 33
+      user.valid?
+      expect(user.errors[:password]).to include("は32文字以内で入力してください")
+    end
+    
+    it "パスワードが5文字以内であれば登録できないこと" do
+      user.password = "a" * 5
+      user.password_confirmation = "a" * 5
+      user.valid?
+      expect(user.errors[:password]).to include("は6文字以上で入力してください")
     end
     
     it "パスワードが6文字以上であれば登録できること" do
       user.password = "test123"
       user.password_confirmation = "test123"
+      user.valid?
       expect(user).to be_valid
     end
   end
