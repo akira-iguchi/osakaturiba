@@ -19,7 +19,7 @@ class Session
       end 
   end 
   
-  def save!
+  def save
    return false unless invalid?
    true
   end

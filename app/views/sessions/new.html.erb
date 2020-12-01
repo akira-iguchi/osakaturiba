@@ -17,14 +17,10 @@
         </div>
     
         <div class="form-group">
-          <label for="js-passcheck">パスワード</label>
-          <%= f.password_field :password, class: 'form-control', id: "js-password" %>
+          <%= f.label :password, 'パスワード' %>
+          <%= f.password_field :password, class: 'form-control' %>
         </div>
-        
-        <p class="check">
-          <label for="js-passcheck">パスワードを表示する</label>
-          <input type="checkbox" id="js-passcheck"/>
-        </p>
+     
         
         <div>
           <%= f.submit 'ログイン', class: 'btn btn-primary' %>

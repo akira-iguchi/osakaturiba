@@ -2,8 +2,7 @@
 
 FactoryGirl.define do
   factory :session do
-    email { "test@example.com" }
-    password { "test123" }
-    validation_context { "test@example.com" }
+    email { "akira@akira.com" }
+    password { "Akituri931!" }
   end
 end

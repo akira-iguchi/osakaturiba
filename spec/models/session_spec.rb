@@ -3,11 +3,14 @@ require 'rails_helper'
 RSpec.describe Session, type: :model do
   let(:session) {create(:session)}
   
-  it '有効なファクトリを持つこと' do
-    expect(build(:session)).to be_valid
-  end
-  
   describe 'メソッドの検証' do
+    it "登録されていないメールアドレスは無効なこと" do
+      session.email = "akira@akira.com"
+      session.true_email = "akira@akira.com"
+      session.valid?
+      expect(session).to be_valid
+    end
+    
     it "登録されていないメールアドレスは無効なこと" do
       session.email = "test1@example.com"
       session.valid?
@@ -15,10 +18,9 @@ RSpec.describe Session, type: :model do
     end
     
     it "登録されていないパスワードは無効なこと" do
-      session.email = "test@example.com"
       session.password = "test1"
       session.valid?
-      expect(session.errors[:password]).to include("は正しくありません")
+      expect(session.errors[:password]).to include("は使われていません")
     end
   end
 end

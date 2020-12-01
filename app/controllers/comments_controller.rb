@@ -21,7 +21,7 @@ before_action :correct_user, only: [:destroy]
   def destroy
     @spot = @comment.spot
     @comment.destroy
-    flash[:success] = 'コメントを削除しました。'
+    flash[:success] = 'コメントを削除しました'
     if @page_id.to_i == 1
       redirect_to current_user
     else
