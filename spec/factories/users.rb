@@ -2,11 +2,11 @@
 
 FactoryGirl.define do
   factory :user do
-    name { "test" }
+    name { 'test' }
     email { Faker::Internet.email }
-    password { "testtest" }
-    password_confirmation { "testtest" }
-    
+    password { 'testtest' }
+    password_confirmation { 'testtest' }
+
     factory :invalid_user do
       id { nil }
     end

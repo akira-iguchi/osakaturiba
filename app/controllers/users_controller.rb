@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-before_action :require_user_logged_in, only: [:edit, :update ,:likes]
-before_action :correct_user, only: [:edit, :update, :likes]
-before_action :cannot_guest_user, only: [:edit, :update]
-  
+  before_action :require_user_logged_in, only: %i[edit update likes]
+  before_action :correct_user, only: %i[edit update likes]
+  before_action :cannot_guest_user, only: %i[edit update]
+
   def show
     @user = User.find(params[:id])
     @comments = @user.comments.order(id: :desc).page(params[:page]).per(6)
@@ -22,7 +22,7 @@ before_action :cannot_guest_user, only: [:edit, :update]
     @user = User.new(user_params)
 
     if @user.save
-      log_in (@user)
+      log_in(@user)
       flash[:success] = 'ユーザーを登録しました。'
       redirect_to root_url
     else
@@ -30,60 +30,58 @@ before_action :cannot_guest_user, only: [:edit, :update]
       render :new
     end
   end
-  
+
   def edit
     @user = User.find(params[:id])
     @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
   end
-  
+
   def update
-  @user = User.find(params[:id])
-  @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
-   if current_user == @user
-    if @user.update(user_params)
-      flash[:success] = 'ユーザー情報を編集しました。'
-      redirect_to @user
+    @user = User.find(params[:id])
+    @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
+    if current_user == @user
+      if @user.update(user_params)
+        flash[:success] = 'ユーザー情報を編集しました。'
+        redirect_to @user
+      else
+        flash.now[:danger] = 'ユーザー情報の編集に失敗しました。'
+        render :edit
+      end
     else
-      flash.now[:danger] = 'ユーザー情報の編集に失敗しました。'
-      render :edit
-    end   
-   else
       redirect_to root_url
-   end
+    end
   end
-  
+
   def likes
     @user = User.find(params[:id])
     @likes = @user.likes.page(params[:page])
   end
-  
+
   private
-  
+
   def user_params
     params.require(:user).permit(:name, :email, :password, :image)
   end
-  
+
   def update_params
-   params.require(:user).permit(:name, :email, :image)
+    params.require(:user).permit(:name, :email, :image)
   end
-  
+
   def correct_user
     @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to root_url
-    end
+    redirect_to root_url unless @user == current_user
   end
-  
+
   def require_user_logged_in
     unless logged_in?
-      flash[:danger] = "ログインしてください"
+      flash[:danger] = 'ログインしてください'
       redirect_to login_url
     end
   end
-  
+
   def cannot_guest_user
     if @user.id.to_i == 1
-      flash[:danger] = "ゲストユーザーは編集できません"
+      flash[:danger] = 'ゲストユーザーは編集できません'
       redirect_to @user
     end
   end

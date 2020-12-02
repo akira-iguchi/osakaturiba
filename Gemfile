@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.3'
+ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
@@ -61,7 +61,7 @@ group :test do
   gem "capybara"
   gem "database_cleaner", "~> 1.7.0"  
   gem "launchy", "~> 2.4.2"
-  gem "selenium-webdriver", "~> 2.43.0"
+  gem "selenium-webdriver", "~> 3.4.1"
 end
 
 group :production do
@@ -96,3 +96,9 @@ gem 'rails-i18n'
 gem 'gon'
 
 gem 'rake', '< 11.0'
+
+gem 'rubocop', require:false
+
+gem 'rubocop-rails', require:false
+
+gem 'rb-readline'

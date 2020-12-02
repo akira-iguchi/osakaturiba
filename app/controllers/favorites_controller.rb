@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-before_action :require_user_logged_in
+  before_action :require_user_logged_in
 
   def create
     spot = Spot.find(params[:spot_id])
@@ -19,12 +19,12 @@ before_action :require_user_logged_in
       redirect_to spot
     end
   end
-  
+
   private
-  
+
   def require_user_logged_in
     unless logged_in?
-      flash[:danger] = "ログインしてください"
+      flash[:danger] = 'ログインしてください'
       redirect_to login_url
     end
   end

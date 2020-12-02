@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :comment do
-    content { "コメント" }
+    content { 'コメント' }
     association :user
     association :spot
   end

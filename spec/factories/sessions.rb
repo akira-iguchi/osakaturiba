@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :session do
-    email { "akira@akira.com" }
-    password { "Akituri931!" }
+    email { 'test@example.com' }
+    password { 'test123' }
   end
 end

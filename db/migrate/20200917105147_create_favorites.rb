@@ -5,8 +5,8 @@ class CreateFavorites < ActiveRecord::Migration[5.2]
       t.references :spot, foreign_key: true
 
       t.timestamps
-      
-      t.index [:user_id, :spot_id], unique: true
+
+      t.index %i[user_id spot_id], unique: true
     end
   end
 end
