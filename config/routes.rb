@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
   root to: 'toppages#index'
+  
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+  }
 
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
-
-  post '/guest', to: 'guest_sessions#create'
-
-  get 'signup', to: 'users#new'
-
-  resources :users, only: %i[show new create edit update] do
+  resources :users, only: [:show] do
     resources :comments, only: [:destroy]
     member do
       get :likes

@@ -6,29 +6,30 @@
   <div class="row">
     <div class="user_new_form col-md-10 col-lg-6">
     
-      <%= form_with(model: @user, local: true) do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
+
       
         <div class="center jumbotron">
           
           <div class="form-group">
             <%= f.label :name, '名前' %>
-            <%= f.text_field :name, class: 'form-control' %>
+            <%= f.text_field :name, autofocus: true, class: 'form-control' %>
           </div>
     
           <div class="form-group">
             <%= f.label :email, 'メールアドレス' %>
-            <%= f.email_field :email, class: 'form-control' %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
           </div>
     
           <div class="form-group">
-             <label for="js-passcheck">パスワード（６文字以上）</label>
-            <%= f.password_field :password, class: 'form-control', id: "js-password" %>
+            <label for="js-passcheck">パスワード（６文字以上）</label>
+            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', id: "js-password" %>
           </div>
           
           <div class="form-group">
             <label for="js-passcheck_confirmation">パスワード確認</label>
-            <%= f.password_field :password_confirmation, class: 'form-control', id: "js-password_confirmation" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', id: "js-password_confirmation" %>
           </div>
           
           <p class="check">

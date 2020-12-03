@@ -3,7 +3,7 @@ class SpotsController < ApplicationController
     @spot = Spot.find(params[:id])
     @comments = @spot.comments.order(id: :desc).page(params[:page]).per(6)
     @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
-    @comment = current_user.comments.build if logged_in?
+    @comment = current_user.comments.build if user_signed_in?
   end
 
   def search

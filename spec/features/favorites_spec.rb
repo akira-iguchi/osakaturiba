@@ -40,7 +40,7 @@ RSpec.feature 'Favorites', type: :feature do
     click_link @spot.name.to_s
 
     # スポット詳細ページでいいねする
-    find 'h1', text: @spot.name
+    find 'h1', text: @spot.name.to_s
     expect do
       click_button 'お気に入り登録'
       expect(page).to have_text('お気に入り登録しました')
@@ -59,7 +59,7 @@ RSpec.feature 'Favorites', type: :feature do
     end.to change(Favorite.all, :count).by(-1)
     
     # スポット詳細ページへ
-    click_link @user.name
+    click_link @user.name.to_s
 
     # スポット詳細ページへ
     click_link 'マイプロフィール'

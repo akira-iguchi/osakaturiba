@@ -23,7 +23,7 @@ class FavoritesController < ApplicationController
   private
 
   def require_user_logged_in
-    unless logged_in?
+    unless user_signed_in?
       flash[:danger] = 'ログインしてください'
       redirect_to login_url
     end
