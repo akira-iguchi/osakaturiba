@@ -39,7 +39,7 @@ RSpec.describe District, type: :model do
   describe 'Googleマップ' do
     it '地区の緯度と経度を取得すること' do
       VCR.use_cassette('南港') do
-        district = FactoryGirl.create(:district,
+        district = FactoryBot.create(:district,
                                       name: '南港',
                                       latitude: 34.6261,
                                       longitude: 135.419)

@@ -18,7 +18,9 @@
   <div class="user_edit">
     <!--ユーザー詳細ページと現在のユーザーの名前が同じなら編集ボタン表示（ゲストユーザーなら表示しない）-->
     <% if @user == current_user %>
-      <div><%= link_to("プロフィール編集", edit_user_registration_path(@user), class: "btn btn-radius-solid") %></div>
+      <% unless @user.email == "guest@example.com" %>
+        <div><%= link_to("プロフィール編集", edit_user_registration_path(@user), class: "btn btn-radius-solid") %></div>
+      <% end %>
     <% end %>
   </div>
   

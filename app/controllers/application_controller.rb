@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   def check_guest
     if current_user.email == 'guest@example.com'
       redirect_to root_path
-      flash[:success] = 'ゲストユーザーのため変更できません'
+      flash[:danger] = 'ゲストユーザーのため編集できません。'
     end
   end
 

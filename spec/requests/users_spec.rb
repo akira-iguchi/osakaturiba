@@ -36,7 +36,7 @@ RSpec.describe 'Users', type: :request do
 
   describe 'GET #new' do
     it 'リクエストが成功すること' do
-      get new_user_path(user)
+      get new_user_registration_path
       expect(response.status).to eq 200
     end
   end
@@ -44,11 +44,11 @@ RSpec.describe 'Users', type: :request do
   describe 'GET #edit' do
     before do
       sign_in(user)
-      get edit_user_path(user)
+      get edit_user_registration_path(user)
     end
 
     it 'リクエストが成功すること' do
-      expect(response.status).to eq 302
+      expect(response.status).to eq 200
     end
 
     it 'ユーザー名が表示されていること' do
@@ -63,19 +63,15 @@ RSpec.describe 'Users', type: :request do
   describe 'POST #create' do
     describe 'パラメータが妥当な場合' do
       before do
-        post users_path
+        post user_registration_path
       end
 
       it 'リクエストが成功すること' do
-        expect(response.status).to eq 302
+        expect(response.status).to eq 200
       end
 
       it 'ユーザーが登録されること' do
         expect(user.name).to eq 'test'
-      end
-
-      it 'リダイレクトすること' do
-        expect(response).to redirect_to root_url
       end
     end
   end
@@ -84,7 +80,7 @@ RSpec.describe 'Users', type: :request do
     describe 'パラメータが妥当な場合' do
       before do
         sign_in(user)
-        put user_path, params: { user: attributes_for(:user).merge(current_password: 'testtest') }
+        patch user_registration_path, params: { user: attributes_for(:user).merge(password: 'testtest') }
       end
 
       it 'リクエストが成功すること' do

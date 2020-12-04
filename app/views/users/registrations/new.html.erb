@@ -13,22 +13,28 @@
         <div class="center jumbotron">
           
           <div class="form-group">
-            <%= f.label :name, '名前' %>
+          <label class="required">名前</label>
             <%= f.text_field :name, autofocus: true, class: 'form-control' %>
           </div>
     
-          <div class="form-group">
-            <%= f.label :email, 'メールアドレス' %>
+          <div class="form-group" required>
+            <label class="required">メールアドレス</label>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
           </div>
     
           <div class="form-group">
-            <label for="js-passcheck">パスワード（６文字以上）</label>
+            <div><%= f.label :image, '画像' %></div>
+            <%= f.file_field :image %>
+            <%= f.hidden_field :image_cache %>
+          </div>
+
+          <div class="form-group">
+            <label for="js-passcheck" class="required">パスワード（６文字以上）</label>
             <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', id: "js-password" %>
           </div>
           
           <div class="form-group">
-            <label for="js-passcheck_confirmation">パスワード確認</label>
+            <label for="js-passcheck_confirmation" class="required">パスワード確認</label>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', id: "js-password_confirmation" %>
           </div>
           

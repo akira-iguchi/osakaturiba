@@ -80,7 +80,7 @@ RSpec.describe Spot, type: :model do
   describe 'Googleマップ' do
     it 'スポットの緯度と経度を取得すること' do
       VCR.use_cassette('南港') do
-        district = FactoryGirl.create(:spot,
+        district = FactoryBot.create(:spot,
                                       name: 'かもめ大橋',
                                       explanation: "かもめ大橋の下に位置する波止が釣り場である。内側はアジやクロダイ、
                         外側はハマチなどの青物が狙える。秋になると、外側から内側の順にタチウオが釣れ始める。",

@@ -1,5 +1,4 @@
 class SpotsController < ApplicationController
-  before_action :check_guest, only: [:search]
 
   def show
     @spot = Spot.find(params[:id])

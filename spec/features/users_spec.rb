@@ -19,9 +19,9 @@ RSpec.feature 'Users', type: :feature do
 
     # ログインする
     fill_in 'メールアドレス', with: 'test@example.com'
-    fill_in 'パスワード', with: 'test123'
+    fill_in 'user[password]', with: 'test123'
     click_button 'ログイン'
-    expect(page).to have_text('ログインに成功しました')
+    expect(page).to have_text('ログインしました。')
 
     # ユーザー詳細ページへ
     click_link @user.name.to_s
@@ -44,7 +44,7 @@ RSpec.feature 'Users', type: :feature do
       expect(@user.email).to eq 'test2@example.com'
     end
     expect(current_path).to eq '/users/1'
-    expect(page).to have_text('ユーザー情報を編集しました')
+    expect(page).to have_text('アカウント情報を変更しました。')
   end
 
   scenario 'ゲストユーザーでログインする' do
@@ -55,9 +55,9 @@ RSpec.feature 'Users', type: :feature do
     click_link 'ログイン'
 
     # ゲストログイン機能を使ってログイン
-    click_link 'ゲストログインする'
+    click_link 'ゲストログイン（閲覧用）'
 
     # ログインできたか検証
-    expect(page).to have_text('ゲストユーザーでログインしました')
+    expect(page).to have_text('ゲストユーザーとしてログインしました')
   end
 end

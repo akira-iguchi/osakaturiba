@@ -15,8 +15,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
     if @user.save
       flash[:success] = 'アカウント登録が完了しました。'
-    else
-      flash.now[:danger] = 'ユーザーの登録に失敗しました。'
     end
   end
 

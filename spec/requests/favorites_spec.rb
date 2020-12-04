@@ -17,7 +17,6 @@ RSpec.describe 'Favorites', type: :request do
     end
     context 'ログイン状態のとき' do
       it 'いいねできること' do
-        
         expect do
           post favorites_path(@spot.id), xhr: true
         end.to change(Favorite.all, :count).by(0)

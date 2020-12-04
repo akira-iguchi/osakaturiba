@@ -54,9 +54,9 @@ RSpec.feature 'Spots', type: :feature do
 
     # ログインする
     fill_in 'メールアドレス', with: @user.email
-    fill_in 'パスワード', with: 'test123'
+    fill_in 'user[password]', with: 'test123'
     click_button 'ログイン'
-    expect(page).to have_text('ログインに成功しました')
+    expect(page).to have_text('ログインしました。')
 
     # 検索ボックスから釣り場を検索する
     fill_in 'name', with: 'かもめ大橋'

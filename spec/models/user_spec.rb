@@ -72,17 +72,17 @@ RSpec.describe User, type: :model do
       expect(user.errors[:name]).to include('は20文字以内で入力してください')
     end
 
-    it 'パスワードが32文字以内の場合は登録できること' do
-      user.password = 'a' * 32
-      user.password_confirmation = 'a' * 32
+    it 'パスワードが128文字以内の場合は登録できること' do
+      user.password = 'a' * 128
+      user.password_confirmation = 'a' * 128
       user.valid?
       expect(user).to be_valid
     end
 
     it 'パスワードが33文字以上の場合は登録できないこと' do
-      user.password = 'a' * 33
+      user.password = 'a' * 129
       user.valid?
-      expect(user.errors[:password]).to include('は32文字以内で入力してください')
+      expect(user.errors[:password]).to include('は128文字以内で入力してください')
     end
 
     it 'パスワードが5文字以内であれば登録できないこと' do
@@ -163,6 +163,25 @@ RSpec.describe User, type: :model do
       create(:favorite, user_id: user.id, spot_id: spot.id)
       user.favorite(spot)
       expect(user.favorite(spot)).to be_truthy
+    end
+
+    it 'ゲストユーザーの作成ができる' do
+      expect do
+        @guest_user = User.guest
+      end.to change(User.all, :count).by(1)
+      expect(@guest_user.name).to eq 'ゲストユーザー'
+      expect(@guest_user.email).to eq 'guest@example.com'
+    end
+
+    it 'ゲストユーザーがいた場合、ゲストユーザーをfindできる' do
+      user = User.create(
+        email: 'guest@example.com',
+        name: 'ゲストユーザー',
+        password: 'password'
+      )
+      guest_user = User.guest
+      expect(guest_user.name).to eq user.name
+      expect(guest_user.email).to eq user.email
     end
   end
 end

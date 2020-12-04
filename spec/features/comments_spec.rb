@@ -35,9 +35,9 @@ RSpec.feature 'Comments', type: :feature do
 
     # ログインする
     fill_in 'メールアドレス', with: 'test@example.com'
-    fill_in 'パスワード', with: 'test123'
+    fill_in 'user[password]', with: 'test123'
     click_button 'ログイン'
-    expect(page).to have_text('ログインに成功しました')
+    expect(page).to have_text('ログインしました。')
 
     # スポット詳細ページへ
     click_link @spot.name.to_s
@@ -47,7 +47,7 @@ RSpec.feature 'Comments', type: :feature do
     expect do
       fill_in 'comment[content]', with: 'コメント投稿のテスト'
       click_button 'コメントする'
-      expect(page).to have_text('コメントしました')
+      expect(page).to have_text('コメントしました。')
     end.to change(Comment.all, :count).by(1)
 
     # コメントが反映されたか検証
@@ -58,7 +58,7 @@ RSpec.feature 'Comments', type: :feature do
     expect do
       click_link '削除'
       expect(page.accept_confirm).to eq '本当に削除しますか?'
-      expect(page).to have_text('コメントを削除しました')
+      expect(page).to have_text('コメントを削除しました。')
     end.to change(Comment.all, :count).by(-1)
 
     # コメントが削除されたか検証

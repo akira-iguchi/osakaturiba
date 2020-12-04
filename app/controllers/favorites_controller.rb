@@ -1,6 +1,5 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_guest
 
   def create
     spot = Spot.find(params[:spot_id])

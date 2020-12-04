@@ -32,9 +32,9 @@ RSpec.feature 'Favorites', type: :feature do
 
     # ログインする
     fill_in 'メールアドレス', with: 'test@example.com'
-    fill_in 'パスワード', with: 'test123'
+    fill_in 'user[password]', with: 'test123'
     click_button 'ログイン'
-    expect(page).to have_text('ログインに成功しました')
+    expect(page).to have_text('ログインしました。')
 
     # スポット詳細ページへ
     click_link @spot.name.to_s
@@ -43,7 +43,7 @@ RSpec.feature 'Favorites', type: :feature do
     find 'h1', text: @spot.name.to_s
     expect do
       click_button 'お気に入り登録'
-      expect(page).to have_text('お気に入り登録しました')
+      expect(page).to have_text('お気に入り登録しました。')
     end.to change(Favorite.all, :count).by(1)
 
     # いいねが反映されたか検証する
@@ -55,7 +55,7 @@ RSpec.feature 'Favorites', type: :feature do
     expect do
       click_button 'お気に入り解除'
       expect(page.accept_confirm).to eq '本当にお気に入り解除しますか?'
-      expect(page).to have_text('お気に入り登録を解除しました')
+      expect(page).to have_text('お気に入り登録を解除しました。')
     end.to change(Favorite.all, :count).by(-1)
     
     # スポット詳細ページへ
