@@ -12,41 +12,51 @@
 /*show*/
 
 .name_icon {
-  position: relative;
-  right: 40px;
-  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
-.profile {
-   display: inline-block;
+@media screen and (max-width: 800px) {
+  .name_icon {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .name_icon {
+    display: block;
+  }
 }
 
 .icon {
-  position: relative;
-  bottom: 45px;
-  width: 140px;
-  height: 140px;
+  width: 190px;
+  height: 190px;
   border: 3px solid #FFCC33;
   border-radius: 100px;
   background-color: white;
+  margin-right: 20px;
 }
 
 .user_name {
   position: relative;
-  font-size: 50px;
-  top: 20px;
-  left: 20px;
+  top: 40px;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .user_email {
   position: relative;
+  top: 50px;
   font-size: 20px;
-  left: 20px;
+  margin-bottom: 40px;
 }
 
 .user_edit {
   position: relative;
-  left: 25px;
+  top: 30px;
+  margin-bottom: 50px;
+  text-align: center;
 }
 
 a.btn-radius-solid {
@@ -73,6 +83,7 @@ a.btn-radius-solid:hover {
 }
 
 .u_come {
+  text-align: center;
   color: #3399FF;
   text-shadow: 
     0 1px 0 #ccc, 

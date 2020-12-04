@@ -8,9 +8,15 @@ class User < ApplicationRecord
   validates :email, presence: true,
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
-  
 
   mount_uploader :image, ImageUploader
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = 'ゲストユーザー'
+    end
+  end
 
   has_many :favorites, dependent: :destroy
   has_many :likes, through: :favorites, source: :spot

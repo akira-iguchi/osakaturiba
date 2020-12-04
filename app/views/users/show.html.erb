@@ -1,24 +1,26 @@
 <div class="container">
-  <ul class="name_icon">
-    <li class="profile">
+  <div class="name_icon">
+    <div class="profile_img">
       <!--ユーザーアイコンを変更するまで初期画像-->
       <% if @user.image? %>
         <%= image_tag @user.image.url, class:"icon", alt: "" %>
       <% else %>
         <%= image_tag 'default.jpg', class:"icon",alt: "" %>
       <% end %>
-    </li>
+    </div>
     
-    <li class="profile">
-      <p class="user_name"><%= @user.name %></p>
-      <p class="user_email"><%= @user.email %></p>
-      <!--ユーザー詳細ページと現在のユーザーの名前が同じなら編集ボタン表示（ゲストユーザーなら表示しない）-->
-      <% if @user == current_user %>
-        <div class="user_edit"><%= link_to("編集", edit_user_registration_path(@user), class: "btn btn-radius-solid") %></div>
-      <% end %>
-    </li>
-  </ul>
-      
+    <div class="profile_info">
+      <div class="user_name"><%= @user.name %></div>
+      <div class="user_email"><%= @user.email %></div>
+    </div>
+  </div>
+  
+  <div class="user_edit">
+    <!--ユーザー詳細ページと現在のユーザーの名前が同じなら編集ボタン表示（ゲストユーザーなら表示しない）-->
+    <% if @user == current_user %>
+      <div><%= link_to("プロフィール編集", edit_user_registration_path(@user), class: "btn btn-radius-solid") %></div>
+    <% end %>
+  </div>
   
   <div class="row">
     <div class="mx-auto d-block col-sm-11 col-lg-6">

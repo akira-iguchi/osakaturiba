@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :correct_user, only: [:destroy]
+  before_action :check_guest
 
   def create
     @comment = current_user.comments.build(comment_params)
@@ -7,10 +9,10 @@ class CommentsController < ApplicationController
     @comment.spot_id = @spot.id
     @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
     if @comment.save
-      flash[:success] = 'コメントしました'
+      flash[:success] = 'コメントしました。'
       redirect_to @comment.spot
     else
-      flash.now[:danger] = 'コメントできませんでした'
+      flash.now[:danger] = 'コメントできませんでした。'
       @spot = Spot.find(params[:spot_id])
       @comments = @spot.comments.order(id: :desc).page(params[:page]).per(6)
       @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
@@ -21,7 +23,7 @@ class CommentsController < ApplicationController
   def destroy
     @spot = @comment.spot
     @comment.destroy
-    flash[:success] = 'コメントを削除しました'
+    flash[:success] = 'コメントを削除しました。'
     if @page_id.to_i == 1
       redirect_to current_user
     else
@@ -39,12 +41,5 @@ class CommentsController < ApplicationController
     @page_id = params[:page_id]
     @comment = current_user.comments.find_by(id: params[:id])
     redirect_to root_url unless @comment
-  end
-
-  def require_user_logged_in
-    unless logged_in?
-      flash[:danger] = 'ログインしてください'
-      redirect_to login_url
-    end
   end
 end

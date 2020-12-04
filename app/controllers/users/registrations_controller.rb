@@ -3,6 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  before_action :check_guest, only: %i[update destroy]
 
   # GET /resource/sign_up
   # def new
@@ -12,16 +13,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    if @user.save
+      flash[:success] = 'アカウント登録が完了しました。'
+    else
+      flash.now[:danger] = 'ユーザーの登録に失敗しました。'
+    end
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
+    super
+  end
 
   # PUT /resource
   def update
     super
+    flash[:success] = 'アカウント情報を変更しました。'
   end
 
   # DELETE /resource

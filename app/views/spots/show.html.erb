@@ -7,7 +7,7 @@
       <!--googlemap-->
       <div id='spot_map'></div>
       
-      <% if logged_in? %>
+      <% if user_signed_in? %>
         <div class="favorite">
           <!--お気に入り登録をしているならお気に入り解除ボタンを表示-->
           <% if current_user.like?(@spot) %>
@@ -69,7 +69,7 @@
       
     <%= paginate @comments %>
     
-    <% if logged_in? %>
+    <% if user_signed_in? %>
       <!--コメント投稿-->
       <div>
         <%= form_with(model: [@spot, @comment], local: true) do |f| %>

@@ -1,6 +1,13 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   
+  def check_guest
+    if current_user.email == 'guest@example.com'
+      redirect_to root_path
+      flash[:success] = 'ゲストユーザーのため変更できません'
+    end
+  end
+
   protected
 
     def configure_permitted_parameters

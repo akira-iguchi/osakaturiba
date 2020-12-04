@@ -25,26 +25,18 @@
           <input type="checkbox" id="js-passcheck"/>
         </p>
         
-        <% if devise_mapping.rememberable? %>
-          <div class="field">
-            <%= f.label :remember_me, '次回から自動的にログイン' %>
-            <%= f.check_box :remember_me %>
-          </div>
-        <% end %>
-
         <div>
           <%= f.submit 'ログイン', class: 'btn btn-primary' %>
         </div>
         
-        
         <div>
-          <%= link_to 'ゲストログインする', guest_path, method: :post, class: 'btn btn-secondary guest' %>
-        </div>
+          <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: 'btn btn-secondary guest' %>
+        </div> 
         
       </div>
           
           <% end %>
-        <p class="new_user"><%= link_to 'アカウントをお持ちでない方はこちらから', new_user_registration_path %></p>
+        <div class="new_user"><%= link_to 'アカウントをお持ちでない方はこちらから', new_user_registration_path %></div>
     </div>
   </div>
 </div>
