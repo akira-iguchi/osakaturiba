@@ -55,7 +55,7 @@ RSpec.feature 'Users', type: :feature do
     click_link 'ログイン'
 
     # ゲストログイン機能を使ってログイン
-    click_link 'ゲストログイン（閲覧用）'
+    click_link 'ゲストログイン'
 
     # ログインできたか検証
     expect(page).to have_text('ゲストユーザーとしてログインしました')
