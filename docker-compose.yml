@@ -1,47 +1,21 @@
-# docker-composeのバージョンを指定します。
 version: '3'
-
-# 起動するコンテナの定義を行います。
 services:
   db:
-    image: mysql:8.0
-    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:8.0.22
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: osaka_development
-      MYSQL_USER: akira
-      MYSQL_PASSWORD: password
-      TZ: Asia/Tokyo
-    volumes:
-      - mysql-data:/var/lib/mysql
+      MYSQL_DATABASE: root
     ports:
-      - "4306:3306"
-
-  db-test:
-    image: mysql:8.0
-    command: --default-authentication-plugin=mysql_native_password
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: osaka_test
-      MYSQL_USER: akira
-      MYSQL_PASSWORD: password
-      TZ: Asia/Tokyo
+      - "3306:3306"
     volumes:
-      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-    tmpfs:
-      - /var/lib/mysql
-      - /var/log/mysql
+      - ./tmp/db:/var/lib/mysql
 
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: /bin/sh -c "rm -f /workdir/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    tty: true
-    stdin_open: true
-    depends_on:
-      - db
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
     ports:
       - "3000:3000"
-    volumes:
-      - .:/workdir
+    depends_on:
+      - db
