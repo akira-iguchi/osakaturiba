@@ -5,7 +5,8 @@ RSpec.feature 'Districts', type: :feature do
     @district = create(:district,
                        name: '南港',
                        latitude: 34.6261,
-                       longitude: 135.419)
+                       longitude: 135.419
+                      )
   end
 
   scenario '地区詳細ページへ行く' do

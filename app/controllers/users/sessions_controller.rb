@@ -4,16 +4,19 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    if user_signed_in?
+      flash.now[:danger] = 'すでにログインしています。'
+    end
+    super
+  end
 
   # POST /resource/sign_in
   def create
     if user_signed_in?
       flash[:success] = 'ログインしました。'
     else
-      flash[:danger] = 'メールアドレスまたはパスワードが違います。'
+      flash.now[:danger] = 'メールアドレスまたはパスワードが違います。'
     end
     super
   end

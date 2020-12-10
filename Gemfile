@@ -104,3 +104,5 @@ gem 'rubocop', require:false
 gem 'rubocop-rails', require:false
 
 gem 'rb-readline'
+
+gem 'webpacker'
