@@ -139,19 +139,8 @@ body {
   text-align: center;
   width: 100%;
   z-index: 20;
-  // animation: fadeout 1.5s ease 1.5s 1 forwards;
+  animation: fadeout 1.5s ease 1.5s 1 forwards;
 }
-
-// .success {
-//   background-color: #81ec30;
-//   height: 50px;
-//   color: #white;
-// }
-
-// .danger {
-//   background-color: red;
-//   color: #white;
-// }
 
 @keyframes fadeout {
   0% {
