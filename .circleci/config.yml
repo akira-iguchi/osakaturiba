@@ -1,18 +1,10 @@
 version: 2
- 
 jobs:
-  test:
+  build:
     docker:
-      - image: circleci/ruby:2.6.5
-    working_directory: ~/repo
+      - image: circleci/golang:1.8
+    working_directory: /go/src/github.com/akira-iguchi/osakaturiba
     steps:
       - checkout
-      - run:
-          name: Run test
-          command: 'ruby test_sum.rb'
- 
-workflows:
-  version: 2
-  workflows:
-    jobs:
-      - test
+      - run: go get -v -t -d ./...
+      - run: go test -v ./...
