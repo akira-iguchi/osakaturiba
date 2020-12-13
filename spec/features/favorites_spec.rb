@@ -23,7 +23,7 @@ RSpec.feature 'Favorites', type: :feature do
                    district: @district)
   end
 
-  scenario 'いいね、いいね解除ができる', js: true do
+  scenario 'いいね、いいね解除ができる' do
     # トップページを開く
     visit root_path
 
@@ -54,7 +54,6 @@ RSpec.feature 'Favorites', type: :feature do
     # 詳細ページでいいねを解除する
     expect do
       click_button 'お気に入り解除'
-      expect(page.accept_confirm).to eq '本当にお気に入り解除しますか?'
       expect(page).to have_text('お気に入り登録を解除しました。')
     end.to change(Favorite.all, :count).by(-1)
     

@@ -13,6 +13,12 @@ services:
       - log-data:/osakaturiba/log
     depends_on:
       - db
+      - chrome
+
+  chrome:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - 4444:4444
 
   db:
     image: mysql:8.0.22
@@ -21,6 +27,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     volumes:
       - db-data:/var/lib/mysql
+
   web:
     build:
       context: containers/nginx

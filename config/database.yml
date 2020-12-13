@@ -14,8 +14,8 @@ default: &default
   charset: utf8mb4
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV.fetch('MYSQL_USER') { 'akira' } %>
-  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'akira_password' } %>
+  username: <%= ENV.fetch('MYSQL_USER') { 'root' } %>
+  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
   host: db
 
 development:

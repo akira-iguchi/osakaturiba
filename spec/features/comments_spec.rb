@@ -57,7 +57,6 @@ RSpec.feature 'Comments', type: :feature do
     # ーーーーコメントの削除ーーーー
     expect do
       click_link '削除'
-      expect(page.accept_confirm).to eq '本当に削除しますか?'
       expect(page).to have_text('コメントを削除しました。')
     end.to change(Comment.all, :count).by(-1)
 

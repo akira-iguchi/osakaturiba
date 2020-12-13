@@ -1,5 +1,5 @@
-Capybara.default_driver    = :selenium_chrome
-Capybara.javascript_driver = :selenium_chrome
+Capybara.default_driver = :rack_test
+Capybara.javascript_driver = :selenium_chrome_headless
 
 Capybara.register_driver :selenium_chrome do |app|
   options = ::Selenium::WebDriver::Chrome::Options.new
