@@ -43,7 +43,7 @@ RSpec.feature 'Users', type: :feature do
       expect(@user.name).to eq 'test2'
       expect(@user.email).to eq 'test2@example.com'
     end
-    expect(current_path).to eq '/users/1'
+    expect(current_path).to eq user_path(@user)
     expect(page).to have_text('アカウント情報を変更しました。')
   end
 

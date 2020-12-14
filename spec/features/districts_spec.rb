@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature 'Districts', type: :feature do
   before do
     @district = create(:district,
+                       id: 1,
                        name: '南港',
                        latitude: 34.6261,
                        longitude: 135.419

@@ -14,6 +14,7 @@ RSpec.feature 'Favorites', type: :feature do
                        longitude: 135.419)
 
     @spot = create(:spot,
+                   id: 1,
                    name: 'かもめ大橋',
                    explanation: "かもめ大橋の下に位置する波止が釣り場である。内側はアジやクロダイ、外側はハマチなどの青物が狙える。
                                 秋になると、外側から内側の順にタチウオが釣れ始める。",
