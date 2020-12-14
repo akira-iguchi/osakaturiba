@@ -28,6 +28,8 @@
 /.env
 /environment/db.env
 
+/config/sercrets.yml
+
 /public/packs
 /public/packs-test
 /node_modules
