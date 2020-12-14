@@ -62,7 +62,6 @@ group :test do
   gem "database_cleaner"
   gem "launchy", "~> 2.4.2"
   gem "selenium-webdriver"
-  gem 'rspec_junit_formatter'
 end
 
 group :production do
