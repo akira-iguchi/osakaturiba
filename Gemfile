@@ -46,6 +46,10 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'spring-commands-rspec'
   gem 'vcr'
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
 end
 
 group :development do
