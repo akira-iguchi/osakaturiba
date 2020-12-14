@@ -40,6 +40,7 @@ jobs:
     - run:
         name: Databasesetup
         command: |
+           default-authentication-plugin=mysql_native_password
            bundle exec rake db:create
            bundle exec rake db:schema:load
 
