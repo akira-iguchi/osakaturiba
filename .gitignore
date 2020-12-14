@@ -23,12 +23,14 @@
 /public/assets
 .byebug_history
 
+/.vscode
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /.env
-environments/db.env
+/environments/db.env
 
-config/sercrets.yml
+/config/sercrets.yml
 
 /public/packs
 /public/packs-test
