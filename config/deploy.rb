@@ -1,14 +1,14 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.14.1"
+lock "~> 3.4.1"
 
 set :application, "osakaturiba"
 set :repo_url, "git@github.com:akira-iguchi/osakaturiba.git"
 
-Default branch is :master
+# Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/www/osakaturiba"
+set :deploy_to, "/var/www/rails/osakaturiba"
 
 # シンボリックリンクをはるファイル。
 set :linked_files, fetch(:linked_files, []).push('config/settings.yml')
