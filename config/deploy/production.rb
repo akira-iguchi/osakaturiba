@@ -41,17 +41,11 @@
 #
 # Global options
 # --------------
- set :ssh_options, {
-  keys: '~/.ssh/first_aws_rsa'
-  #  forward_agent: false,
-  #  auth_methods: %w(password)
- }
+# set :ssh_options, keys: '~/.ssh/first_aws_rsa' 
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
-server "osakaturiba.com",
-  user: "akira",
-  roles: %w{web db app}
+server '54.179.72.225', user: 'akira', roles: %w{app db web} 
   # ssh_options: {
   #   user: "user_name", # overrides user setting above
   #   keys: %w(/home/user_name/.ssh/id_rsa),
