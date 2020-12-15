@@ -41,6 +41,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem "factory_bot_rails"
+  gem "faker"
   gem 'rails-controller-testing'
   gem 'guard-rspec', require: false
   gem 'spring-commands-rspec'
