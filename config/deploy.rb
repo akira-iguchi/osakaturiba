@@ -21,10 +21,6 @@ set :rbenv_type, :user
 # rubyのバージョン
 set :rbenv_ruby, '2.6.3'
 
-# どの公開鍵を利用してデプロイするか
-set :ssh_options, auth_methods: ['publickey'],
-                  keys: ['~/.ssh/osaka_pem.pem'] 
-
 #出力するログのレベル。
 set :log_level, :debug
 
