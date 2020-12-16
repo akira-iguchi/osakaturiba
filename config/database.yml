@@ -56,6 +56,6 @@ production:
   <<: *default
   username: root
   database: osakaturiba_production
-  password:
+  password: Akituri931!
   socket: /var/lib/mysql/mysql.sock
 
