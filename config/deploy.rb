@@ -11,7 +11,8 @@ set :repo_url, "git@github.com:akira-iguchi/osakaturiba.git"
 set :deploy_to, "/var/www/rails/osakaturiba"
 
 # シンボリックリンクをはるファイル。
-set :linked_files, fetch(:linked_files, []).push('config/credentials/production.key')
+set :linked_files, fetch(:linked_files, []).push('config/settings.yml')
+set :linked_files, %w{config/master.key}
 
 # シンボリックリンクをはるフォルダ。
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
