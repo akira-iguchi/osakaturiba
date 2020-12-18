@@ -9,8 +9,8 @@ if Rails.env.production?
     config.fog_credentials = {
       provider: 'AWS',
       region: 'us-west-1',
-      aws_access_key_id: 'AKIA3OJN5SDZ247WPG4O',
-      aws_secret_access_key: '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'
+      aws_access_key_id: ENV['S3_ACCESS_KEY_ID'],
+      aws_secret_access_key: ENV['S3_SECRET_KEY']
     }
     config.fog_directory = 'osakafish'
     config.asset_host = 'https://osakafish.s3.amazonaws.com'
