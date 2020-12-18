@@ -14,7 +14,7 @@ set :deploy_to, "/var/www/rails/osakaturiba"
 
 # シンボリックリンクをはるファイル。
 set :linked_files, fetch(:linked_files, []).push('config/credentials/production.key')
-set :linked_files, fetch(:linked_files, []).push('config/master.key')
+# set :linked_files, fetch(:linked_files, []).push('config/master.key')
 
 # バージョンが変わっても共通で参照するディレクトリを指定
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
