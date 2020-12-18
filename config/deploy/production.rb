@@ -41,7 +41,7 @@
 #
 # Global options
 # --------------
-# set :ssh_options, keys: '~/.ssh/osaka_key_rsa' 
+set :ssh_options, keys: '~/.ssh/osaka_key_rsa' 
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------

@@ -52,7 +52,6 @@ group :development, :test do
   gem 'capistrano-rbenv'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
-  gem 'capistrano3-unicorn'
 end
 
 group :development do
@@ -74,6 +73,10 @@ end
 group :production do
   gem 'pg', '0.20.0'
   gem 'fog-aws'
+end
+
+group :production, :staging do
+    gem 'unicorn'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
