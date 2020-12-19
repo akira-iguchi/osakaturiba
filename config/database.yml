@@ -57,3 +57,4 @@ production:
   username: root
   database: osakaturiba_production
   password:
+  host: localhost
