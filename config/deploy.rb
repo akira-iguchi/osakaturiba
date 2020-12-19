@@ -9,8 +9,8 @@ set :repo_url, "git@github.com:akira-iguchi/osakaturiba.git"
 
 set :branch, 'master'
 
-# Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/www/rails/osakaturiba"
+# Default _to directory is /var/www/my_app_name
+set :_to, "/var/www/rails/osakaturiba"
 
 # シンボリックリンクをはるファイル。
 set :linked_files, fetch(:linked_files, []).push('config/credentials/production.key')
@@ -67,8 +67,8 @@ namespace :deploy do
       execute "mkdir -p #{shared_path}/config" if test "[ ! -d #{shared_path}/config ]"
     end
   end
-  before :starting, 'deploy:upload'
-  after :finishing, 'deploy:cleanup'
+  before :starting, ':upload'
+  after :finishing, ':cleanup'
 
   after :publishing, :restart
 
@@ -77,10 +77,3 @@ namespace :deploy do
     end
   end
 end
-
-set :default_env, {
-  rbenv_root: "/usr/local/rbenv",
-  path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH",
-  S3_ACCESS_KEY_ID: ENV["S3_ACCESS_KEY_ID"],
-  S3_SECRET_KEY: ENV["S3_SECRET_KEY"]
-}
