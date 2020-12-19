@@ -56,5 +56,4 @@ production:
   <<: *default
   username: root
   database: osakaturiba_production
-  password: turi931
-
+  password:
