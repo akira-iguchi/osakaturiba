@@ -10,11 +10,11 @@ set :repo_url, "git@github.com:akira-iguchi/osakaturiba.git"
 set :branch, 'master'
 
 # Default _to directory is /var/www/my_app_name
-set :_to, "/var/www/rails/osakaturiba"
+set :deploy_to, "/var/www/rails/osakaturiba"
 
 # シンボリックリンクをはるファイル。
 set :linked_files, fetch(:linked_files, []).push('config/credentials/production.key')
-# set :linked_files, fetch(:linked_files, []).push('config/master.key')
+set :linked_files, fetch(:linked_files, []).push('config/master.key')
 
 # バージョンが変わっても共通で参照するディレクトリを指定
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
@@ -67,8 +67,8 @@ namespace :deploy do
       execute "mkdir -p #{shared_path}/config" if test "[ ! -d #{shared_path}/config ]"
     end
   end
-  before :starting, ':upload'
-  after :finishing, ':cleanup'
+  # before :starting, ':upload'
+  # after :finishing, ':cleanup'
 
   after :publishing, :restart
 
