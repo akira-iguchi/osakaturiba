@@ -56,5 +56,4 @@ production:
   <<: *default
   username: root
   database: osakaturiba_production
-  password: Akituri931!
-  host: localhost
+  password: turi931
