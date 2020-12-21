@@ -110,4 +110,4 @@ gem 'rubocop-rails', require:false
 
 gem 'rb-readline'
 
-gem 'webpacker'
+gem 'webpacker', github: "rails/webpacker"
