@@ -35,6 +35,7 @@
                 
                 <div>
                   <%= image_tag c.user.image.url, class:"c_user_icon", alt: "" %><a class="c_user" href="/users/<%= c.user.id %>"><%= c.user.name %></a>
+                  <span class="c_user_time">:&nbsp;<%= l c.created_at, format: :short %></span>
                 </div>
                       
                 <!--改行-->

@@ -35,6 +35,10 @@
             <div>
               釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
             </div>
+
+            <div>
+              <%= l c.created_at, format: :short %>
+            </div>
             
             <!--改行-->
             <div class="user_content">
