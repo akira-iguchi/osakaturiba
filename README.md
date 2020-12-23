@@ -9,37 +9,37 @@ URL：http://osakaturiba.com/
 <h3>制作背景</h3>
 現在は釣りの技術が発展しており、釣り人が日々増加しています。また、同時に大阪で釣りを始めたばかりの初心者の方も増えています。しかし、大阪のような都会でも釣りができるかどうかわからない、どこで釣りができるかわからないという方も多いと思います。そこで、大阪の釣り場、特に私自身が釣りに行った釣り場を中心に紹介しようと思いました。このサービスを通して、大阪の釣り場を知り、また釣果などを共有し合って、より多くの人方々に釣りの知識を深めてほしいと思います。
 
-https://i.gyazo.com/fc992c6fd5a648158b7a41512fc5ff10.jpg
+https://gyazo.com/fc992c6fd5a648158b7a41512fc5ff10
 
 <h2>使用技術</h2>
 
-・ HTML / CSS
+* HTML / CSS
 
-・ Javascript
+* Javascript
 
-・ JQuery
+* JQuery
 
-・ Bootstrap
+* Bootstrap
 
-・ Ruby 2.6.3
+* Ruby 2.6.3
 
-・ Rails 6.0.3.4
+* Rails 6.0.3.4
 
-・ MySQL 8.0.2.2
+* MySQL 8.0.2.2
 
-・ AWS(EC2, VPC, Route53, S3)
+* AWS(EC2, VPC, Route53, S3)
 
-・ Doker/docker-compose
+* Doker/docker-compose
 
-・ Nginx
+* Nginx
 
-・ Puma
+* Puma
 
-・ CircleCI(CI/CD)
+* CircleCI(CI/CD)
 
-・ RSpec
+* RSpec
 
-。 VScode
+* VScode
 
 <h2>機能一覧</h2>
 
@@ -80,4 +80,4 @@ https://i.gyazo.com/fc992c6fd5a648158b7a41512fc5ff10.jpg
 ￼
 <h2>ER図</h2>
 
-https://i.gyazo.com/6c5ec3033dab213513abd5acbf5a9e77.jpg
+https://gyazo.com/6c5ec3033dab213513abd5acbf5a9e77
