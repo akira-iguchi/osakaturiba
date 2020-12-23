@@ -1,6 +1,6 @@
 
 <h2>概要</h2>
-<hr>
+
 大阪釣りスポット
 URL：http://osakaturiba.com/
 
@@ -9,56 +9,75 @@ URL：http://osakaturiba.com/
 <h3>制作背景</h3>
 現在は釣りの技術が発展しており、釣り人が日々増加しています。また、同時に大阪で釣りを始めたばかりの初心者の方も増えています。しかし、大阪のような都会でも釣りができるかどうかわからない、どこで釣りができるかわからないという方も多いと思います。そこで、大阪の釣り場、特に私自身が釣りに行った釣り場を中心に紹介しようと思いました。このサービスを通して、大阪の釣り場を知り、また釣果などを共有し合って、より多くの人方々に釣りの知識を深めてほしいと思います。
 
-https://gyazo.com/fc992c6fd5a648158b7a41512fc5ff10
+https://i.gyazo.com/fc992c6fd5a648158b7a41512fc5ff10.jpg
 
 <h2>使用技術</h2>
-<hr>
-* HTML / CSS
-* Javascript
-* JQuery
-* Bootstrap
-* Ruby 2.6.3
-* Rails 6.0.3.4
-* MySQL 8.0.2.2
-* AWS(EC2, VPC, Route53, S3)
-* Doker/docker-compose
-* Nginx
-* Puma
-* CircleCI(CI/CD)
-* RSpec
-* VScode
+
+・ HTML / CSS
+
+・ Javascript
+
+・ JQuery
+
+・ Bootstrap
+
+・ Ruby 2.6.3
+
+・ Rails 6.0.3.4
+
+・ MySQL 8.0.2.2
+
+・ AWS(EC2, VPC, Route53, S3)
+
+・ Doker/docker-compose
+
+・ Nginx
+
+・ Puma
+
+・ CircleCI(CI/CD)
+
+・ RSpec
+
+。 VScode
 
 <h2>機能一覧</h2>
-<hr>
 
 <h3>ユーザー機能</h3>
-* ユーザーの新規登録、プロフィール画像の追加、編集
-* ゲストログイン
+・ ユーザーの新規登録
+・ プロフィール画像の追加
+・ ユーザー情報の編集
+・ ゲストログイン
 
 <h3>googlemap機能</h3>
-* 釣り場をgooglemapで表示
+・ 釣り場をgooglemapで表示
+・ 釣り場詳細ページのピンで住所を表示
 
 <h3>天気予報機能</h3>
-* 釣りで重要な天気予報を表示
+・ 釣りで重要な天気予報を表示（１日）
 
 <h3>お気に入り機能</h3>
-* 釣り場のお気に入り登録、お気に入り解除
+・ 釣り場のお気に入り登録
+・ 釣り場のお気に入り解除
+・ お気に入りした釣り場の一覧
 
 <h3>検索機能</h3>
-* 釣り場の検索
+・ 釣り場の検索
+・ 検索した釣り場の一覧
 
 <h3>ランキング機能</h3>
-* 釣り場のお気に入り数のランキング
+・ 釣り場のお気に入り数のランキング（１位〜３位まで）
 
 <h3>コメント機能</h3>
-* 釣り場コメントの新規投稿、削除
+・ 釣り場コメントの新規投稿
+・ 釣り場コメントの削除
+・ コメントの一覧
 
 <h3>テスト機能</h3>
-* Rspecによるテスト
+・ Rspecによるテスト
 
 <h2>インフラ構造図</h2>
-<hr>
 ￼
 <h2>ER図</h2>
-<hr>
-https://gyazo.com/6c5ec3033dab213513abd5acbf5a9e77
+
+https://i.gyazo.com/6c5ec3033dab213513abd5acbf5a9e77.jpg
