@@ -71,7 +71,7 @@ URL：http://osakaturiba.com/
 
 + Rspecによるテスト
 
-<h2>インフラ構造図</h2>
+<h2>インフラ構成図</h2>
 
 <img src="public/infra.png">
 
