@@ -15,12 +15,14 @@
   </div>
   
   <div class="user_edit">
-    <!--ユーザー詳細ページと現在のユーザーの名前が同じなら編集ボタン表示（ゲストユーザーなら表示しない）-->
-    <% if @user == current_user %>
-      <% unless @user.email == "guest@example.com" %>
-        <div><%= link_to("プロフィール編集", edit_user_registration_path(@user), class: "btn btn-radius-solid") %></div>
+    <button class="edit_btn">
+      <!--ユーザー詳細ページと現在のユーザーの名前が同じなら編集ボタン表示（ゲストユーザーなら表示しない）-->
+      <% if @user == current_user %>
+        <% unless @user.email == "guest@example.com" %>
+          <div><%= link_to("プロフィール編集", edit_user_registration_path(@user), class: "btn btn-radius-solid") %></div>
+        <% end %>
       <% end %>
-    <% end %>
+      </button>
   </div>
   
   <div class="row">
@@ -51,12 +53,13 @@
                 <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
               <% end %>
             </div>
-            <div class="botton">
+
+            <button class="botton">
               <!--ユーザー詳細ページと現在のユーザーの名前が同じならコメント削除ボタン表示-->
               <% if current_user == c.user %>
                 &nbsp;<%= link_to "削除", user_comment_path(@user,c,page_id: 1), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger btn-sm' %>
               <% end %>
-            </div>
+            </button>
             <hr>
           <% end %>
           <%= paginate @comments %>

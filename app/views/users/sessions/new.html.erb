@@ -25,13 +25,13 @@
           <input type="checkbox" id="js-passcheck"/>
         </p>
         
-        <div>
+        <button class="login_btn">
           <%= f.submit 'ログイン', class: 'btn btn-primary' %>
-        </div>
+        </button>
         
         <div>
-          <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'btn btn-secondary guest' %>
-        </div> 
+          <button class="guest"><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'btn btn-secondary' %></button>
+        </div>
         
       </div>
           

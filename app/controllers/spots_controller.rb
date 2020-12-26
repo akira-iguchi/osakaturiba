@@ -16,10 +16,17 @@ class SpotsController < ApplicationController
       flash[:danger] = 'ログインしてください。'
       redirect_to root_url
     end
+
     @spots = if params[:name].present?
                Spot.where('name LIKE ?', "%#{params[:name]}%")
              else
                Spot.none
+             end
+
+    @district = if params[:name].present?
+               District.where('name LIKE ?', "%#{params[:name]}%")
+             else
+               District.none
              end
   end
 

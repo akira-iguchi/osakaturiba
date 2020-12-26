@@ -10,12 +10,18 @@
       <div class="list">
         <h1 class="spot_title">釣り場一覧</h1>
         <p class="search_result"><検索結果></p>
-        <% if @spots.none? %>
+        <% if @spots.none? && @district.none? %>
           <p class="none">該当なし</p>
         <% else %>
           <ul>
             <% @spots.each do |s| %>
               <li class="search_name"><a href="/spots/<%= s.id %>"><%= s.name %></a></li>
+            <% end %>
+          </ul>
+
+          <ul>
+            <% @district.each do |d| %>
+              <li class="search_name"><a href="/districts/<%= d.id %>"><%= d.name %></a></li>
             <% end %>
           </ul>
         <% end %>
