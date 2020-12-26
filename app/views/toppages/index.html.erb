@@ -30,7 +30,11 @@
           <h1 class="spot_title">釣り場一覧</h1>
           <p class="district_name"><%= link_to '南港', '/districts/1', class: "text-dark" %></p>
             ・<%= link_to 'かもめ大橋', '/spots/1' %>&emsp;・<%= link_to 'シーサイドコスモ', '/spots/2' %>
-          <p class="district_name"><%= link_to '淀川', '/districts/2', class: "text-dark" %></p>
+          <%
+=begin%>
+ <p class="district_name"><%= link_to '淀川', '/districts/2', class: "text-dark" %></p> 
+<%
+=end%>
           <p class="district_name"><%= link_to '泉大津', '/districts/5', class: "text-dark" %></p>
             ・<%= link_to '助松埠頭', '/spots/9' %>&emsp;・<%= link_to '汐見埠頭砂上げ場', '/spots/10' %>
           <p class="district_name"><%= link_to '貝塚', '/districts/2', class: "text-dark" %></p>

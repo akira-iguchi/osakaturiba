@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_04_113911) do
+ActiveRecord::Schema.define(version: 2020_12_26_151830) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "content"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 2020_12_04_113911) do
     t.index ["spot_id"], name: "index_favorites_on_spot_id"
     t.index ["user_id", "spot_id"], name: "index_favorites_on_user_id_and_spot_id", unique: true
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "fishing_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "content"
+    t.bigint "spot_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["spot_id"], name: "index_fishing_types_on_spot_id"
   end
 
   create_table "spots", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -71,5 +79,6 @@ ActiveRecord::Schema.define(version: 2020_12_04_113911) do
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "spots"
   add_foreign_key "favorites", "users"
+  add_foreign_key "fishing_types", "spots"
   add_foreign_key "spots", "districts"
 end
