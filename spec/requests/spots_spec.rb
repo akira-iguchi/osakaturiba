@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'Spots', type: :request do
   let(:spot) { create(:spot) }
-  let(:user) { create(:user) }
 
   describe 'GET #show' do
     describe 'スポットが存在する場合' do
@@ -23,7 +22,6 @@ RSpec.describe 'Spots', type: :request do
   describe 'GET #search' do
     describe 'スポットが存在しない場合' do
       before do
-        sign_in(user)
         get spot_search_url
       end
 

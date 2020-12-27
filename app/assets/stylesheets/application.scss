@@ -25,6 +25,7 @@ body {
 
 main {
   flex: 1;
+  margin-top: 81px;
 }
 
 /*コメント*/
@@ -73,6 +74,12 @@ main {
 
 /*header*/
 
+.header {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+}
+
 .title {
   position: absolute;
   top: 9px;
@@ -88,23 +95,6 @@ main {
   position: absolute;
   left: 250px;
   top: 13px;
-}
-
-.fukidashi {
-  display: none;
-  width: 190px;
-  position: absolute;
-  top: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  background: #33cc99;
-  color: #fff;
-  font-weight: bold;
-  z-index: 10;
-}
-
-.login:hover + .fukidashi {
-  display: block;
 }
 
 #search {
@@ -148,6 +138,7 @@ main {
 
 .footer{
   position: relative;
+  margin-top: 20px;
   bottom: 0;
   width: 100%;
   text-align: center;

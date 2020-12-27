@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_26_151830) do
+ActiveRecord::Schema.define(version: 2020_12_27_122425) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "content"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_12_26_151830) do
     t.bigint "spot_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["spot_id"], name: "index_fishing_types_on_spot_id"
   end
 
@@ -58,7 +59,18 @@ ActiveRecord::Schema.define(version: 2020_12_26_151830) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.bigint "fishing_types_id"
     t.index ["district_id"], name: "index_spots_on_district_id"
+    t.index ["fishing_types_id"], name: "index_spots_on_fishing_types_id"
+  end
+
+  create_table "types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "spot_id", null: false
+    t.bigint "fishing_type_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fishing_type_id"], name: "index_types_on_fishing_type_id"
+    t.index ["spot_id"], name: "index_types_on_spot_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -79,6 +91,7 @@ ActiveRecord::Schema.define(version: 2020_12_26_151830) do
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "spots"
   add_foreign_key "favorites", "users"
-  add_foreign_key "fishing_types", "spots"
   add_foreign_key "spots", "districts"
+  add_foreign_key "types", "fishing_types"
+  add_foreign_key "types", "spots"
 end

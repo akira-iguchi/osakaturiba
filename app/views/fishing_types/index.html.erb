@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <% @fishing_types.each do |f| %>
+      <div class="mx-auto d-block col-lg-5 kakomi-tab">
+        <span class="title-tab"><%= f.name %></span>
+        <%= f.content %>
+        <hr>
+        <strong>おすすめの釣り場</strong>
+        <br>
+        <% f.spots.each do |f_spot| %>
+          <ul class='tag'>
+            <li><a class="type_spot" href="/spots/<%= f_spot.id %>"><%= f_spot.name %></a></li>
+          </ul>
+         <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

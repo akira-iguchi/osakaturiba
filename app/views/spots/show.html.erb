@@ -36,6 +36,12 @@
     <div class="mx-auto d-block col-sm-9 col-md-8 col-lg-6">
       <!--釣り場の説明-->
       <p class="spot_e">&emsp;<%= @spot.explanation %></p>
+      <br>
+      <ul class='tag-list'>
+        <% @spot.fishing_types.each do |type| %>
+          <li class='tag-item'><%= link_to type.name, fishing_types_path, class: "text-white" %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
   

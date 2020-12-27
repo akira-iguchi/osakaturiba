@@ -2,12 +2,6 @@ require 'rails_helper'
 
 RSpec.feature 'Spots', type: :feature do
   before do
-    @user = create(:user,
-                    name: 'test',
-                    email: 'test@example.com',
-                    password: 'test123',
-                    password_confirmation: 'test123')
-
     @district = create(:district,
                        id: 1,
                        name: '南港',
@@ -50,15 +44,6 @@ RSpec.feature 'Spots', type: :feature do
     # トップページを開く
     visit root_path
 
-    # ログインページへ
-    click_link 'ログイン'
-
-    # ログインする
-    fill_in 'メールアドレス', with: @user.email
-    fill_in 'user[password]', with: 'test123'
-    click_button 'ログイン'
-    expect(page).to have_text('ログインしました。')
-
     # 検索ボックスから釣り場を検索する
     fill_in 'name', with: 'かもめ大橋'
     click_button '検索'
@@ -66,5 +51,18 @@ RSpec.feature 'Spots', type: :feature do
     # 釣り場が検索されているか検証する
     expect(current_path).to eq '/spot_search'
     expect(page).to have_text('かもめ大橋')
+  end
+
+  scenario '地区を検索する' do
+    # トップページを開く
+    visit root_path
+
+    # 検索ボックスから釣り場を検索する
+    fill_in 'name', with: '南港'
+    click_button '検索'
+
+    # 釣り場が検索されているか検証する
+    expect(current_path).to eq '/spot_search'
+    expect(page).to have_text('南港')
   end
 end

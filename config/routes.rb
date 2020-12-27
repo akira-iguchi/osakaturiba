@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :fishing_types, only: [:index]
+
   get 'spot_search', to: 'spots#search'
 
   resources :favorites, only: %i[create destroy]
