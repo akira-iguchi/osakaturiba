@@ -1,6 +1,7 @@
 /*show*/
 
 .spot_name {
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
@@ -18,7 +19,35 @@
 .spot_e {
   position: relative;
   top: 40px;
-  font-size: 27px;
+  font-size: 24px;
+}
+
+.btn-border-bottom {
+  position: relative;
+  bottom: 10px;
+  display: inline-block;
+  font-size: 35px;
+  font-weight: bold;
+  padding: 0.25em 0;
+  text-decoration: none;
+  color: #67c5ff; 
+}
+
+.btn-border-bottom:before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 4px;
+  top:100%;
+  left: 0;
+  border-radius: 3px;
+  background:#67c5ff;
+  transition: .2s;
+}
+
+.btn-border-bottom:hover:before {
+  top: -webkit-calc(100% - 9px);
+  top: calc(100% - 9px);
 }
 
 .tag-list {
@@ -38,6 +67,7 @@
   text-decoration: none;
   background-color: #808080;
   border-radius: 5px;
+  pointer-events: none; 
 }
 
 .box-title {

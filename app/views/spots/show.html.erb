@@ -32,14 +32,14 @@
       <% end %>
       
     </div>
-  
     <div class="mx-auto d-block col-sm-9 col-md-8 col-lg-6">
       <!--釣り場の説明-->
-      <p class="spot_e">&emsp;<%= @spot.explanation %></p>
-      <br>
+      <p class="spot_e">&emsp;<%= @spot.explanation %></p><br>
+      <hr>
+      <%= link_to "釣り方", fishing_types_path, class: "text-dark btn-border-bottom" %>
       <ul class='tag-list'>
         <% @spot.fishing_types.each do |type| %>
-          <li class='tag-item'><%= link_to type.name, fishing_types_path, class: "text-white" %></li>
+          <li class='tag-item'><%= type.name %></li>
         <% end %>
       </ul>
     </div>

@@ -35,6 +35,7 @@ RSpec.feature 'FishingTypes', type: :feature do
 
     # 釣り方ページへ
     click_link '釣り方'
+    expect(page).to have_text('サビキ釣り')
   end
 
   scenario 'スポット詳細ページから釣り方ページへ行く' do
@@ -45,6 +46,7 @@ RSpec.feature 'FishingTypes', type: :feature do
     click_link @spot.name.to_s
 
     # 釣り方ページへ
-    click_link 'サビキ釣り'
+    click_link '釣り方', match: :first
+    expect(page).to have_text('サビキ釣り')
   end
 end
