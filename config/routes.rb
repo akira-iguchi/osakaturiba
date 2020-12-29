@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show] do
-    resources :records, only: %i[index show create destroy]
+    resources :records
     resources :comments, only: [:destroy]
     member do
       get :likes

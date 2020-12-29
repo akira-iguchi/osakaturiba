@@ -52,6 +52,10 @@ ActiveRecord::Schema.define(version: 2020_12_28_114247) do
     t.string "fishingtype"
     t.string "spot"
     t.string "bait"
+    t.string "weather"
+    t.time "fishing_start_time"
+    t.time "fishing_end_time"
+    t.string "detail"
     t.datetime "start_time"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

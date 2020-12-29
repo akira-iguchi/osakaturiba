@@ -8,9 +8,8 @@
   background-color: white;
   padding: 1em;
   border-radius: 1em;
+  margin-bottom: 30px;
 }
-
-// new
 
 .record_form {
   background-color: #e0e0e0;
@@ -38,3 +37,14 @@
 .btn--radius {
   border-radius: 100vh;
 }
+
+// show
+
+.record_image {
+  background-image: url(turiman.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color:rgba(255,255,255,0.4);
+  background-blend-mode: lighten;
+}
+

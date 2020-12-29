@@ -1,2 +1,32 @@
-<h1>Records#show</h1>
-<p>Find me in app/views/records/show.html.erb</p>
+<div class="container record_image">
+  <h1><%= @record.start_time.month%>月<%= @record.start_time.day%>日</h1>
+
+  <div>
+    釣り場：<%= @record.spot %>
+  </div>
+
+  <div>
+    釣り方：<%= @record.fishingtype %>
+  </div>
+    
+  <div>
+    エサ：<%= @record.bait %>
+  </div>
+
+  <div>
+    天気：<%= @record.weather %>
+  </div>
+
+  <div>
+    時間：<%= @record.fishing_start_time %>〜<%= @record.fishing_end_time %>
+  </div>
+
+  <div>
+    詳細：<%= @record.detail %>
+  </div>
+
+  <% if current_user == @user %>
+    <%= link_to '編集する', edit_user_record_path(user_id: @user, id: @record), class: 'btn-default btn-outline-success' %>
+    <%= link_to '削除する', user_record_path(user_id: @user, id: @record), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn-default btn-outline-danger' %>
+  <% end %>
+</div>

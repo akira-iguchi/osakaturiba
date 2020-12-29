@@ -10,6 +10,7 @@ class RecordsController < ApplicationController
 
   def show
     @record = Record.find(params[:id])
+    @user = current_user
   end
 
   def create
@@ -25,10 +26,20 @@ class RecordsController < ApplicationController
     end
   end
 
+  def edit
+    @records = Record.all
+    @record = Record.find(params[:id])
+  end
+
+  def update
+
+  end
+
   def destroy
+    @user = current_user
     @record.destroy
     flash[:success] = '釣りの記録を削除しました。'
-    redirect_to @record
+    redirect_to user_records_path
   end
 
   private
