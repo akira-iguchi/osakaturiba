@@ -18,7 +18,7 @@
   </div>
 
   <div>
-    時間：<%= @record.fishing_start_time %>〜<%= @record.fishing_end_time %>
+    時間：<%= @record.fishing_start_time.strftime("%H:%M") %>〜<%= @record.fishing_end_time.strftime("%H:%M") %>
   </div>
 
   <div>

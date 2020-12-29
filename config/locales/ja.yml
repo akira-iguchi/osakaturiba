@@ -33,7 +33,8 @@ ja:
         fishingtype: 釣り方
         spot: 釣り場
         bait: エサ
-        start_time: 時間
+        detail: 詳細
+        start_time: 日付
   
   errors:
     messages:

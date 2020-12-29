@@ -32,10 +32,18 @@ class RecordsController < ApplicationController
   end
 
   def update
-
+    @record = Record.find(params[:id])
+    if @record.update(record_params)
+      flash[:success] = '釣りの記録を編集しました。'
+      redirect_to user_record_path
+    else
+      flash.now[:danger] = '釣りの記録の編集ができませんでした。'
+      render 'records/edit'
+    end
   end
 
   def destroy
+    @record = Record.find(params[:id])
     @user = current_user
     @record.destroy
     flash[:success] = '釣りの記録を削除しました。'
@@ -45,7 +53,7 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:record).permit(:fishingtype, :spot, :bait, :start_time)
+    params.require(:record).permit(:fishingtype, :spot, :bait, :weather, :fishing_start_time, :fishing_end_time, :detail, :start_time)
   end
 
   def correct_user
