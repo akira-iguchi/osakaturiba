@@ -1,0 +1,40 @@
+// index
+
+.record_title {
+
+}
+
+.record_body {
+  background-color: white;
+  padding: 1em;
+  border-radius: 1em;
+}
+
+// new
+
+.record_form {
+  background-color: #e0e0e0;
+  padding: 1em;
+  border-radius: 1em;
+}
+
+.form-btn {
+
+  text-align: center;
+}
+
+.btn--red.btn--cubic {
+  color: white;
+  font-weight: bold;
+  background-color: red;
+  border-bottom: 5px solid #9f000c;
+}
+
+.btn--red.btn--cubic:hover {
+  margin-top: 3px;
+  border-bottom: 2px solid #9f000c;
+}
+
+.btn--radius {
+  border-radius: 100vh;
+}

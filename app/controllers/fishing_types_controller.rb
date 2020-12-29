@@ -1,8 +1,8 @@
 class FishingTypesController < ApplicationController
+  before_action :spot_ranks
 
   def index
     @fishing_types = FishingType.all
-    @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
   end
 
   private

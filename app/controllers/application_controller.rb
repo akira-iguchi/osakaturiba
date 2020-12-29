@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
       flash[:danger] = 'ゲストユーザーのため編集できません。'
     end
   end
+  
+  private
+
+  def spot_ranks
+    @all_ranks = Spot.find(Favorite.group(:spot_id).order('count(spot_id) desc').limit(3).pluck(:spot_id))
+  end
 
   protected
 

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   before_save { email.downcase! }
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: true, length: { maximum: 10 }
   validates :email, presence: true,
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
   has_many :likes, through: :favorites, source: :spot
+
+  has_many :records, dependent: :destroy
 
   has_many :comments, dependent: :destroy
 

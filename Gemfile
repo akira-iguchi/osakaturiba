@@ -111,3 +111,5 @@ gem 'rubocop-rails', require:false
 gem 'rb-readline'
 
 gem 'webpacker', github: "rails/webpacker"
+
+gem 'simple_calendar', '~> 2.0' 

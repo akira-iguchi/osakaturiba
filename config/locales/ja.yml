@@ -20,6 +20,7 @@ ja:
     models:
       user: ユーザー
       comment: コメント
+      record: 記録
     attributes:
       user:
         name: 名前
@@ -28,6 +29,11 @@ ja:
         password_confirmation: パスワード確認
       comment:
         content: コメント
+      record:
+        fishingtype: 釣り方
+        spot: 釣り場
+        bait: エサ
+        start_time: 時間
   
   errors:
     messages:

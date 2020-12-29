@@ -1,5 +1,9 @@
 <header class="mb-4 header">
-    <nav class="navbar navbar-expand-xl navbar-dark bg-primary">
+    <% if user_signed_in? %>
+      <nav class="navbar navbar-expand-xl navbar-dark bg-primary">
+    <% else %>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <% end %>
 
     <p><i class="fish1 fas fa-fish fa-2x"></i><a class="title navbar-brand" href="/">大阪釣りスポット</a><i class="fish2 fas fa-fish fa-2x fa-rotate-180"></i></p>
   
@@ -22,6 +26,8 @@
 
         <% if user_signed_in? %>
         
+          <li class="nav-item dropdown"><a href="/users/<%= current_user.id %>/records" class="nav-link">釣りの記録<i class="fas fa-pen"></i></a></li>
+
           <!--釣り場のお気に入りランキング機能-->
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">お気に入りランキング<i class="fas fa-crown"></i></a>
