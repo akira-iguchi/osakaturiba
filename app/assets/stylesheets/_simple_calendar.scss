@@ -1,9 +1,24 @@
 .simple-calendar {
-  text-align: center;
-  font-weight: bold;
-
+  
   .calendar-heading {
     font-size: 35px;
+    display: table; 
+    width: 100%;
+  }
+  
+  .prev_calender {
+    display: table-cell; 
+    text-align: left;
+  }
+
+  .calendar-title {
+    display: table-cell; 
+    text-align: center; 
+  }
+
+  .next_calender {
+    display: table-cell;
+    text-align: right; 
   }
 
   .day {}
@@ -23,7 +38,7 @@
   .start-date {}
 
   .prev-month {}
-  .next-month { }
+  .next-month {}
   .current-month {}
 
   .has-events {}

@@ -34,10 +34,10 @@ class RecordsController < ApplicationController
   def update
     @record = Record.find(params[:id])
     if @record.update(record_params)
-      flash[:success] = '釣りの記録を編集しました。'
+      flash[:success] = 'フィッシング記録を編集しました。'
       redirect_to user_record_path
     else
-      flash.now[:danger] = '釣りの記録の編集ができませんでした。'
+      flash.now[:danger] = 'フィッシング記録の編集ができませんでした。'
       render 'records/edit'
     end
   end
@@ -46,7 +46,7 @@ class RecordsController < ApplicationController
     @record = Record.find(params[:id])
     @user = current_user
     @record.destroy
-    flash[:success] = '釣りの記録を削除しました。'
+    flash[:success] = 'フィッシング記録を削除しました。'
     redirect_to user_records_path
   end
 

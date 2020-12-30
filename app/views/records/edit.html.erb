@@ -1,24 +1,56 @@
 <div class="container">
-  <div class="row">
-    <div class="mx-auto d-block col-lg-8">
-      <h1 class="record_title">釣りの記録&nbsp;<i class="fas fa-pen"></i></h1>
-      <div class="record_body">
-        <%= month_calendar events: @records do |date, records| %>
-          <%= date.day %>
+  <div class="mx-auto d-block col-lg-8">
+    <h4 class="font-weight-bold">フィッシング記録の編集</h4>
 
-          <% records.each do |record| %>
-            <div>
-              <%= link_to user_record_path(user_id: current_user, id: record.id) do %>
-                <p class='calendar-main-target'><%= record.fishingtype %></p>
-              <% end %>
-            </div>
+    <div class="record_form">
+      <%= form_with(model: [@user, @record], url: user_record_path(current_user, @record), local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+
+        <div class="date">
+          <label class="required_time"></label>
+          <%= f.date_field :start_time, value: Date.today, required: true %>
+        </div>
+
+        <div class="time">
+          <%= f.label :時間 %> 
+          <%= f.time_field :fishing_start_time %>〜<%= f.time_field :fishing_end_time %>
+        </div>
+
+        <div class="form-field">
+          <label class="required2">釣り場</label>
+          <%= f.text_field :spot, class: "input-text js-input", placeholder: "例：かもめ大橋", required: true %>
+        </div>
+
+        <div class="form-field">
+          <label class="required2">釣り場</label>
+          <%= f.text_field :fishingtype, class: "input-text js-input", placeholder: "例：サビキ釣り", required: true %>
+        </div>
+
+        <div class="form-field">
+          <label class="record_label">エサ</label>
+          <%= f.text_field :bait, class: "input-text js-input", placeholder: "例：アミエビ" %>      
+        </div>
+
+        <div class="form-field">
+          <label class="record_label">天気</label>
+          <%= f.text_field :weather, class: "input-text js-input", placeholder: "例：晴れ" %>      
+        </div>
+        
+        <div class="form-field">
+          <label class="record_label">詳細</label>
+          <%= f.text_area :detail, class: "input-text_area js-input js-text", placeholder: "例：アジがたくさん釣れた。" %>
+          <p class="js-text-count pull-right"></p>
+        </div>
+        
+        <div class="record_submit">
+          <%= button_tag :type => "submit", :class =>"submit-btn" do %>
+            編集する&nbsp;<i class="fas fa-angle-right"></i>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+
+      <% end %>
     </div>
-    <div class="mx-auto d-block col-lg-4">
-      <%= render 'form'%>
-    </div>
+    <%= link_to '戻る', :back, class: 'return' %>
   </div>
 </div>
 

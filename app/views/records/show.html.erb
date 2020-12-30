@@ -1,32 +1,56 @@
-<div class="container record_image">
-  <h1><%= @record.start_time.month%>月<%= @record.start_time.day%>日</h1>
+<div class="container">
+  <div class="record_image">
+    <h1><%= @record.start_time.month%>月<%= @record.start_time.day%>日</h1>
 
-  <div>
-    釣り場：<%= @record.spot %>
+    <table class="form-table">
+      <tbody>
+        <tr>
+          <th>釣り場</th>
+          <td><%= @record.spot %></td>
+        </tr>
+        <tr>
+          <th>釣り方</th>
+          <td><%= @record.fishingtype %></td>
+        </tr>
+        <% if @record.bait.present? %>
+          <tr>
+            <th>エサ</th>
+            <td>
+                <%= @record.bait %>
+            </td>
+          </tr>
+        <% end %>
+        <% if @record.weather.present? %>
+          <tr>
+            <th>天気</th>
+            <td>
+                <%= @record.weather %>
+            </td>
+          </tr>
+        <% end %>
+        <% if @record.fishing_start_time.present? || @record.fishing_end_time.present? %>
+          <tr>
+            <th>時間</th>
+            <td>
+                <%= @record.fishing_start_time.strftime("%H:%M") %>〜<%= @record.fishing_end_time.strftime("%H:%M") %>
+            </td>
+          </tr>
+        <% end %>
+        <% if @record.detail.present? %>
+          <tr>
+            <th>詳細</th>
+            <td>
+                <%= @record.detail %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  
+    <% if current_user == @user %>
+      <%= link_to '編集する', edit_user_record_path(user_id: @user, id: @record), class: 'btn-border-edit' %>
+      <%= link_to '削除する', user_record_path(user_id: @user, id: @record), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn-border-delete' %>
+    <% end %>
   </div>
-
-  <div>
-    釣り方：<%= @record.fishingtype %>
-  </div>
-    
-  <div>
-    エサ：<%= @record.bait %>
-  </div>
-
-  <div>
-    天気：<%= @record.weather %>
-  </div>
-
-  <div>
-    時間：<%= @record.fishing_start_time.strftime("%H:%M") %>〜<%= @record.fishing_end_time.strftime("%H:%M") %>
-  </div>
-
-  <div>
-    詳細：<%= @record.detail %>
-  </div>
-
-  <% if current_user == @user %>
-    <%= link_to '編集する', edit_user_record_path(user_id: @user, id: @record), class: 'btn-default btn-outline-success' %>
-    <%= link_to '削除する', user_record_path(user_id: @user, id: @record), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn-default btn-outline-danger' %>
-  <% end %>
+  <%= link_to '戻る', :back, class: 'return-show' %>
 </div>
