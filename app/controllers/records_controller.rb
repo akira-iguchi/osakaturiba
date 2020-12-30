@@ -1,11 +1,14 @@
 class RecordsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :correct_user
+  before_action :authenticate_user
+  before_action :correct_user, only: %i[show create edit update destroy]
   before_action :spot_ranks
 
   def index
-    @records = Record.all
-    @record = Record.new
+    unless user_records_path(current_user) == url_for(controller: "records", action: "index", only_path: true)
+      redirect_to user_records_path(current_user)
+    end
+    @records = current_user.records
+    @record = current_user.records.build
   end
 
   def show
@@ -14,30 +17,29 @@ class RecordsController < ApplicationController
   end
 
   def create
-    @records = Record.all
+    @records = current_user.records
     @record = current_user.records.build(record_params)
     @record.user_id = current_user.id
     if @record.save
-      flash[:success] = '釣りの記録をしました。'
+      flash[:success] = 'フィッシング記録を作成しました。'
       redirect_to user_records_path
     else
-      flash.now[:danger] = '釣りの記録ができませんでした。'
+      flash.now[:danger] = 'フィッシング記録が作成できませんでした。'
       render 'records/index'
     end
   end
 
   def edit
-    @records = Record.all
     @record = Record.find(params[:id])
   end
 
   def update
     @record = Record.find(params[:id])
     if @record.update(record_params)
-      flash[:success] = 'フィッシング記録を編集しました。'
+      flash[:success] = 'フィッシング記録を変更しました。'
       redirect_to user_record_path
     else
-      flash.now[:danger] = 'フィッシング記録の編集ができませんでした。'
+      flash.now[:danger] = 'フィッシング記録の変更ができませんでした。'
       render 'records/edit'
     end
   end
@@ -57,6 +59,7 @@ class RecordsController < ApplicationController
   end
 
   def correct_user
-    # redirect_to root_url unless @record.user_id = current_user.id
+    @record = current_user.records.build
+    redirect_to root_url unless @record.user_id = current_user.id
   end
 end

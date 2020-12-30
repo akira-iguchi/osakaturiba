@@ -3,20 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Users', type: :request do
   let(:user) { create(:user) }
 
-  describe 'GET #index' do
-    before do
-      get user_path(user)
-    end
-
-    it 'リクエストが成功すること' do
-      expect(response.status).to eq 200
-    end
-
-    it 'user名が表示されること' do
-      expect(response.body).to include 'test'
-    end
-  end
-
   describe 'GET #show' do
     describe 'ユーザーが存在する場合' do
       before do

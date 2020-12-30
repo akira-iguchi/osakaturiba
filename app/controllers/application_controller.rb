@@ -7,6 +7,13 @@ class ApplicationController < ActionController::Base
       flash[:danger] = 'ゲストユーザーのため編集できません。'
     end
   end
+
+  def authenticate_user
+    unless user_signed_in? 
+      redirect_to root_path
+      flash[:danger] = '新規登録またはログインしてください。'
+    end
+  end
   
   private
 

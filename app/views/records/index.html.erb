@@ -16,9 +16,11 @@
         <% end %>
       </div>
     </div>
-    <div class="mx-auto d-block col-lg-4">
+    <% if current_page?(user_records_path(current_user)) %>
+    <div class="mx-auto d-block col-lg-4 record_form_body">
       <%= render 'form'%>
     </div>
+    <% end %>
   </div>
 </div>
 

@@ -32,7 +32,13 @@
           <tr>
             <th>時間</th>
             <td>
-                <%= @record.fishing_start_time.strftime("%H:%M") %>〜<%= @record.fishing_end_time.strftime("%H:%M") %>
+              <% if @record.fishing_start_time.present? %>
+                <%= @record.fishing_start_time.strftime("%H:%M") %>
+              <% end %>
+                〜
+              <% if @record.fishing_end_time.present? %>
+                <%= @record.fishing_end_time.strftime("%H:%M") %>
+              <% end %>
             </td>
           </tr>
         <% end %>
@@ -47,10 +53,10 @@
       </tbody>
     </table>
   
-    <% if current_user == @user %>
+    <% if @user == @record.user %>
       <%= link_to '編集する', edit_user_record_path(user_id: @user, id: @record), class: 'btn-border-edit' %>
       <%= link_to '削除する', user_record_path(user_id: @user, id: @record), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn-border-delete' %>
     <% end %>
   </div>
-  <%= link_to '戻る', :back, class: 'return-show' %>
+  <%= link_to '戻る', user_records_path(current_user), class: 'return-show' %>
 </div>

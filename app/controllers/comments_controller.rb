@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user
   before_action :correct_user, only: [:destroy]
   before_action :spot_ranks, only: [:create]
   

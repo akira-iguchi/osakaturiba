@@ -11,6 +11,12 @@
   margin-bottom: 30px;
 }
 
+.record_form_body {
+  position: relative;
+  top: 20px;
+  margin-bottom: 20px;
+}
+
 .required_time:before {
   content: "必須";
   background-color: red;

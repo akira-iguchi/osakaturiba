@@ -9,7 +9,7 @@ RSpec.describe Comment, type: :model do
     expect(build(:comment)).to be_valid
   end
 
-  it 'ユーザー、スポットがあれば有効であること' do
+  it '内容、ユーザー、スポットがあれば有効であること' do
     comment = Comment.new(
       content: 'test',
       user: user,
@@ -57,7 +57,7 @@ RSpec.describe Comment, type: :model do
       expect(comment).to be_valid
     end
 
-    it '内容が151文字以上の場合は登録できない' do
+    it '内容が151文字以上の場合は登録できないこと' do
       comment.content = 'a' * 151
       comment.valid?
       expect(comment.errors[:content]).to include('は150文字以内で入力してください')

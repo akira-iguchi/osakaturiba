@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:likes]
+  before_action :authenticate_user, only: [:likes]
   before_action :correct_user, only: [:likes]
   before_action :spot_ranks, only: [:show]
 
