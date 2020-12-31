@@ -3,17 +3,15 @@
     <div class="mx-auto d-block col-lg-8">
       <h1 class="record_title">フィッシング記録&nbsp;<i class="fas fa-pen"></i></h1>
       <div class="record_body">
-        <%= month_calendar events: @records do |date, records| %>
-          <%= date.day %>
-
-          <% records.each do |record| %>
+        
+          <% @records.each do |record| %>
             <div>
               <%= link_to user_record_path(user_id: current_user.id, id: record.id) do %>
                 <p class='calendar-main-target'><%= record.fishingtype %></p>
               <% end %>
             </div>
           <% end %>
-        <% end %>
+       
       </div>
     </div>
     
