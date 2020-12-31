@@ -4,7 +4,7 @@ jobs:
     docker:
     - image: circleci/ruby:2.6.3-node-browsers
       environment:
-        - BUNDLER_VERSION: 2.2.0
+        - BUNDLER_VERSION: 2.2.3
         - RAILS_ENV: 'test'
     - image: circleci/mysql:8.0.22
       command: mysqld --default-authentication-plugin=mysql_native_password
@@ -26,7 +26,7 @@ jobs:
     - run:
         name: install dependencies
         command: |
-          gem install bundler -v 2.2.0
+          gem install bundler -v 2.2.3
           bundle install --jobs=4 --retry=3 --path vendor/bundle
 
     - save_cache:
