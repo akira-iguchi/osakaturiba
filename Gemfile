@@ -46,6 +46,7 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'spring-commands-rspec'
   gem 'vcr'
+  gem 'faker'
   gem 'capistrano', '~> 3.4.1'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'

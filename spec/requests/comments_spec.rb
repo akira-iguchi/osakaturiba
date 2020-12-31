@@ -31,6 +31,13 @@ RSpec.describe 'Comments', type: :request do
           post spot_comments_path(@spot), params: { comment: comment_params }, xhr: true
         end.to change(Comment.all, :count).by(0)
       end
+
+      it 'ログインページにリダイレクトされること' do
+        comment_params = attributes_for(:comment, spot_id: @spot.id)
+        post spot_comments_path(@spot), params: { comment: comment_params }, xhr: true
+        expect(response.status).to eq 302
+        expect(response).to redirect_to new_user_session_path
+      end
     end
 
     context 'ログイン状態のとき' do
@@ -47,10 +54,10 @@ RSpec.describe 'Comments', type: :request do
       
       it '失敗時はコメントを作成できないこと' do
         comment_params = attributes_for(:comment, content: nil, spot_id: @spot.id)
-        post spot_comments_path(@spot), params: { comment: comment_params }, xhr: true
-        expect(response.status).to eq 200
+        expect do
+          post spot_comments_path(@spot), params: { comment: comment_params }, xhr: true
+        end.to change(Comment.all, :count).by(0)
       end
-
     end
   end
 
@@ -61,6 +68,13 @@ RSpec.describe 'Comments', type: :request do
         expect do
           delete spot_comment_path(spot_id: @spot.id, id: comment.id), xhr: true
         end.to change(Comment.all, :count).by(0)
+      end
+
+      it 'ログインページにリダイレクトされること' do
+        comment = create(:comment, spot_id: @spot.id)
+        delete spot_comment_path(spot_id: @spot.id, id: comment.id), xhr: true
+        expect(response.status).to eq 302
+        expect(response).to redirect_to new_user_session_path
       end
     end
 
@@ -81,6 +95,13 @@ RSpec.describe 'Comments', type: :request do
         expect do
           delete spot_comment_path(spot_id: @spot.id, id: comment.id), xhr: true
         end.to change(Comment.all, :count).by(0)
+      end
+
+      it 'コメントを作成したユーザー以外はトップページにリダイレクトされること' do
+        comment = create(:comment, user: @user2, spot_id: @spot.id)
+        delete spot_comment_path(spot_id: @spot.id, id: comment.id), xhr: true
+        expect(response.status).to eq 302
+        expect(response).to redirect_to root_path
       end
     end
   end

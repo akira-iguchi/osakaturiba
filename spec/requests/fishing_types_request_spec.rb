@@ -18,7 +18,7 @@ RSpec.describe "FishingTypes", type: :request do
         expect(response.body).to include 'サビキ釣り'
       end
 
-      it '釣り方名が表示されていること' do
+      it '釣り方の内容が表示されていること' do
         expect(response.body).to include 'サビキを使う釣り方。'
       end
     end

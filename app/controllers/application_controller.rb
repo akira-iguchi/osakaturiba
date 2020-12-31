@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     unless user_signed_in? 
-      redirect_to root_path
+      redirect_to new_user_session_path
       flash[:danger] = '新規登録またはログインしてください。'
     end
   end
