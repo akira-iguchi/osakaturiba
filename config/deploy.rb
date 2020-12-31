@@ -21,6 +21,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 
 set :rbenv_type, :user
 
+set :conditionally_migrate, true
+
 # rubyのバージョン
 set :rbenv_ruby, '2.6.3'
 
