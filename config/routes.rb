@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:destroy]
     member do
       get :likes
+      get :followers
     end
     collection do
       get :search
@@ -31,4 +32,5 @@ Rails.application.routes.draw do
   resources :districts, only: [:show]
   resources :fishing_types, only: %i[index]
   resources :favorites, only: %i[create destroy]
+  resources :relationships, only: [:create, :destroy]
 end

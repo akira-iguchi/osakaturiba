@@ -1,0 +1,17 @@
+<div class="follow_body">
+  <% if users.any? %>
+    <div class="row">
+      <% users.each do |user| %>
+          <div class="col-xl-6 text-center">
+            <div class="follow_user">
+              <a href="/users/<%= user.id %>"><%= image_tag user.image.url, class:"follow_icon", alt: "" %></a>
+              <%= link_to user.name, user_path(user), class: "follow_user_name" %>
+            </div>
+            <div class="follow_btn">
+              <%= render 'relationships/follow_button', user: user %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

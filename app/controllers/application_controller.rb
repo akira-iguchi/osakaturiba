@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
       flash[:danger] = '新規登録またはログインしてください。'
     end
   end
+
+  def counts(user)
+    @count_followings = user.followings.count
+    @count_followers = user.followers.count
+  end
   
   private
 

@@ -32,22 +32,15 @@
 
 /*show*/
 
+.user_title {
+  border-bottom: 2px solid #F96167;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 .name_icon {
-  display: flex;
-  justify-content: center;
+  margin-top: 20px;
   text-align: center;
-}
-
-@media screen and (max-width: 800px) {
-  .name_icon {
-    flex-wrap: wrap;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .name_icon {
-    display: block;
-  }
 }
 
 .icon {
@@ -61,15 +54,15 @@
 
 .user_name {
   position: relative;
-  top: 40px;
+  top: 10px;
   margin-bottom: 10px;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
 }
 
 .user_edit {
   position: relative;
-  top: 40px;
+  top: 10px;
   margin-bottom: 60px;
   text-align: center;
 }
@@ -138,6 +131,40 @@ a.btn-radius-solid:hover {
   right: 5px;
   border: none;
   background: none;
+}
+
+.follow_body {
+  position: relative;
+  bottom: 16px;
+  background-color: white;
+  overflow-y: scroll;
+  max-height: 690px;
+}
+
+.follow_user {
+  margin-bottom: 10px;
+  padding: 1em;
+}
+
+.follow_btn {
+  padding-left: 50px;
+  margin-bottom: 10px;
+}
+
+.follow_icon {
+  width: 130px;
+  height: 130px;
+  border: 1px solid #FFCC33;
+  border-radius: 100px;
+  background-color: white;
+}
+
+.follow_user_name {
+  position: relative;
+  font-size: 20px;
+  margin-left: 10px;
+  font-weight: bold;
+  color: black;
 }
 
 /*edit*/

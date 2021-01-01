@@ -26,7 +26,7 @@ body {
 
 main {
   flex: 1;
-  margin-top: 81px;
+  margin-top: 110px;
 }
 
 /*コメント*/
@@ -40,7 +40,7 @@ main {
   bottom: 10px;
   width: 250px;
   max-height: 300px;
-  border: 2px solid white;
+  border: 2px solid #FFCC33;
   border-radius: 10px;
 }
 
@@ -81,21 +81,88 @@ main {
   width: 100%;
 }
 
+.nav-body {
+  background-color: rgba(0,120,255,0.9);
+}
+
 .title {
   position: absolute;
-  top: 9px;
+  top: 15px;
   left: 70px;
 }
 
-.fish1 {
-  position: absolute;
-  top: 13px;
+@media screen and (max-width: 1200px) {
+  .item-name {
+    max-width: 110px;
+    margin: auto;
+  }
+
+  .search-item {
+    margin: auto;
+  }
 }
 
-.fish2 {
-  position: absolute;
-  left: 250px;
-  top: 13px;
+@media screen and (max-width: 990px) {
+  .item-name {
+    max-width: 500px;
+  }
+}
+
+@media screen and (max-width: 3000px) {
+  .title {
+    position: absolute;
+    top: 9px;
+    left: 70px;
+  }
+  
+  .fish1 {
+    position: absolute;
+    top: 13px;
+  }
+  
+  .fish2 {
+    position: absolute;
+    left: 243px;
+    top: 13px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .title {
+    position: absolute;
+    top: 18px;
+    left: 70px;
+  }
+  
+  .fish1 {
+    position: absolute;
+    top: 22px;
+  }
+  
+  .fish2 {
+    position: absolute;
+    left: 243px;
+    top: 22px;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .title {
+    position: absolute;
+    top: 9px;
+    left: 70px;
+  }
+  
+  .fish1 {
+    position: absolute;
+    top: 13px;
+  }
+  
+  .fish2 {
+    position: absolute;
+    left: 243px;
+    top: 13px;
+  }
 }
 
 #search {
@@ -107,12 +174,12 @@ main {
 
 .search_form {
   height: 35px;
-  width: 230px;
+  width: 200px;
 }
 
 #sbtn {
   position: relative;
-  left: 228px;
+  left: 198px;
   bottom: 35px;
   padding: 2px;
   width: 55px;
@@ -155,7 +222,7 @@ main {
 
 .flash {
   position: fixed;
-  top: 70px;
+  top: 90px;
   text-align: center;
   width: 100%;
   z-index: 20;

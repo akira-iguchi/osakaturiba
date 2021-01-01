@@ -15,7 +15,7 @@
               <%= form_with(model: current_user.favorites.find_by(spot_id: @spot.id), local: true, method: :delete) do |f| %>
                 <%= hidden_field_tag :spot_id, @spot.id %>
                 <%= hidden_field_tag :page_id, 4 %>
-                <%= f.submit 'お気に入り解除', data: { confirm: "本当にお気に入り解除しますか?" }, class: 'btn btn-danger btan mx-auto d-block' %>
+                <%= f.submit 'お気に入り中', data: { confirm: "お気に入り解除しますか?" }, class: 'btn btn-success btan mx-auto d-block' %>
               <% end %>
               
             <% else %>

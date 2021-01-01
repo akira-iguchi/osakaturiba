@@ -1,8 +1,8 @@
 <header class="mb-4 header">
     <% if user_signed_in? %>
-      <nav class="navbar navbar-expand-xl navbar-dark bg-primary">
+      <nav class="navbar navbar-expand-lg navbar-dark nav-body">
     <% else %>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav class="navbar navbar-expand-lg navbar-dark nav-body">
     <% end %>
 
     <p><i class="fish1 fas fa-fish fa-2x"></i><a class="title navbar-brand" href="/">大阪釣りスポット</a><i class="fish2 fas fa-fish fa-2x fa-rotate-180"></i></p>
@@ -13,26 +13,26 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
-        
+
         <!--釣り場検索機能-->
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown search-item">
           <%= form_with url: spot_search_path, id: "search",  method: :get, local: true do |f| %>
-            <%= f.text_field :name, class: 'form-control search_form', placeholder: "釣り場や地域を入力しよう!" %>
+            <%= f.text_field :name, class: 'form-control search_form', placeholder: "釣り場や地域を入力" %>
             <%= f.submit :検索, class: "btn btn-success", id: "sbtn" %>
           <% end %>
         </li>
-        
+
         <!--釣り方一覧-->
-        <li class="nav-item dropdown"><%= link_to '釣り方一覧', fishing_types_path, class: 'nav-link' %></li>
+        <li class="nav-item dropdown item-name"><%= link_to '釣り方', fishing_types_path, class: 'nav-link' %></li>
 
         <% if user_signed_in? %>
-
+ 
           <!--フィッシング記録一覧-->
-          <li class="nav-item dropdown"><a href="/users/<%= current_user.id %>/records" class="nav-link">フィッシング記録<i class="fas fa-pen"></i></a></li>
+          <li class="nav-item dropdown item-name"><a href="/users/<%= current_user.id %>/records" class="nav-link">フィッシング記録<i class="fas fa-pen"></i></a></li>
 
           <!--釣り場のお気に入りランキング機能-->
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">お気に入りランキング<i class="fas fa-crown"></i></a>
+          <li class="nav-item dropdown item-name">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">ランキング<i class="fas fa-crown"></i></a>
             <ul class="ranking dropdown-menu dropdown-menu-right">
               <!--前のいいね数を一時的に保存できる変数lastFavoriteを作成-->
               <% lastFavorite = 0 %>
@@ -62,8 +62,8 @@
             </ul>
           </li> 
   
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
+          <li class="nav-item dropdown item-name">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">ユーザー</a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item"><%= link_to 'マイプロフィール', user_path(current_user) %></li>
               <li class="dropdown-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
@@ -71,9 +71,10 @@
           </li>
           
         <% else %>
-          
+
           <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'ログイン', user_session_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'nav-link' %></li>
           
         <% end %>
       </ul>
