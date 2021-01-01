@@ -22,6 +22,8 @@
           <% end %>
         </li>
         
+        <!--釣り方一覧-->
+        <li class="nav-item dropdown"><%= link_to '釣り方一覧', fishing_types_path, class: 'nav-link' %></li>
 
         <% if user_signed_in? %>
 
@@ -59,16 +61,6 @@
              <% end %>
             </ul>
           </li> 
-
-          <!--釣り方機能-->
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">釣り方</a>
-            <ul class="dropdown-menu dropdown-menu-right">
-             <li class="nav-item dropdown"></li>
-              <li class="dropdown-item"><%= link_to '釣り方一覧', fishing_types_path %></li>
-              <li class="dropdown-item"><%= link_to '釣り方投稿', new_fishing_type_path %></li>
-            </ul>
-          </li>
   
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
@@ -79,9 +71,6 @@
           </li>
           
         <% else %>
-
-          <!--釣り方一覧-->
-          <li class="nav-item dropdown"><%= link_to '釣り方一覧', fishing_types_path, class: 'nav-link' %></li>
           
           <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'ログイン', user_session_path, class: 'nav-link' %></li>
