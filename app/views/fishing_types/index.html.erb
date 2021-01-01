@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container fishtype_body">
   <h1 class="fishing_type">釣り方一覧</h1>
   <div class="row">
     <% @fishing_types.each do |f| %>
@@ -15,5 +15,11 @@
          <% end %>
       </div>
     <% end %>
+  </div>
+
+  <hr>
+
+  <div class="fishingtype_pages">
+    <%= paginate @fishing_types %>
   </div>
 </div>
