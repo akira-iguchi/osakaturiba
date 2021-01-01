@@ -35,6 +35,9 @@ ja:
         bait: エサ
         detail: 詳細
         start_time: 日付
+      fishing_type:
+        name: 名前
+        content: 内容
   
   errors:
     messages:

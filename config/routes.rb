@@ -29,6 +29,6 @@ Rails.application.routes.draw do
   get 'spot_search', to: 'spots#search'
   
   resources :districts, only: [:show]
-  resources :fishing_types, only: [:index]
+  resources :fishing_types, only: %i[index new create edit update destroy]
   resources :favorites, only: %i[create destroy]
 end

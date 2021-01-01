@@ -25,3 +25,30 @@
     });
   });
 }
+
+{
+  $(function (){
+    
+    var count = $(".js-text").text().replace(/\n/g, "改行").length;
+    
+    var now_count = 300 - count;
+    
+    if (count > 300) {
+      $(".js-text-count-300").css("color","red");
+    }
+    $(".js-text-count-300").text( "残り" + now_count + "文字");
+  
+    $(".js-text").on("keyup", function() {
+  
+      var count = $(this).val().replace(/\n/g, "改行").length;
+      var now_count = 300 - count;
+  
+      if (count > 300) {
+        $(".js-text-count-300").css("color","red");
+      } else {
+        $(".js-text-count-300").css("color","black");
+      }
+      $(".js-text-count-300").text( "残り" + now_count + "文字");
+    });
+  });
+}
