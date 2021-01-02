@@ -1,5 +1,16 @@
 /*show*/
 
+.spot_body {
+  background-image: url(turiozi.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color:rgba(255,255,255,0.7);
+  background-blend-mode: lighten;
+  border-radius: 10px;
+  width: auto;
+  padding: 1em;
+}
+
 .spot_name {
   margin-bottom: 10px;
 }
@@ -8,6 +19,7 @@
   border: 3px solid #FFCC33;
   margin-bottom: 10px;
   height: 450px;
+  box-shadow: 2px 10px 20px #808080; 
 }
 
 .favorite {
@@ -83,7 +95,7 @@
   color: #FFF;
   font-weight: bold;
   letter-spacing: 0.05em;
-  max-width: 800px;
+  max-width: 1000px;
 }
 
 .box2 {
@@ -92,7 +104,7 @@
   margin-bottom: 70px;
   padding: 1em;
   background: #EEEEEE;
-  max-width: 800px;
+  max-width: 1000px;
 }
 
 .botton {
@@ -122,6 +134,7 @@
   border: 3px solid #FFCC33;
   margin-bottom: 30px;
   height: 500px;
+  box-shadow: 2px 10px 20px #808080; 
 }
 
 .search_result {

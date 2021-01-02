@@ -25,7 +25,7 @@
       <div id='top_map'></div>
     </div>
     
-    <div class="mx-auto d-block area col-md-12 col-lg-6">
+    <div class="mx-auto d-block area col-md-11 col-lg-5">
       <div class="list">
         <h1 class="spot_title">釣り場一覧</h1>
         <p class="district_name"><%= link_to '南港', '/districts/1', class: "text-dark" %></p>
@@ -92,10 +92,10 @@
 // googlemap
 function initMap() {
 
-  var position ={lat: 34.5452, lng: 135.3050};
+  var position ={lat: 34.5352, lng: 135.3050};
 
   var map = new google.maps.Map(document.getElementById('top_map'), {
-      zoom: 10,
+      zoom: 10.3,
       center: position
   });
   var transitLayer = new google.maps.TransitLayer();

@@ -160,12 +160,19 @@
   background-size: cover;
   background-color:rgba(255,255,255,0.6);
   background-blend-mode: lighten;
-  width: auto;
   padding: 1em;
+  margin-top: 20px;
 }
  
 .form-table {
+  width: 80%;
   max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  border-collapse: collapse;
+  border: 2px solid #eee;
+  background-color: white;
 }
 
 .form-table th,
@@ -178,7 +185,6 @@
  
 .form-table th {
   background: #ffecea;
-  position: relative;
   width: 70px;
 }
 
