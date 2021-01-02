@@ -20,3 +20,8 @@ module RequestSpecHelper
     resource.class.name.underscore.to_sym
   end
 end
+
+RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include RequestSpecHelper, type: :request
+end

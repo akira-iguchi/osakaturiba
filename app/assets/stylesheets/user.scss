@@ -151,7 +151,7 @@ a.btn-radius-solid:hover {
   bottom: 16px;
   background-color: white;
   overflow-y: scroll;
-  max-height: 690px;
+  max-height: 460px;
 }
 
 .follow_user {
@@ -178,6 +178,24 @@ a.btn-radius-solid:hover {
   margin-left: 10px;
   font-weight: bold;
   color: black;
+}
+
+.follow_none {
+  padding: 105px 0;
+}
+
+.follow_none p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.comment_none {
+  padding: 20px 0;
+}
+
+.comment_none p {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 /*edit*/

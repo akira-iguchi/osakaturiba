@@ -46,7 +46,7 @@
           <tr>
             <th>詳細</th>
             <td>
-                <%= @record.detail %>
+              <%= safe_join("#{@record.detail}".split("\n"),tag(:br)) %>
             </td>
           </tr>
         <% end %>

@@ -138,12 +138,15 @@
 }
 
 .search_result {
+  padding-left: 30px;
   font-size: 25px;
   margin-bottom: 15px;
 }
 
 .none {
-  padding-left: 20px;
+  position: relative;
+  bottom: 10px;
+  padding-left: 40px;
   font-size: 23px;
 }
 
@@ -151,5 +154,4 @@
   position: relative;
   font-size: 20px;
   bottom: 10px;
-  right: 10px;
 }

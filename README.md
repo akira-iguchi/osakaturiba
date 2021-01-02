@@ -37,6 +37,11 @@ URL：http://osakaturiba.com/
 * ユーザー情報の編集
 * ゲストログイン
 
+<h3>フォロー機能</h3>
+
+* ユーザーをフォロー、フォロー解除
+* フォロー、フォロワー表示
+
 <h3>googlemap機能</h3>
 
 * 釣り場をgooglemapで表示
@@ -80,7 +85,7 @@ URL：http://osakaturiba.com/
 
 <h3>テスト機能</h3>
 
-+ Rspecによるテスト(example 171)
++ Rspecによるテスト(example 184)
 
 <h2>インフラ構成図</h2>
 

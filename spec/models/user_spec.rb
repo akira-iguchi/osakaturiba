@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
+  let(:user2) { create(:user) }
   let(:spot) { create(:spot) }
   let(:comment) { create(:comment) }
 
@@ -163,6 +164,21 @@ RSpec.describe User, type: :model do
       create(:favorite, user_id: user.id, spot_id: spot.id)
       user.favorite(spot)
       expect(user.favorite(spot)).to be_truthy
+    end
+
+    it 'フォローすることができること' do
+      expect { user.follow(user2) }.to change(user2.followers, :count).by(1)
+    end
+
+    it 'フォローを解除することができること' do
+      user.follow(user2)
+      expect { user.unfollow(user2) }.to change(user2.followers, :count).by(-1)
+    end
+
+    it 'フォローしてたらtrue,フォローしてなかったらfalseを返すこと' do
+      user.follow(user2)
+      expect(user.following?(user2)).to be_truthy
+      expect(user.following?(user)).to be_falsy
     end
 
     it 'ゲストユーザーの作成ができる' do

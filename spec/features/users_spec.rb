@@ -24,9 +24,7 @@ RSpec.feature 'Users', type: :feature do
     expect(page).to have_text('ログインしました。')
 
     # ユーザー詳細ページへ
-    click_link @user.name.to_s
-
-    # ユーザー詳細ページへ
+    click_link 'ユーザー'
     click_link 'マイプロフィール'
 
     # ユーザー編集ページへ

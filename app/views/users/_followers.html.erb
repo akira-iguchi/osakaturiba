@@ -1,6 +1,6 @@
 <div class="follow_body">
-  <% if users.any? %>
-    <div class="row">
+  <div class="row">
+    <% if users.any? %>
       <% users.each do |user| %>
           <div class="col-xl-6 text-center">
             <div class="follow_user">
@@ -12,6 +12,10 @@
             </div>
           </div>
       <% end %>
-    </div>
-  <% end %>
+    <% else %>
+      <div class="mx-auto d-block follow_none">
+        <p>フォローされていません</p>
+      </div>
+    <% end %>
+  </div>
 </div>

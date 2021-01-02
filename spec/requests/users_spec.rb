@@ -12,10 +12,10 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'GET #show' do
-    context 'ユーザーが存在する場合' do
+    context 'ユーザーが存在するとき' do
       before do
-        user = create(:user)
-        get user_url user.id
+        sign_in(user)
+        get user_path(user)
       end
 
       it 'リクエストが成功すること' do
@@ -73,7 +73,7 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'POST #create' do
-    describe 'パラメータが妥当な場合' do
+    describe 'パラメータが妥当なとき' do
       before do
         post user_registration_path
       end
@@ -116,7 +116,7 @@ RSpec.describe 'Users', type: :request do
       end
     end
 
-    context 'ゲストユーザーの場合' do
+    context 'ゲストユーザーのとき' do
       before do
         sign_in(@guest_user)
         patch user_registration_path, params: { user: attributes_for(:user).merge(password: 'testtest') }
