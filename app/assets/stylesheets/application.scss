@@ -26,7 +26,7 @@ body {
 
 main {
   flex: 1;
-  margin-top: 110px;
+  margin-top: 90px;
 }
 
 /*コメント*/
@@ -89,6 +89,10 @@ main {
   position: absolute;
   top: 15px;
   left: 70px;
+}
+
+.item-name-guest {
+  margin: auto;
 }
 
 @media screen and (max-width: 1200px) {
@@ -163,6 +167,23 @@ main {
     left: 243px;
     top: 13px;
   }
+}
+
+.title2 {
+  position: absolute;
+  top: 9px;
+  left: 70px;
+}
+
+.fish3 {
+  position: absolute;
+  top: 13px;
+}
+
+.fish4 {
+  position: absolute;
+  left: 243px;
+  top: 13px;
 }
 
 #search {

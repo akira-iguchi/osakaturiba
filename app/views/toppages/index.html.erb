@@ -18,80 +18,37 @@
   </div>
 </div>
   
-<div class="container">
+<div class="container top-body">
   <div class="row">
-    <div class="mx-auto d-block col-md-10 col-lg-5">
+    <div class="mx-auto d-block col-md-12 col-lg-6">
        <!--googlemap-->
       <div id='top_map'></div>
     </div>
     
-      <div class="area col-md-10 col-lg-6">
-        <div class="list">
-          <h1 class="spot_title">釣り場一覧</h1>
-          <p class="district_name"><%= link_to '南港', '/districts/1', class: "text-dark" %></p>
-            ・<%= link_to 'かもめ大橋', '/spots/1' %>&emsp;・<%= link_to 'シーサイドコスモ', '/spots/2' %>
-          <%
-=begin%>
- <p class="district_name"><%= link_to '淀川', '/districts/2', class: "text-dark" %></p> 
-<%
-=end%>
-          <p class="district_name"><%= link_to '泉大津', '/districts/5', class: "text-dark" %></p>
-            ・<%= link_to '助松埠頭', '/spots/9' %>&emsp;・<%= link_to '汐見埠頭砂上げ場', '/spots/10' %>
-          <p class="district_name"><%= link_to '貝塚', '/districts/2', class: "text-dark" %></p>
-            ・<%= link_to '貝塚人工島', '/spots/3' %>&emsp;・<%= link_to '貝塚人工島水路', '/spots/4' %>
-          <p class="district_name"><%= link_to '泉佐野', '/districts/4', class: "text-dark" %></p>
-            ・<%= link_to '食品コンビナート', '/spots/7' %>&emsp;・<%= link_to 'りんくう', '/spots/8' %>
-          <p class="district_name"><%= link_to '岬町', '/districts/3', class: "text-dark" %></p>
-            ・<%= link_to 'とっとパーク小島', '/spots/5' %>&emsp;・<%= link_to '深日港', '/spots/6' %>
-        </div>
-      </div>       
-  </div>
-  
-  <div>
-    <!--カレンダー-->
-    <%
-=begin%>
- <div class="col-lg-4">
-      <table>
-        <thead>
-          <tr>
-            <th id="prev">&laquo;</th>
-            <th id="title" colspan="5"></th>
-            <th id="next">&raquo;</th>
-          </tr>
-          <tr>
-            <th>日</th>
-            <th>月</th>
-            <th>火</th>
-            <th>水</th>
-            <th>木</th>
-            <th>金</th>
-            <th>土</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td id="today" colspan="7">今日の日付</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div> 
-<%
-=end%>
-  
-      <!--天気予報-->
-      <div class="entire_weather">
-        <div id="city-name"></div>
-        <div id="weather"></div>
+    <div class="mx-auto d-block area col-md-12 col-lg-6">
+      <div class="list">
+        <h1 class="spot_title">釣り場一覧</h1>
+        <p class="district_name"><%= link_to '南港', '/districts/1', class: "text-dark" %></p>
+          ・<%= link_to 'かもめ大橋', '/spots/1' %>&emsp;・<%= link_to 'シーサイドコスモ', '/spots/2' %>
+        <p class="district_name"><%= link_to '淀川', '/districts/6', class: "text-dark" %></p>
+          ・<%= link_to '伝法大橋周辺', '/spots/11' %>&emsp;・<%= link_to '淀川河川公園', '/spots/12' %>
+        <p class="district_name"><%= link_to '泉大津', '/districts/5', class: "text-dark" %></p>
+          ・<%= link_to '助松埠頭', '/spots/9' %>&emsp;・<%= link_to '汐見埠頭砂上げ場', '/spots/10' %>
+        <p class="district_name"><%= link_to '貝塚', '/districts/2', class: "text-dark" %></p>
+          ・<%= link_to '貝塚人工島', '/spots/3' %>&emsp;・<%= link_to '貝塚人工島水路', '/spots/4' %>
+        <p class="district_name"><%= link_to '泉佐野', '/districts/4', class: "text-dark" %></p>
+          ・<%= link_to '食品コンビナート', '/spots/7' %>&emsp;・<%= link_to 'りんくう', '/spots/8' %>
+        <p class="district_name"><%= link_to '岬町', '/districts/3', class: "text-dark" %></p>
+          ・<%= link_to 'とっとパーク小島', '/spots/5' %>&emsp;・<%= link_to '深日港', '/spots/6' %>
       </div>
+    </div>       
   </div>
   
-  <div class = "under mx-auto d-block">
+  <div class = "under">
     
-    <h2 class="comment_title">釣り場コメント一覧</h2>
-    
+    <div class="top_comment">
+      <h2 class="comment_title">釣り場コメント一覧</h2>
+      
       <div class="center jumbotron">
         <% @comments.each do |c| %>
         
@@ -119,6 +76,13 @@
         <% end %>
         <%= paginate @comments %>
       </div>
+    </div>
+
+    <!--天気予報-->
+    <aside class="entire_weather">
+      <div id="city-name"></div>
+      <div id="weather"></div>
+    </aside>
   </div>
 </div>
 
@@ -128,7 +92,7 @@
 // googlemap
 function initMap() {
 
-  var position ={lat: 34.4952, lng: 135.3050};
+  var position ={lat: 34.5452, lng: 135.3050};
 
   var map = new google.maps.Map(document.getElementById('top_map'), {
       zoom: 10,

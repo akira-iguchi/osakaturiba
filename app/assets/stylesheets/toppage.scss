@@ -2,13 +2,12 @@
 
 .top {
   position: relative;
-  bottom: 54px;
+  bottom: 90px;
   background-image: url("turi.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 75px 20px 20px;
   z-index: 0;
 }
 
@@ -77,18 +76,24 @@
   }
 }
 
+.top-body {
+  position: relative;
+  bottom: 60px;
+}
+
 #top_map {
   border: 3px solid #FFCC33;
   margin-bottom: 40px;
-  height: 500px;
+  height: 600px;
 }
 
 .area {
   text-align: center;
+  width: 100%;
 }
 
 .list {
-  display: inline-block;
+  display: block;
   text-align: left;
   margin-bottom: 25px;
   padding: 0.5em 2em .5em;
@@ -97,6 +102,7 @@
 }
 
 .spot_title {
+  text-align: center;
   margin-top: 5px;
   font-size: 55px;
   text-shadow: 2px 1px 2px #808080; 
@@ -108,128 +114,82 @@
   margin: 3px;
 }
 
+.top_spot {
+  position: relative;
+  bottom: 10px;
+  font-size: 15px;
+}
+
+@media screen and (max-width: 990px) {
+  .entire_weather {
+    display: none;
+  }
+}
+
 .entire_weather {
-  margin: 0 auto;
-  max-width: 1000px;
+  margin-left: 20px;
+  background-color: white;
+  text-align: center;
+  padding: 1.5em;
+  width: 400px;
+  height: 800px;
+  border: 1px solid #EEEEEE;
+  border-radius: 10px;
 }
 
 #city-name {
-  padding: 0.25em 0.5em;
-  color: #364e96;
-  background: #CCFFFF	;
-  border-left: solid 5px #7db4e6;
+  margin-bottom: 30px;
 }
 
 #weather {
-  overflow-y: hidden;
-  overflow-x: scroll;
-  display: flex;
   margin-top: 10px;
   text-align: center;
 }
 
-#weather::-webkit-scrollbar {
-  height: 3px;
-}
-
-#weather::-webkit-scrollbar-thumb {
-  background-color: blue;
-  border-radius: 3px;
-}
-
-#weather::-webkit-scrollbar-track {
-  background: rgba(100,100,100, .5);
-}
-
 .weather-report {
-  width: 200px;
-  float: left;
-  height: 260px;
-  background-color: white;
+  width: 350px;
+  height: 100px;
+  background-color: #BAD3FF;
+  box-shadow: 0 0 8px 8px #BAD3FF;
+  margin-bottom: 40px;
+  display: flex;
 }
 
 .weather-icon {
-  position: relative;
-  bottom: 10px;
   border-style: hidden;
-  width: 200px;
+  width: 100px;
+  height: 100px;
 }
 
 .weather-date {
-  font-size: 20px;
+  position: relative;
+  top: 15px;
+  font-size: 17px;
   opacity: 0.7;
 }
 
-.weather-time {
-  font-size: 20px;
-  opacity: 0.7;
+.weather-main {
+  position: relative;
+  top: 40px;
+  right: 150px;
+  font-size: 17px;
 }
 
 .weather-temp {
-  font-size: 20px;
   position: relative;
-  bottom: 34px;
-  margin-bottom: 10px;
+  top: 40px;
+  right: 60px;
+  font-size: 17px;
   opacity: 0.7;
 }
 
-table {
-  width: 80%;
-  margin-left:auto; 
-  margin-right:auto;
-  margin-bottom: 15px;
-  border-collapse: collapse;
-  border: 2px solid #eee;
-  background-color: white;
-}
-
-thead,
-tfoot {
-  background: #eee;
-}
-
-th,
-td {
-  padding: 8px;
-  text-align: center;
-}
-
-tbody td:first-child {
-  color: red;
-}
-
-tbody td:last-child {
-  color: blue;
-}
-
-tfoot {
-  font-weight: bold;
-}
-
-td.disabled {
-  opacity: 0.3;
-}
-
-td.today {
-  font-weight: bold;
-}
-
-#prev,
-#next,
-#today {
-  cursor: pointer;
-  user-select: none;
-}
-
-#prev:hover,
-#next:hover,
-#today:hover {
-  color: #C0C0C0;
-}
-
 .under {
-  max-width: 800px;
-  margin-top: 30px;
+  margin-top: 20px;
+  display: flex;
+}
+
+.top_comment {
+  width: 800px;
 }
 
 .comment_title {

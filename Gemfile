@@ -102,6 +102,8 @@ gem "jquery-rails"
 
 gem 'rails-i18n', '~> 6.0.0'
 
+gem 'i18n-js'
+
 gem 'gon'
 
 gem 'rake', '< 11.0'
