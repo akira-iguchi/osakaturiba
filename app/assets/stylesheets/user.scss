@@ -30,6 +30,22 @@
   border: none;
 }
 
+.new_btn {
+  border: 2px solid rgba(0,120,255,1);
+  color: rgba(0,120,255,1);
+  
+  height: 41px;
+  width: 100px; 
+  border-radius: 3px;
+  background: rgba(0,153,255,0.1);
+  transition: .3s;
+}
+
+.new_btn:hover {
+  color: #fff;
+  background:rgba(0,120,255,1);
+}
+
 /*show*/
 
 .user_body {

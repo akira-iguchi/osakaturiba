@@ -24,10 +24,10 @@
           <label for="js-passcheck">パスワードを表示する</label>
           <input type="checkbox" id="js-passcheck"/>
         </p>
-        
-        <button class="login_btn">
-          <%= f.submit 'ログイン', class: 'btn btn-primary' %>
-        </button>
+
+        <%= button_tag :type => "submit", :class =>"new_btn" do %>
+            ログイン &nbsp;<i class="fas fa-angle-right"></i>
+          <% end %>
         
       </div>
           
