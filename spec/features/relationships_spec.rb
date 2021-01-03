@@ -6,8 +6,7 @@ RSpec.feature 'Relationships', type: :feature do
                    name: 'test',
                    email: 'test@example.com',
                    password: 'password',
-                   password_confirmation: 'password'
-                  )
+                   password_confirmation: 'password')
 
     @other = create(:user)
   end

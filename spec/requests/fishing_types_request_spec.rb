@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "FishingTypes", type: :request do
+RSpec.describe 'FishingTypes', type: :request do
   let(:fishing_type) { create(:fishing_type) }
 
-  describe "GET #index" do
+  describe 'GET #index' do
     describe '釣り方が存在する場合' do
       before do
         @fishing_type = create(:fishing_type)
@@ -23,5 +23,4 @@ RSpec.describe "FishingTypes", type: :request do
       end
     end
   end
-
 end

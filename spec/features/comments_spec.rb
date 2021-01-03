@@ -6,14 +6,12 @@ RSpec.feature 'Comments', type: :feature do
                    name: 'test',
                    email: 'test@example.com',
                    password: 'test123',
-                   password_confirmation: 'test123'
-                  )
+                   password_confirmation: 'test123')
 
     @district = create(:district,
                        name: '南港',
                        latitude: 34.6261,
-                       longitude: 135.419
-                      )
+                       longitude: 135.419)
 
     @spot = create(:spot,
                    id: 1,
@@ -23,8 +21,7 @@ RSpec.feature 'Comments', type: :feature do
                    address: '〒559-0032 大阪府大阪市住之江区南港南５丁目',
                    latitude: 34.6114,
                    longitude: 135.419,
-                   district: @district
-                  )
+                   district: @district)
   end
 
   scenario 'コメントの作成、削除をする' do

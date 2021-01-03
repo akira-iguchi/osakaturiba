@@ -7,11 +7,10 @@ RSpec.describe 'Comments', type: :request do
     @spot = create(:spot)
 
     @user2 = create(:user,
-      name: 'test2',
-      email: 'tes2t@example.com',
-      password: 'test123',
-      password_confirmation: 'test123'
-     )
+                    name: 'test2',
+                    email: 'tes2t@example.com',
+                    password: 'test123',
+                    password_confirmation: 'test123')
   end
 
   describe '#create' do
@@ -51,7 +50,7 @@ RSpec.describe 'Comments', type: :request do
           post spot_comments_path(@spot), params: { comment: comment_params }, xhr: true
         end.to change(Comment.all, :count).by(1)
       end
-      
+
       it '失敗時はコメントを作成できないこと' do
         comment_params = attributes_for(:comment, content: nil, spot_id: @spot.id)
         expect do

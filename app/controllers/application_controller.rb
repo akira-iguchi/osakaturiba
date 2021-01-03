@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+
   def check_guest
     if current_user.email == 'guest@example.com'
       redirect_to root_path
@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user
-    unless user_signed_in? 
+    unless user_signed_in?
       redirect_to new_user_session_path
       flash[:danger] = '新規登録またはログインしてください。'
     end
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     @count_followings = user.followings.count
     @count_followers = user.followers.count
   end
-  
+
   private
 
   def spot_ranks
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :image])
-    end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name image])
+  end
 end

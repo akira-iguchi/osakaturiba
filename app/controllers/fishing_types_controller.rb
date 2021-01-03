@@ -7,13 +7,13 @@ class FishingTypesController < ApplicationController
   end
 
   # 実装思考中
-  # def new 
+  # def new
   #   @fishing_type = FishingType.new
   # end
 
   # def create
   #   @fishing_type = FishingType.new(fishing_type_params)
-  #   if @fishing_type.save 
+  #   if @fishing_type.save
   #     flash[:success] = '釣り方を投稿しました。'
   #     redirect_to fishing_types_path
   #   else

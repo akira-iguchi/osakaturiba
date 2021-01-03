@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_user
   before_action :correct_user, only: [:destroy]
   before_action :spot_ranks, only: [:create]
-  
+
   def create
     @comment = current_user.comments.build(comment_params)
     @spot = Spot.find(params[:spot_id])

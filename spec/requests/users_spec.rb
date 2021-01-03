@@ -64,7 +64,7 @@ RSpec.describe 'Users', type: :request do
         sign_in(@guest_user)
         get edit_user_registration_path(@guest_user)
       end
-      
+
       it 'トップページにリダイレクトされること' do
         expect(response.status).to eq 302
         expect(response).to redirect_to root_path
@@ -96,7 +96,7 @@ RSpec.describe 'Users', type: :request do
         expect(response).to redirect_to new_user_session_path
       end
     end
-    
+
     context 'ログイン状態でパラメータが妥当な場合' do
       before do
         sign_in(user)
@@ -121,7 +121,7 @@ RSpec.describe 'Users', type: :request do
         sign_in(@guest_user)
         patch user_registration_path, params: { user: attributes_for(:user).merge(password: 'testtest') }
       end
-      
+
       it 'トップページにリダイレクトされること' do
         expect(response.status).to eq 302
         expect(response).to redirect_to root_path

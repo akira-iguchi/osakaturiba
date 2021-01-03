@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   root to: 'toppages#index'
-  
+
   devise_for :users, controllers: {
-    registrations: "users/registrations",
-    sessions:      'users/sessions',
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
   }
 
   devise_scope :user do
@@ -21,16 +21,16 @@ Rails.application.routes.draw do
       get :search
     end
   end
-  
+
   resources :spots, only: [:show] do
     resources :comments, only: %i[create destroy] do
     end
   end
-  
+
   get 'spot_search', to: 'spots#search'
-  
+
   resources :districts, only: [:show]
   resources :fishing_types, only: %i[index]
   resources :favorites, only: %i[create destroy]
-  resources :relationships, only: [:create, :destroy]
+  resources :relationships, only: %i[create destroy]
 end

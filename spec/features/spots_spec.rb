@@ -6,8 +6,7 @@ RSpec.feature 'Spots', type: :feature do
                        id: 1,
                        name: '南港',
                        latitude: 34.6261,
-                       longitude: 135.419
-                      )
+                       longitude: 135.419)
 
     @spot = create(:spot,
                    id: 1,
@@ -17,8 +16,7 @@ RSpec.feature 'Spots', type: :feature do
                    address: '〒559-0032 大阪府大阪市住之江区南港南５丁目',
                    latitude: 34.6114,
                    longitude: 135.419,
-                   district: @district
-                  )
+                   district: @district)
   end
 
   scenario 'トップページから直接スポット詳細ページへ行く' do

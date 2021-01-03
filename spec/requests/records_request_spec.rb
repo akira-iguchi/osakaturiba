@@ -1,36 +1,33 @@
 require 'rails_helper'
 
-RSpec.describe "Records", type: :request do
+RSpec.describe 'Records', type: :request do
   let(:user) { create(:user) }
 
   before do
     @record = create(:record,
-                        spot: "かもめ大橋",
-                        fishingtype: "サビキ釣り",
-                        bait: "アミエビ",
-                        weather: "晴れ",
-                        detail: "アジが釣れた。",
-                        fishing_start_time: '2020-12-26 07:00:00',
-                        fishing_end_time: '2020-12-26 08:01:00',
-                        start_time: Time.now,
-                        user: user
-                        )
+                     spot: 'かもめ大橋',
+                     fishingtype: 'サビキ釣り',
+                     bait: 'アミエビ',
+                     weather: '晴れ',
+                     detail: 'アジが釣れた。',
+                     fishing_start_time: '2020-12-26 07:00:00',
+                     fishing_end_time: '2020-12-26 08:01:00',
+                     start_time: Time.now,
+                     user: user)
 
     @user2 = create(:user,
                     name: 'test2',
                     email: 'tes2t@example.com',
                     password: 'test123',
-                    password_confirmation: 'test123'
-                    )
+                    password_confirmation: 'test123')
 
-    @record2 = create(:record, spot: "シーサイドコスモ",
-                      fishingtype: "ルアー釣り",
-                      start_time: Time.now,
-                      user: @user2
-                      )
+    @record2 = create(:record, spot: 'シーサイドコスモ',
+                               fishingtype: 'ルアー釣り',
+                               start_time: Time.now,
+                               user: @user2)
   end
 
-  describe "GET #index" do
+  describe 'GET #index' do
     context 'ログイン状態でフィシング記録が存在する場合' do
       before do
         sign_in(user)

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, only: [:likes, :followers]
+  before_action :authenticate_user, only: %i[likes followers]
   before_action :correct_user, only: [:likes]
   before_action :spot_ranks
 
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @likes = @user.likes.page(params[:page])
   end
-  
+
   def followers
     @user = User.find(params[:id])
     @followers = @user.followers.page(params[:page])

@@ -6,8 +6,7 @@ RSpec.feature 'Districts', type: :feature do
                        id: 1,
                        name: '南港',
                        latitude: 34.6261,
-                       longitude: 135.419
-                      )
+                       longitude: 135.419)
   end
 
   scenario '地区詳細ページへ行く' do
@@ -18,4 +17,3 @@ RSpec.feature 'Districts', type: :feature do
     click_link @district.name.to_s
   end
 end
-

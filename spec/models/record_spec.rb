@@ -70,7 +70,7 @@ RSpec.describe Record, type: :model do
 
   describe '文字数の検証' do
     it '釣り場が30文字以内の場合は登録できること' do
-      record.spot= 'a' * 30
+      record.spot = 'a' * 30
       record.valid?
       expect(record).to be_valid
     end
@@ -82,7 +82,7 @@ RSpec.describe Record, type: :model do
     end
 
     it '釣り方が30文字以内の場合は登録できること' do
-      record.fishingtype= 'a' * 30
+      record.fishingtype = 'a' * 30
       record.valid?
       expect(record).to be_valid
     end

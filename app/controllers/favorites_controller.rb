@@ -13,9 +13,10 @@ class FavoritesController < ApplicationController
     spot = Spot.find(params[:spot_id])
     current_user.unfavorite(spot)
     flash[:success] = 'お気に入り登録を解除しました。'
-    if page.to_i == 3
+    case page.to_i
+    when 3
       redirect_to current_user
-    elsif page.to_i == 4
+    when 4
       redirect_to spot
     end
   end

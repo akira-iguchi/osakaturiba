@@ -6,8 +6,7 @@ RSpec.feature 'Users', type: :feature do
                    name: 'test',
                    email: 'test@example.com',
                    password: 'test123',
-                   password_confirmation: 'test123'
-                  )
+                   password_confirmation: 'test123')
   end
 
   scenario 'ユーザー情報を編集する' do

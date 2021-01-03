@@ -57,7 +57,7 @@ RSpec.feature 'Favorites', type: :feature do
       click_button 'お気に入り中'
       expect(page).to have_text('お気に入り登録を解除しました。')
     end.to change(Favorite.all, :count).by(-1)
-    
+
     # ユーザー詳細ページへ
     click_link 'ユーザー'
     click_link 'マイプロフィール'

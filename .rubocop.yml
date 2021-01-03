@@ -1,0 +1,67 @@
+AllCops:
+  TargetRubyVersion: 2.6.3
+  Exclude:
+    - 'Gemfile'
+    - 'node_modules/**/*'
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+    - 'bin/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'test/**/*'
+    - 'spec/**/*'
+
+Metrics/AbcSize:
+   Max: 30
+
+MethodLength:
+  CountComments: true
+  Max: 15
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Guardfile'
+    - 'lib/**/*'
+    - 'app/controllers/*'
+
+Layout/IndentationWidth:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/SafeNavigation:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 150
+
+Style/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+Style/EmptyLines:
+  Enabled: false
+
+Style/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Style/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+Style/EmptyLinesAroundMethodBody:
+  Enabled: false
+
+Style/EmptyLinesAroundBlockBody:
+  Enabled: false

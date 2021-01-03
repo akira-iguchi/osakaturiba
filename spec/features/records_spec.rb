@@ -6,8 +6,7 @@ RSpec.feature 'Records', type: :feature do
                    name: 'test',
                    email: 'test@example.com',
                    password: 'test123',
-                   password_confirmation: 'test123'
-                  )
+                   password_confirmation: 'test123')
   end
 
   scenario 'フィッシング記録の作成、編集、削除をする' do
@@ -48,9 +47,9 @@ RSpec.feature 'Records', type: :feature do
     end
     expect(current_path).to eq user_record_path(user_id: @user, id: record)
     expect(page).to have_text('サビキ釣り')
-    
+
     # ーーーーフィッシング記録の編集ーーーー
-    
+
     # ユーザー編集ページへ
     click_link '編集する'
     expect(page).to have_text('フィッシング記録の編集')
@@ -58,7 +57,7 @@ RSpec.feature 'Records', type: :feature do
     # プロフィールを編集する
     fill_in 'record[fishingtype]', with: 'ルアー釣り'
     click_button '変更する'
-    
+
     # 編集が反映されているか検証する
     record.reload
     expect(current_path).to eq user_record_path(user_id: @user, id: record)
@@ -68,7 +67,7 @@ RSpec.feature 'Records', type: :feature do
     end
 
     # ーーーーフィッシング記録の削除ーーーー
-    
+
     # フィシング記録を削除する
     expect(page).to have_text('ルアー釣り')
     expect do

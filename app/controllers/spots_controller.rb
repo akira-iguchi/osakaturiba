@@ -19,12 +19,12 @@ class SpotsController < ApplicationController
              end
 
     @district = if params[:name].present?
-               District.where('name LIKE ?', "%#{params[:name]}%")
-             else
-               District.none
-             end
+                  District.where('name LIKE ?', "%#{params[:name]}%")
+                else
+                  District.none
+                end
   end
-  
+
   private
 
   def spot_params
