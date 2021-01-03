@@ -1,6 +1,10 @@
+@mixin tablet {@media screen and (max-width: 768px) {@content;}}
+@mixin smartphone {@media screen and (max-width: 425px) {@content;}}
+
 // index
 
 .record_title {
+  font-size: 37px;
   font-weight: bold;
 }
 
@@ -9,6 +13,23 @@
   padding: 1em;
   border-radius: 1em;
   margin-bottom: 30px;
+}
+
+.record-logo {
+  width: 90%;
+  background-color: white;
+  transform: rotate( -10deg );
+  @include tablet{
+    width: 4em;
+  }
+
+  @include smartphone{
+    width: 2em;
+  }
+  
+  &:hover{
+    transform: scale(1.05);
+  }
 }
 
 .record_form_body {
