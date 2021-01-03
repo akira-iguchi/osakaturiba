@@ -94,7 +94,7 @@ URL：http://osakaturiba.com/
 * 自分のフィッシング記録しか表示されない
 * 記録した日をカレンダーに表示
 
-<img src="public/turiba.jpg">
+<video src="/assets/videos/GIF.mp4" loop autoplay muted></video>
 
 <h3>テスト機能</h3>
 
