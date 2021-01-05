@@ -77,7 +77,7 @@
 // googlemap
 function initMap() {
 
-  var position ={lat: 34.5152, lng: 135.3050};
+  var position ={lat: 34.5352, lng: 135.3050};
 
   var map = new google.maps.Map(document.getElementById('search_map'), {
       zoom: 10.2,
@@ -86,7 +86,7 @@ function initMap() {
   var transitLayer = new google.maps.TransitLayer();
   transitLayer.setMap(map);
 
-  <% @districts.each do |d| %>
+  <% @district.each do |d| %>
     (function(){
       var contentString = '<%= link_to d.name, district_path(d) %>'; 
       var infowindow = new google.maps.InfoWindow({
@@ -95,6 +95,24 @@ function initMap() {
 
       var marker = new google.maps.Marker({
           position:{lat: <%= d.latitude %>, lng: <%= d.longitude %>},
+          map: map,
+          title: contentString,
+      });
+      marker.addListener('click', function() {
+          infowindow.open(map, marker);
+      });
+    })();
+  <% end %>
+
+  <% @spots.each do |s| %>
+    (function(){
+      var contentString = '<%= link_to s.name, spot_path(s) %>'; 
+      var infowindow = new google.maps.InfoWindow({
+          content: contentString
+      });
+
+      var marker = new google.maps.Marker({
+          position:{lat: <%= s.latitude %>, lng: <%= s.longitude %>},
           map: map,
           title: contentString,
       });

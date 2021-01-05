@@ -106,6 +106,7 @@
   function initMap() {
   
     var position ={lat: <%= @spot.latitude %>, lng: <%= @spot.longitude %>};
+    
     var map = new google.maps.Map(document.getElementById('spot_map'), {
               zoom: 16, 
               center: position
