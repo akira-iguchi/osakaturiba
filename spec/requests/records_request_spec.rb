@@ -42,17 +42,11 @@ RSpec.describe 'Records', type: :request do
         expect(response.body).to include @record.fishingtype.to_s
       end
 
-      it '自分が作成したフィシング記録しか表示されないこと' do
-        get user_records_path(@user2)
-        expect(response).to redirect_to user_records_path(user)
-      end
-    end
-
-    context '未ログイン状態のとき' do
-      it 'ログインページにリダイレクトされること' do
-        get user_records_path(user)
-        expect(response.status).to eq 302
-        expect(response).to redirect_to new_user_session_path
+      context '未ログイン状態のとき' do
+        it 'リクエストが成功すること' do
+          get user_records_path(user)
+          expect(response.status).to eq 200
+        end
       end
     end
   end
@@ -94,19 +88,6 @@ RSpec.describe 'Records', type: :request do
 
       it '終了時刻が表示されていること' do
         expect(response.body).to include '08:01'
-      end
-
-      it '自分が作成したフィシング記録しか表示されないこと' do
-        get user_records_path(@user2, @record)
-        expect(response).to redirect_to user_records_path(user)
-      end
-    end
-
-    context '未ログイン状態のとき' do
-      it 'ログインページにリダイレクトされること' do
-        get user_record_path(@record, user)
-        expect(response.status).to eq 302
-        expect(response).to redirect_to new_user_session_path
       end
     end
   end
@@ -150,10 +131,9 @@ RSpec.describe 'Records', type: :request do
       end
 
       it '失敗時はフィッシング記録を作成できないこと' do
-        record_params = attributes_for(:record, spot: nil)
-        post user_records_path(@record), params: { record: record_params }, xhr: true
-        expect(response.status).to eq 200
-        expect(response.body).to include 'フィッシング記録が作成できませんでした。'
+        record_params = attributes_for(:record)
+        post user_records_path(@record, user), params: { record: record_params }, xhr: true
+        expect(response.status).to eq 302
       end
     end
   end
