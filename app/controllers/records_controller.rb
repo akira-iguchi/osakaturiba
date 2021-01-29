@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  before_action :authenticate_user, only: %i[create, edit update destroy]
+  before_action :authenticate_user, only: %i[create edit update destroy]
   before_action :correct_user, only: %i[edit update destroy]
   before_action :spot_ranks
 

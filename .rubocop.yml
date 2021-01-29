@@ -27,6 +27,9 @@ Metrics/BlockLength:
 Layout/IndentationWidth:
   Enabled: false
 
+Style/RedundantSelf:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   Enabled: false
 
