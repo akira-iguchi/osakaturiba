@@ -1,5 +1,9 @@
 <div class="container">
-  <span class="user_title"><i class="fa fa-user" aria-hidden="true"></i>マイプロフィール</span>
+  <% if @user == current_user %>
+    <span class="user_title"><i class="fa fa-user" aria-hidden="true"></i>マイプロフィール</span>
+  <% else %>
+    <span class="user_title"><i class="fa fa-user" aria-hidden="true"></i>ユーザープロフィール</span>
+  <% end %>
   <div class="row user_body">
     <div class="mx-auto d-block col-md-4">
       <div class="name_icon">
@@ -11,17 +15,21 @@
             <%= image_tag 'default.jpg', class:"icon",alt: "" %>
           <% end %>
         </div>
-        
+
         <div class="profile_name">
           <div class="user_name"><%= @user.name %></div>
         </div>
       </div>
-      
+
       <div class="user_edit">
         <button class="edit_btn">
 
         <!--フォローボタンの位置を編集ボタンと同じ位置にしたいためここに配置-->
         <%= render 'relationships/follow_button', user: @user %>
+
+        <% unless @user ==  current_user %>
+          <a href="/users/<%= @user.id %>/records" class="btn user_record">フィッシング記録<i class="fas fa-pen"></i></a>
+        <% end %>
 
           <!--ユーザー詳細ページと現在のユーザーの名前が同じなら編集ボタン表示（ゲストユーザーなら表示しない）-->
           <% if @user == current_user %>
@@ -47,12 +55,12 @@
   <div class="row">
     <div class="mx-auto d-block col-sm-11 col-lg-6">
       <div class="left">
-        
+
         <h2 class="u_come">釣り場コメント一覧</h2>
-        
+
         <div class="box">
           <% @comments.each do |c| %>
-          
+
             <div>
               釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
             </div>
@@ -60,12 +68,12 @@
             <div>
               <%= l c.created_at, format: :short %>
             </div>
-            
+
             <!--改行-->
             <div class="user_content">
               <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
             </div>
-            
+
             <!--画像-->
             <div class="img_position">
               <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
@@ -73,23 +81,23 @@
               <% end %>
             </div>
 
-            <button class="botton">
-              <!--ユーザー詳細ページと現在のユーザーの名前が同じならコメント削除ボタン表示-->
-              <% if current_user == c.user %>
+            <!--ユーザー詳細ページと現在のユーザーの名前が同じならコメント削除ボタン表示-->
+            <% if current_user == c.user %>
+              <button class="botton">
                 &nbsp;<%= link_to "削除", user_comment_path(@user,c,page_id: 1), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger btn-sm' %>
-              <% end %>
-            </button>
+              </button>
+            <% end %>
             <hr>
           <% end %>
           <%= paginate @comments %>
         </div>
       </div>
     </div>
-    
+
     <!--お気に入りした釣り場一覧-->
     <div class="mx-auto d-block col-sm-11 col-lg-6">
         <%= render 'favorites/likes', likes: @likes %>
     </div>
-    
+
   </div>
 </div>

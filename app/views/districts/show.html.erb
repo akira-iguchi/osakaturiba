@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-      <div class="mx-auto d-block col-md-10 col-lg-5">
-        
+    <div class="mx-auto d-block col-md-10 col-lg-5">
+
         <h1 class="d_name"><%= @district.name %></h1>
-        
+
         <!--googlemap-->
         <div id='district_map'></div>
-        
+
         <div class="d_turi">
           <h2 class="d_spot"><%= @district.name %>の釣り場一覧</h2>
           <ul>
@@ -15,40 +15,43 @@
             <% end %>
           </ul>
         </div>
-        
+
       </div>
-      
+
       <div class="mx-auto d-block col-md-12 col-lg-6">
-        
+
         <h2 class="turicome"><%= @district.name %>の釣り場コメント一覧</h2>
-        
+
         <!--その地区内の釣り場のコメント-->
         <div class="d_scroll">
           <div class="center jumbotron">
             <% @spots.each do |s| %>
               <!--釣り場のコメントを表示-->
               <% s.comments.each do |c| %>
-              
+
                 <div>
                   釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
                 </div>
-                
+
+                <div>
+                  <%= l c.created_at, format: :short %>
+                </div>
+
                 <div>
                   <%= image_tag c.user.image.url, class:"c_user_icon", alt: "" %><a class="c_user" href="/users/<%= c.user.id %>"><%= c.user.name %></a>
-                  <span class="c_user_time">:&nbsp;<%= l c.created_at, format: :short %></span>
                 </div>
-                      
+
                 <!--改行-->
                 <div class="content">
                   <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
-                </div>      
-                
+                </div>
+
                 <!--画像-->
                 <div class="img_position">
                   <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
                     <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
                   <% end %>
-                </div> 
+                </div>
                 <hr>
               <% end %>
             <% end %>
@@ -63,7 +66,7 @@
   function initMap() {
 
       var position ={lat: <%= @district.latitude %>, lng: <%= @district.longitude %>};
-    
+
       var map = new google.maps.Map(document.getElementById('district_map'), {
           zoom: 13,
           center: position
@@ -73,7 +76,7 @@
 
       <% @spots.each do |spot| %>
 (function(){
-        var contentString = '<%= link_to spot.name, spot_path(spot) %>'; 
+        var contentString = '<%= link_to spot.name, spot_path(spot) %>';
         var infowindow = new google.maps.InfoWindow({
             content: contentString
         });

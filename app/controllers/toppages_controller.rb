@@ -5,6 +5,10 @@ class ToppagesController < ApplicationController
     gon.api_key = ENV['OPEN_WEATHER_MAP_API_KEY']
     @districts = District.all
     @spots = Spot.all
-    @comments = Comment.all.order(id: :desc).page(params[:page]).per(6)
+    if user_signed_in?
+      @comments = current_user.feed_comments.order(id: :desc).page(params[:page]).per(6)
+    else
+      @comments = Comment.all.order(id: :desc).page(params[:page]).per(6)
+    end
   end
 end

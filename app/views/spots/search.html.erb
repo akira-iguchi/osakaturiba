@@ -4,7 +4,7 @@
       <!--googlemap-->
       <div id='search_map'></div>
     </div>
-    
+
     <!--検索した釣り場一覧-->
     <div class="mx-auto d-block area col-md-10 col-lg-5">
       <div class="list">
@@ -28,47 +28,6 @@
       </div>
     </div>
   </div>
-  
-  <div class = "under">
-    
-    <div class="top_comment">
-      <h2 class="comment_title">釣り場コメント一覧</h2>
-      
-      <div class="center jumbotron">
-        <% @comments.each do |c| %>
-        
-          <div>
-            釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
-          </div>
-          
-          <div>
-            <%= image_tag c.user.image.url, class:"c_user_icon", alt: "" %><a class="c_user" href="/users/<%= c.user.id %>"><%= c.user.name %></a>
-            <span class="c_user_time">:&nbsp;<%= l c.created_at, format: :short %></span>
-          </div>
-          
-          <!--改行-->
-          <div class="content">
-            <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
-          </div>
-          
-          <!--画像-->
-          <div class="img_position">
-            <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
-              <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
-            <% end %>
-          </div> 
-          <hr>
-        <% end %>
-        <%= paginate @comments %>
-      </div>
-    </div>
-
-    <!--天気予報-->
-    <aside class="entire_weather">
-      <div id="city-name"></div>
-      <div id="weather"></div>
-    </aside>
-  </div>
 </div>
 
 <%= javascript_include_tag 'search.js' %>
@@ -88,7 +47,7 @@ function initMap() {
 
   <% @district.each do |d| %>
     (function(){
-      var contentString = '<%= link_to d.name, district_path(d) %>'; 
+      var contentString = '<%= link_to d.name, district_path(d) %>';
       var infowindow = new google.maps.InfoWindow({
           content: contentString
       });
@@ -106,7 +65,7 @@ function initMap() {
 
   <% @spots.each do |s| %>
     (function(){
-      var contentString = '<%= link_to s.name, spot_path(s) %>'; 
+      var contentString = '<%= link_to s.name, spot_path(s) %>';
       var infowindow = new google.maps.InfoWindow({
           content: contentString
       });

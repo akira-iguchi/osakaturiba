@@ -55,4 +55,8 @@ class User < ApplicationRecord
   def following?(other_user)
     followings.include?(other_user)
   end
+
+  def feed_comments
+    Comment.where(user_id: self.following_ids + [self.id])
+  end
 end

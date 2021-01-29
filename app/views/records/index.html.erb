@@ -1,6 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="mx-auto d-block col-lg-8">
+    <% if current_user == @user %>
+      <div class="mx-auto d-block col-lg-8">
+    <% else %>
+      <div class="mx-auto d-block col-lg-11">
+    <% end %>
       <p class="record_title">フィッシング記録&nbsp;<i class="fas fa-pen"></i></p>
       <div class="record_body">
         <%= month_calendar events: @records do |date, records| %>
@@ -8,7 +12,7 @@
 
           <% records.each do |record| %>
             <div>
-              <%= link_to user_record_path(user_id: current_user.id, id: record.id) do %>
+              <%= link_to user_record_path(user_id: @user.id, id: record.id) do %>
                 <%= image_tag('logo.png', class: 'record-logo' )%>
               <% end %>
             </div>
@@ -16,10 +20,12 @@
         <% end %>
       </div>
     </div>
-    
-    <div class="mx-auto d-block col-lg-4 record_form_body">
-      <%= render 'form'%>
-    </div>
+
+    <% if current_user == @user %>
+      <div class="mx-auto d-block col-lg-4 record_form_body">
+        <%= render 'form'%>
+      </div>
+    <% end %>
   </div>
 </div>
 

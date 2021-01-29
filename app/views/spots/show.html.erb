@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row spot_body">
     <div class="mx-auto d-block col-md-11 col-lg-5">
-      
+
       <h1 class="spot_name"><%= @spot.name %></h1>
-      
+
       <!--googlemap-->
       <div id='spot_map'></div>
-      
+
       <% if user_signed_in? %>
         <div style="text-align: center;">
           <button class="favorite">
@@ -15,22 +15,22 @@
               <%= form_with(model: current_user.favorites.find_by(spot_id: @spot.id), local: true, method: :delete) do |f| %>
                 <%= hidden_field_tag :spot_id, @spot.id %>
                 <%= hidden_field_tag :page_id, 4 %>
-                <%= f.submit 'お気に入り中', data: { confirm: "お気に入り解除しますか?" }, class: 'btn btn-success btan mx-auto d-block' %>
+                <%= f.submit 'お気に入り中', class: 'btn btn-success btan mx-auto d-block' %>
               <% end %>
-              
+
             <% else %>
-            
+
               <!--お気に入り解除をしているならお気に入りボタンを表示-->
               <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
                 <%= hidden_field_tag :spot_id, @spot.id %>
                 <%= f.submit 'お気に入り登録', class: 'btn btn-primary btan mx-auto d-block' %>
               <% end %>
-              
+
             <% end %>
           </button>
         </div>
       <% end %>
-      
+
     </div>
 
     <div class="mx-auto d-block col-lg-6">
@@ -45,40 +45,43 @@
       </ul>
     </div>
   </div>
-  
+
   <div class="box-title mx-auto d-block">コメント一覧</div>
   <div class="box2 mx-auto d-block">
     <div>
       <% @comments.each do |c| %>
-      
+
+        <div>
+          <%= l c.created_at, format: :short %>
+        </div>
+
         <div>
           <%= image_tag c.user.image.url, class:"c_user_icon", alt: "" %><a class="c_user" href="/users/<%= c.user.id %>"><%= c.user.name %></a>
-          <span class="c_user_time">:&nbsp;<%= l c.created_at, format: :short %></span>
         </div>
-        
+
         <!--改行-->
         <div class="content">
           <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
         </div>
-          
+
         <!--画像-->
         <div class="img_position">
           <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
             <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
           <% end %>
         </div>
-        
-        <button class="botton">
-          <% if current_user == c.user %>
+
+        <% if current_user == c.user %>
+          <button class="botton">
             &nbsp;<%= link_to "削除", spot_comment_path(@spot,c,page_id: 2), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'btn btn-danger btn-sm delete' %>
-          <% end %>
-        </button>
+          </button>
+        <% end %>
         <hr>
       <% end %>
     </div>
-      
+
     <%= paginate @comments %>
-    
+
     <% if user_signed_in? %>
       <!--コメント投稿-->
       <div>
@@ -104,28 +107,28 @@
 // googlemap
 {
   function initMap() {
-  
+
     var position ={lat: <%= @spot.latitude %>, lng: <%= @spot.longitude %>};
-    
+
     var map = new google.maps.Map(document.getElementById('spot_map'), {
-              zoom: 16, 
+              zoom: 16,
               center: position
               });
     var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
-  
+
     var contentString = '<%= @spot.address %>';
     var infowindow = new google.maps.InfoWindow({
       content: contentString
     });
-  
-  
+
+
     var marker = new google.maps.Marker({
                   position:position,
                   map: map,
                   title: contentString
                  });
-  
+
      marker.addListener('click', function() {
        infowindow.open(map, marker);
      });

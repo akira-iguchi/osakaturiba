@@ -52,11 +52,11 @@
         <% end %>
       </tbody>
     </table>
-  
-    <% if @user == @record.user %>
+
+    <% if @user == current_user %>
       <%= link_to '編集する', edit_user_record_path(user_id: @user, id: @record), class: 'btn-border-edit' %>
       <%= link_to '削除する', user_record_path(user_id: @user, id: @record), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn-border-delete' %>
     <% end %>
   </div>
-  <%= link_to '戻る', user_records_path(current_user), class: 'return-show' %>
+  <%= link_to '戻る', user_records_path(@user), class: 'return-show' %>
 </div>

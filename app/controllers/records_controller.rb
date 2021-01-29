@@ -1,24 +1,17 @@
 class RecordsController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, only: %i[create, edit update destroy]
   before_action :correct_user, only: %i[edit update destroy]
   before_action :spot_ranks
 
   def index
-    unless user_records_path(current_user) == url_for(controller: 'records', action: 'index', only_path: true)
-      flash[:danger] = '他のユーザーのフィッシング記録は閲覧できません。'
-      redirect_to user_records_path(current_user)
-    end
-    @records = current_user.records
+    @user = User.find(params[:user_id])
+    @records = @user.records
     @record = Record.new
   end
 
   def show
     @record = Record.find(params[:id])
-    @user = current_user
-    unless @user == @record.user
-      flash[:danger] = '他のユーザーのフィッシング記録は閲覧できません。'
-      redirect_to user_records_path(current_user)
-    end
+    @user = User.find(params[:user_id])
   end
 
   def create
@@ -60,8 +53,7 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:record).permit(:fishingtype, :spot, :bait, :weather, :fishing_start_time, :fishing_end_time,
-                                   :detail, :start_time)
+    params.require(:record).permit(:fishingtype, :spot, :bait, :weather, :fishing_start_time, :fishing_end_time, :detail, :start_time)
   end
 
   def correct_user

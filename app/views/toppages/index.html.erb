@@ -5,73 +5,71 @@
         大阪の
       </p>
     </div>
-    
+
     <div>
       <p class="turiba">
         釣り場
       </p>
     </div>
   </div>
-  
+
   <div class="text-center fade">
     <h2 class="text-white">気に入った釣り場をお気に入り登録したり、釣りを予定、記録しよう！</h2>
   </div>
 </div>
-  
+
 <div class="container top-body">
   <div class="row">
     <div class="mx-auto d-block col-md-12 col-lg-6">
        <!--googlemap-->
       <div id='top_map'></div>
     </div>
-    
+
     <div class="mx-auto d-block area col-md-8 col-lg-5">
       <div class="list">
         <h1 class="spot_title">釣り場一覧</h1>
-        <p class="district_name"><%= link_to '南港', '/districts/1', class: "text-dark" %></p>
-          <span>・<%= link_to 'かもめ大橋', '/spots/1' %></span> &nbsp;<span>・<%= link_to 'シーサイドコスモ', '/spots/2' %></span>
-        <p class="district_name"><%= link_to '淀川', '/districts/6', class: "text-dark" %></p>
-          <span>・<%= link_to '伝法大橋周辺', '/spots/11' %></span> &nbsp;<span>・<%= link_to '淀川河川公園', '/spots/12' %></span>
-        <p class="district_name"><%= link_to '泉大津', '/districts/5', class: "text-dark" %></p>
-          <span>・<%= link_to '助松埠頭', '/spots/9' %></span> &nbsp;<span>・<%= link_to '汐見埠頭砂上げ場', '/spots/10' %></span>
-        <p class="district_name"><%= link_to '貝塚', '/districts/2', class: "text-dark" %></p>
-          <span>・<%= link_to '貝塚人工島', '/spots/3' %></span> &nbsp;<span>・<%= link_to '貝塚人工島水路', '/spots/4' %></span>
-        <p class="district_name"><%= link_to '泉佐野', '/districts/4', class: "text-dark" %></p>
-          <span>・<%= link_to '食品コンビナート', '/spots/7' %></span> &nbsp;<span>・<%= link_to 'りんくう', '/spots/8' %></span>
-        <p class="district_name"><%= link_to '岬町', '/districts/3', class: "text-dark" %></p>
-          <span>・<%= link_to 'とっとパーク小島', '/spots/5' %></span> &nbsp;<span>・<%= link_to '深日港', '/spots/6' %></span>
+        <% @districts.each do |d| %>
+          <p class="district_name"><a class="text-dark" href="/districts/<%= d.id %>"><%= d.name %></a></p>
+          <% d.spots.each do |s| %>
+            <span>・<a href="/spots/<%= s.id %>"><%= s.name %></a></span> &nbsp;
+          <% end %>
+        <% end %>
       </div>
-    </div>       
+    </div>
   </div>
-  
+
   <div class = "under">
-    
+
     <div class="top_comment">
       <h2 class="comment_title">釣り場コメント一覧</h2>
-      
+
       <div class="center jumbotron">
         <% @comments.each do |c| %>
-        
+
           <div>
             釣り場&nbsp;:&nbsp;<a href="/spots/<%= c.spot.id %>"><%= c.spot.name %></a>
           </div>
-          
+
+          <div>
+            <%= l c.created_at, format: :short %>
+          </div>
+
           <div>
             <%= image_tag c.user.image.url, class:"c_user_icon", alt: "" %><a class="c_user" href="/users/<%= c.user.id %>"><%= c.user.name %></a>
-            <span class="c_user_time">:&nbsp;<%= l c.created_at, format: :short %></span>
+            <span class="c_user_time"></span>
           </div>
-          
+
           <!--改行-->
           <div class="content">
             <%= safe_join("#{c.content}".split("\n"),tag(:br)) %>
           </div>
-          
+
           <!--画像-->
           <div class="img_position">
             <%= link_to c.image.url, "data-lightbox" => c.image.url do %>
               <%= image_tag c.image.url, alt: "", class: "comment_img" if c.image? %>
             <% end %>
-          </div> 
+          </div>
           <hr>
         <% end %>
         <%= paginate @comments %>
@@ -103,7 +101,7 @@ function initMap() {
 
   <% @districts.each do |d| %>
     (function(){
-      var contentString = '<%= link_to d.name, district_path(d) %>'; 
+      var contentString = '<%= link_to d.name, district_path(d) %>';
       var infowindow = new google.maps.InfoWindow({
           content: contentString
       });

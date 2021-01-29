@@ -8,9 +8,7 @@ class SpotsController < ApplicationController
   end
 
   def search
-    gon.api_key = ENV['OPEN_WEATHER_MAP_API_KEY']
     @districts = District.all
-    @comments = Comment.all.order(id: :desc).page(params[:page]).per(6)
 
     @spots = if params[:name].present?
                Spot.where('name LIKE ?', "%#{params[:name]}%")

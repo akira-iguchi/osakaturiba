@@ -18,7 +18,7 @@
  /*全体*/
 
 body {
-  background: linear-gradient(to right, rgba(250, 250, 197, 0.4), rgba(100, 255, 192, 0.4));
+  background: rgba(240, 250, 197, 0.3);
   display: flex;
   flex-flow: column;
   min-height: 100vh;
@@ -82,7 +82,7 @@ main {
 }
 
 .nav-body {
-  background-color: rgba(0,120,255,0.9);
+  background-color: rgba(0,120,255,0.8);
 }
 
 .title {
@@ -137,12 +137,12 @@ main {
     top: 18px;
     left: 70px;
   }
-  
+
   .fish1 {
     position: absolute;
     top: 22px;
   }
-  
+
   .fish2 {
     position: absolute;
     left: 243px;
@@ -156,12 +156,12 @@ main {
     top: 9px;
     left: 70px;
   }
-  
+
   .fish1 {
     position: absolute;
     top: 13px;
   }
-  
+
   .fish2 {
     position: absolute;
     left: 243px;
