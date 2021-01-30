@@ -95,21 +95,8 @@ main {
   margin: auto;
 }
 
-@media screen and (max-width: 1200px) {
-  .item-name {
-    max-width: 110px;
-    margin: auto;
-  }
-
-  .search-item {
-    margin: auto;
-  }
-}
-
-@media screen and (max-width: 990px) {
-  .item-name {
-    max-width: 500px;
-  }
+.item-name {
+  color: rgba(255,255,255,1);
 }
 
 @media screen and (max-width: 3000px) {
@@ -118,12 +105,12 @@ main {
     top: 9px;
     left: 70px;
   }
-  
+
   .fish1 {
     position: absolute;
     top: 13px;
   }
-  
+
   .fish2 {
     position: absolute;
     left: 243px;
@@ -148,6 +135,15 @@ main {
     left: 243px;
     top: 22px;
   }
+
+  .item-name {
+    max-width: 110px;
+    margin: auto;
+  }
+
+  .search-item {
+    margin: auto;
+  }
 }
 
 @media screen and (max-width: 990px) {
@@ -166,6 +162,9 @@ main {
     position: absolute;
     left: 243px;
     top: 13px;
+  }
+  .item-name {
+    max-width: 500px;
   }
 }
 
