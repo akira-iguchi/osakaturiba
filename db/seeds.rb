@@ -46,7 +46,7 @@ huke = misakityo.spots.create(
   longitude: 135.142
 )
 
-izumisano = District.create(name: "泉佐"”, latitude: 34.4186, longitude: 135.32)
+izumisano = District.create(name: "泉佐", latitude: 34.4186, longitude: 135.32)
 rinku = izumisano.spots.create(
   name: 'りんくう',
   explanation: '関西国際空港の手前にある「りんくう公園」の周りのテトラ帯が釣り場になる。有料だが駐車場が存在する。公園内は釣りが禁止なので、釣りをするにはテトラまで降りなければならない。主にアジングやメバリングがメインであり、秋にはタチウオ狙いの人でにぎわう。そのほか、ルアーでシーバスが釣れる。',
@@ -62,7 +62,7 @@ konnbinato = izumisano.spots.create(
   longitude: 135.326
 )
 
-izumiootsu = District.create(name: "泉大"”,latitude: 34.5151, longitude: 135.392)
+izumiootsu = District.create(name: "泉大",latitude: 34.5151, longitude: 135.392)
 suke = izumiootsu.spots.create(
   name: '助松埠頭',
   explanation: '泉大津人工島とも呼ぶ。主に「北岸壁」「倉庫前」「花市場前」の3箇所がポイントとなる。進入する際、夜9時から朝5時まで閉鎖されているが帰りの時間規制はない。車の横づけが可能であり、駐車料金もかからないが、トイレ、柵等はない。ご家族でのサビキ釣りでアジやイワシ、秋の太刀魚釣りがメインとなる。',
