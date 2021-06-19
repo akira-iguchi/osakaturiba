@@ -2,7 +2,6 @@ require 'carrierwave/storage/abstract'
 require 'carrierwave/storage/file'
 require 'carrierwave/storage/fog'
 
-if Rails.env.production?
   CarrierWave.configure do |config|
     config.storage = :fog
     config.fog_provider = 'fog/aws'
@@ -17,4 +16,3 @@ if Rails.env.production?
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" }
   end
   CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:].\-+]/
-end
