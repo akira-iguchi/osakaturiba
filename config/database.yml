@@ -56,4 +56,5 @@ production:
   <<: *default
   username: root
   database: osakaturiba_production
-  password: turi931
+  username: <%= ENV.fetch('MYSQL_USER') { 'root' } %>
+  password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
