@@ -1,2 +1,2 @@
-GRANT ALL PRIVILEGES ON *.* TO 'akira'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost';
 FLUSH PRIVILEGES;

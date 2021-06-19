@@ -48,7 +48,6 @@ group :development, :test do
   gem 'ed25519'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'faker'
   gem 'guard-rspec', require: false
   gem 'rails-controller-testing'
   gem 'rspec-rails'
@@ -99,4 +98,3 @@ gem 'rake', '< 11.0'
 gem 'rb-readline'
 gem 'simple_calendar', '~> 2.0'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'webpacker', github: 'rails/webpacker'
