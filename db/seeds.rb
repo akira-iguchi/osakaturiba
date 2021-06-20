@@ -87,57 +87,57 @@ bukkomi = FishingType.create(name: 'ぶっこみ釣り', content: 'オモリと�
 dotuki = FishingType.create(name: '胴付き仕掛け', content: 'サビキのような枝分かれした仕掛けを使う釣り方。多彩な魚を釣る「五目釣り」に適している。主なエサはオキアミやイソメであるが、カワハギにはアサリが有効などエサによって釣れる魚も若干変わってくるので、いろんなエサを持ってくると長く楽しめる。主に岸際を狙うので、長い竿だとやりづらくなる。小魚がよく釣れるが、たまに大物も混じってくる。')
 oyogase = FishingType.create(name: '泳がせ釣り', content: '「飲ませ釣り」ともいう。生きている魚を生き餌として泳がせ、それを狙う魚を釣る方法。対象魚が大型なので、強い仕掛けが必要。ウキをつけて仕掛けを浮かせると青物、仕掛けにオモリをつけて底に沈ませるとヒラメやキジハタなど、高級魚が簡単に釣れるので、人気の釣り方である。ルアーや冷凍エサと違ってエサが生きているので、狙う魚の反応がとても良い。デメリットとして、生きているエサが必要なので、エサの確保が困難。')
 
-sabiki.fishing_types << kamomeoohashi
-sabiki.fishing_types << kosumo
-sabiki.fishing_types << zinkoto
-sabiki.fishing_types << kozima
-sabiki.fishing_types << huke
-sabiki.fishing_types << konnbinato
-sabiki.fishing_types << suke
-sabiki.fishing_types << yumi
+sabiki.type(kamomeoohashi)
+sabiki.type(kosumo)
+sabiki.type(zinkoto)
+sabiki.type(kozima)
+sabiki.type(huke)
+sabiki.type(konnbinato)
+sabiki.type(suke)
+sabiki.type(yumi)
 
-rua.fishing_types << kamomeoohashi
-rua.fishing_types << kosumo
-rua.fishing_types << zinkoto
-rua.fishing_types << kozima
-rua.fishing_types << huke
-rua.fishing_types << konnbinato
-rua.fishing_types << rinku
-rua.fishing_types << suke
-rua.fishing_types << yumi
+rua.type(kamomeoohashi)
+rua.type(kosumo)
+rua.type(zinkoto)
+rua.type(kozima)
+rua.type(huke)
+rua.type(konnbinato)
+rua.type(rinku)
+rua.type(suke)
+rua.type(yumi)
 
-uki.fishing_types << kamomeoohashi
-uki.fishing_types << zinkoto
-uki.fishing_types << suiro
-uki.fishing_types << kozima
-uki.fishing_types << konnbinato
-uki.fishing_types << suke
-uki.fishing_types << yumi
+uki.type(kamomeoohashi)
+uki.type(zinkoto)
+uki.type(suiro)
+uki.type(kozima)
+uki.type(konnbinato)
+uki.type(suke)
+uki.type(yumi)
 
-nage.fishing_types << zinkoto
-nage.fishing_types << suiro
-nage.fishing_types << huke
+nage.type(zinkoto)
+nage.type(suiro)
+nage.type(huke)
 
-kago.fishing_types << zinkoto
-kago.fishing_types << kozima
+kago.type(zinkoto)
+kago.type(kozima)
 
-bukkomi.fishing_types << kamomeoohashi
-bukkomi.fishing_types << kosumo
-bukkomi.fishing_types << zinkoto
-bukkomi.fishing_types << suiro
-bukkomi.fishing_types << kozima
-bukkomi.fishing_types << huke
-bukkomi.fishing_types << rinku
-bukkomi.fishing_types << konnbinato
-bukkomi.fishing_types << suke
-bukkomi.fishing_types << yumi
+bukkomi.type(kamomeoohashi)
+bukkomi.type(kosumo)
+bukkomi.type(zinkoto)
+bukkomi.type(suiro)
+bukkomi.type(kozima)
+bukkomi.type(huke)
+bukkomi.type(rinku)
+bukkomi.type(konnbinato)
+bukkomi.type(suke)
+bukkomi.type(yumi)
 
-dotuki.fishing_types << zinkoto
-dotuki.fishing_types << kozima
-dotuki.fishing_types << konnbinato
-dotuki.fishing_types << suke
-dotuki.fishing_types << yumi
+dotuki.type(zinkoto)
+dotuki.type(kozima)
+dotuki.type(konnbinato)
+dotuki.type(suke)
+dotuki.type(yumi)
 
-oyogase.fishing_types << kamomeoohashi
-oyogase.fishing_types << zinkoto
-oyogase.fishing_types << kozima
+oyogase.type(kamomeoohashi)
+oyogase.type(zinkoto)
+oyogase.type(kozima)
