@@ -42,9 +42,11 @@
 
     <div class="top_comment">
       <% if user_signed_in? %>
-        <h2 class="comment_title">フォローしたユーザーの釣り場コメント一覧</h2>
+        <h3 class="comment_title">
+          <%= current_user.name %>さんとフォローしたユーザーのコメント
+        </h3>
       <% else %>
-        <h2 class="comment_title">すべての釣り場コメント一覧</h2>
+        <h3 class="comment_title">すべてのコメント</h3>
       <% end %>
 
       <div class="center jumbotron">
