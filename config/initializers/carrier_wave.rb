@@ -2,6 +2,7 @@ require 'carrierwave/storage/abstract'
 require 'carrierwave/storage/file'
 require 'carrierwave/storage/fog'
 
+if Rails.env.production?
   CarrierWave.configure do |config|
     config.storage = :fog
     config.fog_provider = 'fog/aws'
@@ -12,7 +13,8 @@ require 'carrierwave/storage/fog'
       aws_secret_access_key: ENV['S3_SECRET_KEY']
     }
     config.fog_directory = 'osakaturiba'
-    config.asset_host = 'https://osakaturiba.s3.amazonaws.com'
+    config.asset_host = 'https://osakaturiba.s3.us-west-1.amazonaws.com/'
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" }
   end
   CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:].\-+]/
+end
