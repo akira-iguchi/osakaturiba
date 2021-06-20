@@ -41,7 +41,11 @@
   <div class = "under">
 
     <div class="top_comment">
-      <h2 class="comment_title">釣り場コメント一覧</h2>
+      <% if user_signed_in? %>
+        <h2 class="comment_title">フォローしたユーザーの釣り場コメント一覧</h2>
+      <% else %>
+        <h2 class="comment_title">すべての釣り場コメント一覧</h2>
+      <% end %>
 
       <div class="center jumbotron">
         <% @comments.each do |c| %>
