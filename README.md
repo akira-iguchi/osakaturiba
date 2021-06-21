@@ -101,6 +101,7 @@ URL：https://osakaturiba.herokuapp.com/ (現在 Heroku でデプロイ)
 
 <h2>懸念、気になっている点</h2>
 
+- UI が古く見える。
 - SSL 化できていない。
 - リファクタリングが不十分か。
 - git commit メッセージが重複している。
