@@ -104,7 +104,7 @@ URL：https://osakaturiba.herokuapp.com/ (現在 Heroku でデプロイ)
 - SSL 化できていない。
 - Ajax を導入していない
 - リファクタリングが不十分か。
-- git commit メッセージが重複している。
+- 一部 、不明瞭な git commit メッセージが重複している。
 - 大阪以外の釣り場をほとんど知らないため、釣り場が大阪内しかない。
 - safari 等 google chrome 以外を使用すると、OpenWeatherMap の天気や日付をうまく取得できない。
 
